@@ -1,0 +1,15 @@
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\bin\Debug\net8.0\HRMS.Application.deps.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\bin\Debug\net8.0\HRMS.Application.runtimeconfig.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\bin\Debug\net8.0\HRMS.Application.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\bin\Debug\net8.0\HRMS.Application.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.csproj.AssemblyReference.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.AssemblyInfoInputs.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.AssemblyInfo.cs
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.csproj.CoreCompileInputs.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.sourcelink.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\refint\HRMS.Application.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\HRMS.Application.genruntimeconfig.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Application\obj\Debug\net8.0\ref\HRMS.Application.dll

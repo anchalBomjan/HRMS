@@ -1,0 +1,15 @@
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Infrastructure.deps.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Infrastructure.runtimeconfig.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Infrastructure.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Infrastructure.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.AssemblyInfo.cs
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.sourcelink.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\refint\HRMS.Infrastructure.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.genruntimeconfig.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\ref\HRMS.Infrastructure.dll

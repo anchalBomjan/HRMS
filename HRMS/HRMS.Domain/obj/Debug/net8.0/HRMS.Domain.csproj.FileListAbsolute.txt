@@ -1,0 +1,12 @@
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\bin\Debug\net8.0\HRMS.Domain.deps.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\bin\Debug\net8.0\HRMS.Domain.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\bin\Debug\net8.0\HRMS.Domain.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\HRMS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\HRMS.Domain.AssemblyInfoInputs.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\HRMS.Domain.AssemblyInfo.cs
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\HRMS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\HRMS.Domain.sourcelink.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\HRMS.Domain.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\refint\HRMS.Domain.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\HRMS.Domain.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Domain\obj\Debug\net8.0\ref\HRMS.Domain.dll
