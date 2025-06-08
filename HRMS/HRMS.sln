@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Application", "HRMS.Application\HRMS.Application.csproj", "{61A0A5CB-F0D8-477F-84AB-45C247E093FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Infrastructure", "HRMS.Infrastructure\HRMS.Infrastructure.csproj", "{555E3314-8F80-4CF0-B0C4-41459D1BBB5B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61A0A5CB-F0D8-477F-84AB-45C247E093FD} = {61A0A5CB-F0D8-477F-84AB-45C247E093FD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
