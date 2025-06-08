@@ -1,8 +1,12 @@
 ﻿
+using FluentValidation;
+using FluentValidation.Results;
+using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +33,10 @@ namespace HRMS.Infrastructure.Services
         public async  Task<bool> AssignUserToRole(string userName, IList<string> roles)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userName);
+            if (user == null)
+            {
+                throw new NotFoundException("User not found");
+            }
           
 
             var result = await _userManager.AddToRolesAsync(user, roles);
@@ -36,24 +44,92 @@ namespace HRMS.Infrastructure.Services
 
         }
 
-        public Task<bool> CreateRoleAsync(string roleName)
+        public async Task<bool> CreateRoleAsync(string roleName)
         {
-            throw new NotImplementedException();
+            var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
+            if (!result.Succeeded)
+            {
+                 var failures = result.Errors.Select(e =>
+                new ValidationFailure(nameof(roleName), e.Description));
+                ///throw new ValidationException(failures);
+                      
+
+            }
+             return result.Succeeded;
+
+          
         }
 
-        public Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName, IList<string> roles)
+        public  async Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName, IList<string> roles)
         {
-            throw new NotImplementedException();
+            var user = new ApplicationUser()
+            {
+                FullName= fullName,
+                UserName= userName,
+                Email= email,
+
+            };
+            var result= await _userManager.CreateAsync(user,password);
+            if (!result.Succeeded)
+            {
+                var failure = result.Errors.Select(e =>
+                new ValidationFailure(nameof(user), e.Description));
+                
+
+            }
+            var addUserRole=await _userManager.AddToRolesAsync(user,roles);
+            if (!addUserRole.Succeeded)
+            {
+                var failures=addUserRole.Errors
+                    .Select(e=> new ValidationFailure(nameof(roles), e.Description));
+                  throw new ValidationException(failures);
+
+            }
+             return(result.Succeeded,user.Id);
         }
 
-        public Task<bool> DeleteRoleAsync(string roleId)
+        public async Task<bool> DeleteRoleAsync(string roleId)
         {
-            throw new NotImplementedException();
+           var roleDetails= await _roleManager.FindByIdAsync(roleId);
+            if(roleDetails == null)
+            {
+                throw new NotFoundException("Role is  not found");
+            }
+
+            if (roleDetails.Name == "Administrator")
+            {
+                throw new BadRequestException(" You can not delete  Administration Role");
+
+            }
+
+            var result= await _roleManager.DeleteAsync(roleDetails);
+            if(!result.Succeeded)
+            {
+                var failures = result.Errors
+                     .Select(e => new ValidationFailure(nameof(roleId), e.Description));
+                throw new ValidationException(failures);
+            }
+
+             return result.Succeeded;
         }
 
-        public Task<bool> DeleteUserAsync(string userId)
+        public async Task<bool> DeleteUserAsync(string userId)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            if(user== null) 
+            {
+                throw new NotFoundException("USer NotFound");
+                
+
+
+            }
+            if(user.UserName=="system"|| user.UserName == "Admin")
+            {
+                throw new Exception(" you cannot delete system or Admin");
+            }
+            var result= await _userManager.DeleteAsync(user);
+            return result.Succeeded;
+
         }
 
         public Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync()
