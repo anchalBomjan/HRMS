@@ -15,7 +15,7 @@ namespace HRMS.Domain.Entities
 
         public int StockId { get; set; }
 
-        public DateTime? AssigmentDate { get; set; }
+        public DateTime? AssigmentDate { get; set; }= DateTime.Now;
          public decimal AsssignedQuantity { get; set; }
 
         // Navigation properties

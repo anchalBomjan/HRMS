@@ -20,7 +20,7 @@ namespace HRMS.Infrastructure.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly  SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public IdentityService(   UserManager<ApplicationUser> userManager ,SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public IdentityService(UserManager<ApplicationUser> userManager ,SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
 
             _userManager = userManager;
@@ -182,9 +182,18 @@ namespace HRMS.Infrastructure.Services
             return (user.Id, user.FullName, user.UserName, user.Email, roles);
         }
 
-        public Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsByUserNameAsync(string userName)
+        public  async Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsByUserNameAsync(string userName)
         {
-            throw new NotImplementedException();
+            var user= await _userManager.Users.FirstOrDefaultAsync(x=> x.UserName==userName);
+
+            if(user== null)
+            {
+                throw new NotFoundException("User NotFound");
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            return (user.Id, user.FullName, user.UserName, user.Email, roles);
+            
         }
 
         public Task<string> GetUserIdAsync(string userName)

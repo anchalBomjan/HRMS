@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRMS.Domain.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,15 @@ namespace HRMS.Domain.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Type { get; set; }
+
+
+        //use  enum for stock types
+        public StockType Type { get; set; } = StockType.UnKnown;
+      
         public decimal Quantity { get; set; }
 
         public  ICollection<StockAssignment> Assignments { get; set; }
+
     }
 
 
