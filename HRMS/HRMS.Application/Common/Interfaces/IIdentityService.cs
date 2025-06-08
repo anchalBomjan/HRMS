@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRMS.Infrastructure.Common.Interfaces
+namespace HRMS.Application.Common.Interfaces
 {
     public  interface IIdentityService
     {
 
         //Use section
-        Task <(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName,IList<string> roles);
+        Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName, IList<string> roles);
         Task<bool> SigninUserAsync(string userName, string password);
 
 
         Task<string> GetUserIdAsync(string userName);
         Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync();
-        Task<List<(string id , string fullName, string userName, string email,IList<string>roles)>>GetAllUsersDetailsAsync();
+        Task<List<(string id, string fullName, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync();
 
 
         Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsAsync(string Id);
@@ -46,14 +46,6 @@ namespace HRMS.Infrastructure.Common.Interfaces
         Task<List<string>> GetUserRolesAsync(string userId);
         Task<bool> AssignUserToRole(string userName, IList<string> roles);
         Task<bool> UpdateUsersRole(string userName, IList<string> userRole);
-
-
-
-
-
-
-
-
 
     }
 }

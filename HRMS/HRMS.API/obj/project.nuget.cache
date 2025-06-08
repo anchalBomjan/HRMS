@@ -1,10 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "Mz07EAn1H2QCxbTHCDkn6sXiTaLs4bBAm0uZ3+myk6mzXgdfhyK4wKVVjLboIhp69my7Shhcxjf+v7X5UR5UZw==",
+  "dgSpecHash": "COJWZy9UVV3lbVIqsUv+xQz4p1gbWlPFdmqrYOUPd5+CE/TZ3zD4yGBr5MW/Ovbd6wonmoAzq/ilaXHxyoL/8g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Anchal\\Desktop\\Imark\\HRMS\\HRMS.API\\HRMS.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Anchal\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
+    "C:\\Users\\Anchal\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
+    "C:\\Users\\Anchal\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.0.0\\fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512",
     "C:\\Users\\Anchal\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Anchal\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Anchal\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "C:\\Users\\Anchal\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\Anchal\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Anchal\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\Anchal\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",

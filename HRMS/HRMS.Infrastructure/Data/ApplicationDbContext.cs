@@ -11,7 +11,11 @@ using System.Threading.Tasks;
 
 namespace HRMS.Infrastructure.Data
 {
-    public  class ApplicationDbContext:IdentityDbContext<ApplicationUser,IdentityRole,string>
+    //public  class ApplicationDbContext:IdentityDbContext<ApplicationUser,IdentityRole,string> 
+    public class ApplicationDbContext
+        : IdentityDbContext<ApplicationUser, IdentityRole, string>,IApplicationDbContext
+         
+
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options):base(options)
         {
