@@ -132,14 +132,32 @@ namespace HRMS.Infrastructure.Services
 
         }
 
-        public Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync()
+        public async  Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync()
         {
-            throw new NotImplementedException();
+            var users = await _userManager.Users.Select(x => new 
+            { 
+                x.Id, 
+                x.FullName,
+                x.UserName,
+                x.Email
+            }).ToListAsync();
+
+            return users.Select(user => (user.Id, user.FullName,  user.UserName,user.Email)).ToList();
         }
 
-        public Task<List<(string id, string fullName, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
+        public  async Task<List<(string id, string fullName, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
         {
-            throw new NotImplementedException();
+            var users = await _userManager.Users.ToArrayAsync();
+
+            var userDetails= new List<(string id, string userName, string fullName, string email, IList<string> roles)>();
+           
+            foreach(var user in users)
+            {
+                var role= await _userManager.GetRolesAsync(user);
+                userDetails.Add((user.Id,user.FullName,user.UserName, user.Email, role));
+            }
+
+             return userDetails;
         }
 
         public Task<(string id, string roleName)> GetRoleByIdAsync(string id)
@@ -152,9 +170,16 @@ namespace HRMS.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsAsync(string Id)
+        public  async Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsAsync(string Id)
         {
-            throw new NotImplementedException();
+             var user= await _userManager.FindByIdAsync(Id);
+            if (user == null)
+            {
+                throw new NotFoundException("user", Id);
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            return (user.Id, user.FullName, user.UserName, user.Email, roles);
         }
 
         public Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsByUserNameAsync(string userName)
