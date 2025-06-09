@@ -31,3 +31,6 @@ C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\obj\Debug\net8.0\refint\HRMS.API.dll
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\obj\Debug\net8.0\HRMS.API.pdb
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\obj\Debug\net8.0\HRMS.API.genruntimeconfig.cache
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\obj\Debug\net8.0\ref\HRMS.API.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

@@ -1,4 +1,5 @@
-﻿using HRMS.Domain.Entities;
+﻿using HRMS.Application.Common.Interfaces;
+using HRMS.Domain.Entities;
 using HRMS.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -25,6 +26,12 @@ namespace HRMS.Infrastructure.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<StockAssignment> StockAssignments { get; set; }
+
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return base.SaveChangesAsync(cancellationToken);
+        }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

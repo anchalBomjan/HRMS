@@ -27,7 +27,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Anchal\\Desktop\\Imark\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
+                "projectPath": "C:\\Users\\Anchal\\Desktop\\Imark\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
