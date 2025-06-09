@@ -118,7 +118,7 @@ namespace HRMS.Infrastructure.Services
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == userId);
             if(user== null) 
             {
-                throw new NotFoundException("USer NotFound");
+                throw new NotFoundException("User NotFound");
                 
 
 
@@ -160,14 +160,22 @@ namespace HRMS.Infrastructure.Services
              return userDetails;
         }
 
-        public Task<(string id, string roleName)> GetRoleByIdAsync(string id)
+        public  async Task<(string id, string roleName)> GetRoleByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var role= await _roleManager.FindByIdAsync(id);
+            return (role.Id, role.Name);
+           
         }
 
-        public Task<List<(string id, string roleName)>> GetRolesAsync()
+        public async  Task<List<(string id, string roleName)>> GetRolesAsync()
         {
-            throw new NotImplementedException();
+           var roles= await _roleManager.Roles.Select(x=> new
+           {
+               x.Id,
+               x.Name,
+           }).ToListAsync();
+
+            return roles.Select(role => (role.Id, role.Name)).ToList();
         }
 
         public  async Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsAsync(string Id)
@@ -272,6 +280,18 @@ namespace HRMS.Infrastructure.Services
 
         public async  Task<bool> UpdateUserProfile(string id, string fullName, string email, IList<string> roles)
         {
+
+            var user= await _userManager.FindByNameAsync(id);
+            if (user == null)
+            {
+                throw new NotFoundException(nameof(user), id);
+
+            }
+
+            user.FullName=fullName;
+            user.Email=email;
+            var result = await _userManager.UpdateAsync(user);
+             return result.Succeeded;
            
         }
 
