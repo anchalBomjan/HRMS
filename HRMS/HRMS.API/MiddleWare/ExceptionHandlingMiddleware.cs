@@ -1,5 +1,5 @@
-﻿using HRMS.Application.Common.Exceptions;
-using System.ComponentModel.DataAnnotations;
+﻿using FluentValidation;
+using HRMS.Application.Common.Exceptions;
 using System.Net;
 using System.Text.Json;
 
