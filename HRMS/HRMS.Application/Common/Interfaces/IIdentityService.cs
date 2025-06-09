@@ -32,6 +32,9 @@ namespace HRMS.Application.Common.Interfaces
 
 
 
+
+
+
         //Roles  --- sections
         Task<bool> CreateRoleAsync(string roleName);
         Task<bool> DeleteRoleAsync(string roleId);
@@ -46,6 +49,15 @@ namespace HRMS.Application.Common.Interfaces
         Task<List<string>> GetUserRolesAsync(string userId);
         Task<bool> AssignUserToRole(string userName, IList<string> roles);
         Task<bool> UpdateUsersRole(string userName, IList<string> userRole);
+
+
+
+        ///////
+        ///\
+        ///------------------------For forgetPassword and recovery
+        ///
+        Task<string> GeneratePasswordResetTokenAsync(string email);
+        Task<bool> ResetPasswordAsync(string email, string token, string newPassword);
 
     }
 }

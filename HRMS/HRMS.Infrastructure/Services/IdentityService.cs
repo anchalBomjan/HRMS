@@ -210,6 +210,45 @@ namespace HRMS.Infrastructure.Services
             return roles.Select(role => (role.Id, role.Name)).ToList();
         }
 
+        //******** for forget passwords**********
+
+
+        public async Task<string> GeneratePasswordResetTokenAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                throw new NotFoundException($"User with email {email} not found.");
+
+            return await _userManager.GeneratePasswordResetTokenAsync(user);
+        }
+
+
+        public async Task<bool> ResetPasswordAsync(string email, string token, string newPassword)
+        {
+            var user = await _userManager.FindByEmailAsync(email)
+                ?? throw new NotFoundException($"User with email '{email}' not found.");
+
+            var result = await _userManager.ResetPasswordAsync(user, token, newPassword);
+
+            if (!result.Succeeded)
+            {
+                // Map Identity errors to FluentValidation errors
+                var failures = result.Errors
+                    .Select(e => new ValidationFailure("Password", e.Description)) // "Password" can be changed based on context
+                    .ToList();
+
+                throw new ValidationException(failures);
+            }
+
+            return true;
+        }
+
+
+
+
+
+
+
 
 
         /// <summary>
@@ -217,7 +256,7 @@ namespace HRMS.Infrastructure.Services
         /// </summary>
 
 
-       
+
 
 
         public async Task<bool> UpdateRole(string id, string roleName)
