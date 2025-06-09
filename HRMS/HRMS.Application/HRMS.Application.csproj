@@ -28,7 +28,32 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Auth\" />
+    <Folder Include="Commands\Employee\Create\" />
+    <Folder Include="Commands\Employee\Delete\" />
+    <Folder Include="Commands\Employee\Update\" />
+    <Folder Include="Commands\Role\Create\" />
+    <Folder Include="Commands\Role\Delete\" />
+    <Folder Include="Commands\Role\Update\" />
+    <Folder Include="Commands\StockAssigment\Create\" />
+    <Folder Include="Commands\StockAssigment\Delete\" />
+    <Folder Include="Commands\StockAssigment\Update\" />
+    <Folder Include="Commands\Stock\Create\" />
+    <Folder Include="Commands\Stock\Delete\" />
+    <Folder Include="Commands\Stock\Update\" />
+    <Folder Include="Commands\User\Create\" />
+    <Folder Include="Commands\User\Delete\" />
+    <Folder Include="Commands\User\Update\" />
     <Folder Include="Common\Mapping\" />
+    <Folder Include="Queries\Auth\" />
+    <Folder Include="Queries\Employee\" />
+    <Folder Include="Queries\User\" />
+    <Folder Include="Queries\StockAssigment\" />
+    <Folder Include="Queries\Stock\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HRMS.Domain\HRMS.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,7 @@
           "AutoMapper": "14.0.0",
           "FluentValidation": "12.0.0",
           "FluentValidation.DependencyInjectionExtensions": "12.0.0",
+          "HRMS.Domain": "1.0.0",
           "MediatR": "12.5.0",
           "Microsoft.AspNetCore.Identity": "2.3.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
@@ -1316,6 +1317,11 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+      },
+      "HRMS.Domain/1.0.0": {
+        "runtime": {
+          "HRMS.Domain.dll": {}
+        }
       }
     }
   },
@@ -2087,6 +2093,11 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "HRMS.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

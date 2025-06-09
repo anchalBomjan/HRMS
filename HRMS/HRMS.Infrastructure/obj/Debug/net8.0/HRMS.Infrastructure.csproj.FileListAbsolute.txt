@@ -13,3 +13,8 @@ C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\refint\H
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.pdb
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.genruntimeconfig.cache
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\ref\HRMS.Infrastructure.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Application.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Domain.dll
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Application.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Domain.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Inf.BA81F186.Up2Date
