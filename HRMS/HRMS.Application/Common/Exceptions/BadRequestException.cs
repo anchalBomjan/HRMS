@@ -12,3 +12,4 @@ namespace HRMS.Application.Common.Exceptions
         public BadRequestException(string message, Exception exp):base(message,exp) { }
     }
 }
+
