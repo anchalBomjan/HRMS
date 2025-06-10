@@ -41,8 +41,6 @@
     <Folder Include="Commands\Stock\Create\" />
     <Folder Include="Commands\Stock\Delete\" />
     <Folder Include="Commands\Stock\Update\" />
-    <Folder Include="Commands\User\Create\" />
-    <Folder Include="Commands\User\Delete\" />
     <Folder Include="Commands\User\Update\" />
     <Folder Include="Common\Mapping\" />
     <Folder Include="Queries\Auth\" />
