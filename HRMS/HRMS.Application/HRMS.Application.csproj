@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Auth\" />
     <Folder Include="Commands\Employee\Create\" />
     <Folder Include="Commands\Employee\Delete\" />
     <Folder Include="Commands\Employee\Update\" />
