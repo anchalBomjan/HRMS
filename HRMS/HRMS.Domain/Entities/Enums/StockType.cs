@@ -12,9 +12,10 @@ namespace HRMS.Domain.Entities.Enums
     public enum StockType
     {
 
-        UnKnown=0,
-        Assest,
-        Cusumable
-       
+        UnKnown = 0,
+        Asset,       
+        Consumable
+
+
     }
 }

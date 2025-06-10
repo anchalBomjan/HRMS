@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HRMS.Infrastructure.Data
 {
@@ -29,35 +30,82 @@ namespace HRMS.Infrastructure.Data
             base.SaveChangesAsync(cancellationToken);
 
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {   // Stock configuration
-            builder.Entity<Stock>(entity =>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder); // Required for Identity configuration
+
+            // ───────────────────────── Employee ─────────────────────────
+            modelBuilder.Entity<Employee>(entity =>
             {
-                // Store StockType enum as string
+                entity.ToTable("Employees");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Name)
+                      .IsRequired()
+                      .HasMaxLength(150);
+
+                entity.Property(e => e.Email)
+                      .IsRequired()
+                      .HasMaxLength(256);
+
+                entity.Property(e => e.Phonenumber)
+                      .HasMaxLength(30);
+
+                // Configure relationship with StockAssignment
+                entity.HasMany(e => e.StockAssignments)
+                      .WithOne(a => a.Employee)
+                      .HasForeignKey(a => a.EmployeeId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            // ───────────────────────── Stock ────────────────────────────
+            modelBuilder.Entity<Stock>(entity =>
+            {
+                entity.ToTable("Stocks");
+                entity.HasKey(s => s.Id);
+
+                entity.Property(s => s.Name)
+                      .IsRequired()
+                      .HasMaxLength(120);
+
+                entity.Property(s => s.Description)
+                      .HasMaxLength(500);
+
                 entity.Property(s => s.Type)
-                    .HasConversion<string>();
+                      .HasConversion<int>();  // Store enum as int
 
-                // Decimal precision for quantity
                 entity.Property(s => s.Quantity)
-                    .HasColumnType("decimal(18,2)");
-
-                // Constraints
-                entity.HasCheckConstraint("CK_Stock_Quantity_NonNegative", "Quantity >= 0");
-                entity.HasCheckConstraint("CK_Stock_Asset_WholeNumber",
-                    "Type != 'Asset' OR (Quantity = ROUND(Quantity, 0))");
+                      .HasColumnType("decimal(18,2)")  // Supports fractional units
+                      .HasDefaultValue(0);
             });
 
-            // StockAssignment configuration
-            builder.Entity<StockAssignment>(entity =>
+            // ───────────────────────── StockAssignment ─────────────────
+            modelBuilder.Entity<StockAssignment>(entity =>
             {
-                // Quantity constraints
-                entity.HasCheckConstraint("CK_Assignment_Quantity_Positive", "AssignedQuantity > 0");
-                entity.HasCheckConstraint("CK_Assignment_Asset_SingleUnit",
-                    "StockId NOT IN (SELECT Id FROM Stocks WHERE Type = 'Asset') OR AssignedQuantity = 1");
+                entity.ToTable("StockAssignments");
+                entity.HasKey(a => a.Id);
+
+                // Configure properties with correct names
+                entity.Property(a => a.AssigmentDate)
+                      .HasDefaultValueSql("GETUTCDATE()");
+
+                entity.Property(a => a.AsssignedQuantity)
+                      .HasColumnType("decimal(18,2)");
+
+                // Configure nullable FK with SetNull behavior
+                entity.Property(a => a.StockId)
+                      .IsRequired(false);  // Make FK nullable
+
+                // Configure relationship with Stock
+                entity.HasOne(a => a.Stock)
+                      .WithMany(s => s.Assignments)
+                      .HasForeignKey(a => a.StockId)
+                      .OnDelete(DeleteBehavior.SetNull);  // Critical for safe deletion
+
+                // Configure indexes
+                entity.HasIndex(a => a.EmployeeId);
+                entity.HasIndex(a => new { a.StockId, a.EmployeeId });  // Composite index
             });
-
-           
-
         }
     }
 }
