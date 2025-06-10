@@ -15,9 +15,9 @@ namespace HRMS.Application.Commands.User.ResetPassword
 
         private readonly IIdentityService _identityService;
         private readonly ILogger<ResetPasswordCommandHandler> _logger;
-        //public ResetPasswordCommandHandler(IIdentityService identity, ILogger<ResetPasswordCommand> logger)
+        //public ResetPasswordCommandHandler(IIdentityService identityService, ILogger<ResetPasswordCommand> logger)
         //{
-        //    _identityService = identity;
+        //    _identityService = identityService;
         //    _logger = logger;
         //}
         public ResetPasswordCommandHandler(IIdentityService identityService, ILogger<ResetPasswordCommandHandler> logger)
