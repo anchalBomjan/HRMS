@@ -41,7 +41,8 @@
     <Folder Include="Commands\Stock\Create\" />
     <Folder Include="Commands\Stock\Delete\" />
     <Folder Include="Commands\Stock\Update\" />
-    <Folder Include="Commands\User\Update\" />
+    <Folder Include="Commands\User\ForgetPassword\" />
+    <Folder Include="Commands\User\ResetPassword\" />
     <Folder Include="Common\Mapping\" />
     <Folder Include="Queries\Auth\" />
     <Folder Include="Queries\Employee\" />
