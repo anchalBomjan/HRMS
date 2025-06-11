@@ -81,6 +81,8 @@ namespace HRMS.Infrastructure.Services
 
         public async Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync()
         {
+
+
             var users = await _userManager.Users.Select(x => new
             {
                 x.Id,
@@ -271,7 +273,7 @@ namespace HRMS.Infrastructure.Services
             return false;
         }
 
-        public async Task<List<(string id, string fullName, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
+        public async Task<List<(string id, string userName, string fullName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
         {
             var users = await _userManager.Users.ToArrayAsync();
 
@@ -279,8 +281,8 @@ namespace HRMS.Infrastructure.Services
 
             foreach (var user in users)
             {
-                var role = await _userManager.GetRolesAsync(user);
-                userDetails.Add((user.Id, user.FullName, user.UserName, user.Email, role));
+                var roles = await _userManager.GetRolesAsync(user);
+                userDetails.Add((user.Id, user.UserName, user.FullName, user.Email, roles));
             }
 
             return userDetails;

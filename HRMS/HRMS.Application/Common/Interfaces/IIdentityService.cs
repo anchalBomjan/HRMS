@@ -16,7 +16,7 @@ namespace HRMS.Application.Common.Interfaces
 
         Task<string> GetUserIdAsync(string userName);
         Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync();
-        Task<List<(string id, string fullName, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync();
+        Task<List<(string id,  string userName, string fullName, string email, IList<string> roles)>> GetAllUsersDetailsAsync();
 
 
         Task<(string userId, string fullName, string UserName, string email, IList<string> roles)> GetUserDetailsAsync(string Id);
