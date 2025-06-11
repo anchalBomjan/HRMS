@@ -13,7 +13,7 @@ namespace HRMS.Domain.Entities
 
         public int EmployeeId { get; set; }
 
-        public int StockId { get; set; }
+        public int? StockId { get; set; }
 
         public DateTime? AssigmentDate { get; set; }= DateTime.Now;
          public decimal AsssignedQuantity { get; set; }
