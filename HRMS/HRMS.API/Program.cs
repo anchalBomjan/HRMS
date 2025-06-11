@@ -80,7 +80,7 @@ namespace HRMS.API
             }
 
             app.UseHttpsRedirection();
-            app.UseCors("CorsPloicy");
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
 
             app.UseAuthorization();

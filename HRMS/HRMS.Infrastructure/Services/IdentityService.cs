@@ -301,7 +301,7 @@ namespace HRMS.Infrastructure.Services
         public async Task<bool> UpdateUserProfile(string id, string fullName, string email, IList<string> roles)
         {
 
-            var user = await _userManager.FindByNameAsync(id);
+            var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 throw new NotFoundException(nameof(user), id);
