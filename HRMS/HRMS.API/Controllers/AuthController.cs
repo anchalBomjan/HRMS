@@ -28,7 +28,7 @@ namespace HRMS.API.Controllers
         {
             //var token= await _mediator.Send(request);
 
-            var token = await _mediator.Send(new ForgotPasswordCommand(request.Email));     //  for this create constructor in forgetPasswordCommand
+            var token = await _mediator.Send(new ForgotPasswordCommand(request.Email));     // *** for this create constructor in forgetPasswordCommand  *****
             if(string.IsNullOrEmpty(token))
             {
                 return Ok(new { Message = "If the email exists , a rest token has been sent." });
