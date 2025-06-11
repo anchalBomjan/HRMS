@@ -11,6 +11,11 @@ namespace HRMS.Application.Commands.User.ForgetPassword
     {
 
         public string Email { get; set; }
+        public ForgotPasswordCommand( string email)
+        {
+            Email = email;
+            
+        }
 
     }
 }
