@@ -5,6 +5,8 @@ using HRMS.Application.DTOs;
 using HRMS.Application.Queries.Role.GetRoleByIdQuery;
 using HRMS.Application.Queries.Role.GetRoleQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +14,8 @@ namespace HRMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles ="User,HR")]
     public class RoleController : ControllerBase
     {
         private readonly IMediator _mediator;

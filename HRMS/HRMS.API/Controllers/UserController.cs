@@ -10,6 +10,8 @@ using HRMS.Application.Queries.User.GetUserDetailsByUserNameQuery;
 using HRMS.Application.Queries.User.GetUserDetailsQuery;
 using HRMS.Application.Queries.User.GetUserQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +19,8 @@ namespace HRMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles ="User, HR")]
     public class UserController : ControllerBase
     {
 
