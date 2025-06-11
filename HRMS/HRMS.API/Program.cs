@@ -1,4 +1,6 @@
 
+using HRMS.Application.Commands.Role.Create;
+using HRMS.Application.Commands.User.Create;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Infrastructure;
 using HRMS.Infrastructure.Services;
@@ -23,6 +25,15 @@ namespace HRMS.API
 
             //Consolidation infrastructure and JWT configuration
             builder.Services.AddInfrastructure(builder.Configuration);
+
+            // MediatR Configuration
+            builder.Services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(CreateRoleCommandHandler).Assembly);
+
+            });
+
 
             // CORS Configuration
             builder.Services.AddCors(c =>
