@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HRMS.Application.Queries.employee.GetAllEmployeesQuery
 {
-    public  class GetAllEmployeesQuery:IRequest<List<EmployeeDTO>>
+    public class GetAllEmployeesQuery:IRequest<List<EmployeeDTO>>
     {
     }
 }
