@@ -1,6 +1,7 @@
 ﻿using HRMS.Domain.Entities.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,9 @@ namespace HRMS.Domain.Entities
         public StockType Type { get; set; } = StockType.UnKnown;
       
         public decimal Quantity { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
         public  ICollection<StockAssignment> Assignments { get; set; }
 

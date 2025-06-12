@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 using System.Threading;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace HRMS.Infrastructure.Data
 {
@@ -34,7 +34,7 @@ namespace HRMS.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder); // Required for Identity configuration
 
-            // ───────────────────────── Employee ─────────────────────────
+            // *************Employee ***************************
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.ToTable("Employees");
@@ -58,7 +58,7 @@ namespace HRMS.Infrastructure.Data
                       .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // ───────────────────────── Stock ────────────────────────────
+            // ************* Stock ****************
             modelBuilder.Entity<Stock>(entity =>
             {
                 entity.ToTable("Stocks");
@@ -77,9 +77,12 @@ namespace HRMS.Infrastructure.Data
                 entity.Property(s => s.Quantity)
                       .HasColumnType("decimal(18,2)")  // Supports fractional units
                       .HasDefaultValue(0);
+                entity.Property(p => p.RowVersion)
+                  .IsRowVersion()
+                  .IsConcurrencyToken();         // critical for conflict deletion
             });
 
-            // ───────────────────────── StockAssignment ─────────────────
+            // ****** StockAssignment*****
             modelBuilder.Entity<StockAssignment>(entity =>
             {
                 entity.ToTable("StockAssignments");
