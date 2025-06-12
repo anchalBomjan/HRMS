@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace HRMS.Application.Queries.employee.GetEmployeeByIdQuery
 {
-    public class GetEmployeeByTdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, EmployeeDTO>
+    public class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, EmployeeDTO>
     {
         private readonly  IApplicationDbContext _context;
-        public GetEmployeeByTdQueryHandler(IApplicationDbContext context)
+        public GetEmployeeByIdQueryHandler(IApplicationDbContext context)
         {
             _context = context;
         }

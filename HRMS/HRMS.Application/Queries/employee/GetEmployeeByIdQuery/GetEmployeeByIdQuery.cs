@@ -10,6 +10,11 @@ namespace HRMS.Application.Queries.employee.GetEmployeeByIdQuery
 {
     public class GetEmployeeByIdQuery:IRequest<EmployeeDTO>
     {
+        //public GetEmployeeByIdQuery(int id)
+        //{
+        //    Id = id;
+        //}
+
         public int  Id { get; set; }  
     }
 }
