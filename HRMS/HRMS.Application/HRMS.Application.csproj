@@ -28,9 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Employee\Create\" />
-    <Folder Include="Commands\Employee\Delete\" />
-    <Folder Include="Commands\Employee\Update\" />
+    <Folder Include="Commands\employee\Update\" />
     <Folder Include="Commands\StockAssign\Delete\" />
     <Folder Include="Commands\StockAssign\NewFolder\" />
     <Folder Include="Commands\StockAssign\Update\" />
