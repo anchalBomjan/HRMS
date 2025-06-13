@@ -30,10 +30,11 @@ namespace HRMS.Application.Queries.employee.GetEmployeeStockAssignmentQuery
                  {
                    EmployeeId = sa.Employee.Id,
                    EmployeeName = sa.Employee.Name,
-                  AssignmentDate = sa.AssigmentDate,
-                  AssignedQuantity = sa.AsssignedQuantity,
-                  StockName = sa.Stock.Name,
-                  StockTotalQuantity = sa.Stock.Quantity
+                   AssignmentDate = sa.AssigmentDate,
+                   AssignedQuantity = sa.AsssignedQuantity,
+                  // StockName = sa.Stock.Name,
+                   StockName=sa.Stock.Name??"[Deleted Stock]",
+                   StockTotalQuantity = sa.Stock.Quantity
                })
                 .ToListAsync(ct);
 
