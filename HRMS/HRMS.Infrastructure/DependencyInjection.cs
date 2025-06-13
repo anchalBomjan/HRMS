@@ -32,6 +32,12 @@ namespace HRMS.Infrastructure
                 .AddDefaultTokenProviders();
 
 
+            // Register the IApplicationDbContext
+
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+
+
+
 
             services.Configure<IdentityOptions>(options =>
             {
