@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace HRMS.Application.Commands.StockAssign.Create
 {
-    public class CreateStockCommand:IRequest<string>
+    public  class CreateStockAssignmentCommand:IRequest<int>
     {
        
+        public int EmployeeId { get; set; }
+        public int? StockId { get; set; }
+        public decimal AssignedQuantity { get; set; }
     }
 }
