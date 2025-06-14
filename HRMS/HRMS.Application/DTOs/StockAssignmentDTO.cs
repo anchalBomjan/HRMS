@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRMS.Domain.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,13 @@ namespace HRMS.Application.DTOs
 {
     public  class StockAssignmentDTO
     {
-        public  int Id {  get; set; }
-        public string Name { get; set; }
-        public string? StockName { get; set; }
-        public decimal AssignedQuantity {  get; set; }
+        public int Id { get; set; }
+        public int EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
+        public int StockId { get; set; }
+        public string StockName { get; set; }
+        public StockType StockType { get; set; } // Critical for UI differentiation
         public DateTime? AssignmentDate { get; set; }
+        public decimal AssignedQuantity { get; set; }
     }
 }

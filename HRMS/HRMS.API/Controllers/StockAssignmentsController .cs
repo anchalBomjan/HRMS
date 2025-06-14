@@ -1,6 +1,9 @@
 ﻿using HRMS.Application.Commands.StockAssign.Create;
 using HRMS.Application.Commands.StockAssign.Delete;
 using HRMS.Application.Commands.StockAssign.Update;
+using HRMS.Application.DTOs;
+using HRMS.Application.Queries.StockAssign.GetAllStockAssignmentsQuery;
+using HRMS.Application.Queries.StockAssign.GetStockAssignmentByIdQuery;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +47,22 @@ namespace HRMS.API.Controllers
         {
             return Ok(await _mediator.Send(new DeleteStockAssignmentCommand { Id = id }));
         }
+
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(StockAssignmentDTO))]
+        public async Task<ActionResult<StockAssignmentDTO>> GetAssignmentById(int id)
+        {
+            return Ok(await _mediator.Send(new GetStockAssignmentByIdQuery { Id=id }));
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<StockAssignmentDTO>))]
+        public async Task<ActionResult<List<StockAssignmentDTO>>> GetAllAssignments()
+        {
+            return Ok(await _mediator.Send(new GetAllStockAssignmentsQuery()));
+        }
+
 
     }
 }

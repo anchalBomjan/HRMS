@@ -29,8 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Mapping\" />
-    <Folder Include="Queries\StockAssign\GetAllStockAssignmentsQuery\" />
-    <Folder Include="Queries\StockAssign\GetStockAssignmentByIdQuery\" />
   </ItemGroup>
 
   <ItemGroup>
