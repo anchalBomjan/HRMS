@@ -30,9 +30,7 @@ namespace HRMS.Application.Queries.StockAssign.GetAllStockAssignmentsQuery
                 .Select(a => new StockAssignmentDTO
                 {
                     Id = a.Id,
-                    EmployeeId = a.EmployeeId,
                     EmployeeName = a.Employee.Name,
-                    StockId = a.Id,
                     StockName = a.Stock.Name,
                     StockType = a.Stock.Type, // Include stock type
                     AssignmentDate = a.AssigmentDate,

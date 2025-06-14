@@ -10,9 +10,9 @@ namespace HRMS.Application.DTOs
     public  class StockAssignmentDTO
     {
         public int Id { get; set; }
-        public int EmployeeId { get; set; }
+       
         public string EmployeeName { get; set; }
-        public int StockId { get; set; }
+       
         public string StockName { get; set; }
         public StockType StockType { get; set; } // Critical for UI differentiation
         public DateTime? AssignmentDate { get; set; }
