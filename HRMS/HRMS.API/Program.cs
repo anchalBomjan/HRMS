@@ -45,9 +45,21 @@ namespace HRMS.API
 
 
             // CORS Configuration
-            builder.Services.AddCors(c =>
-                c.AddPolicy("CorsPolicy", options =>
-                    options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+            //builder.Services.AddCors(c =>
+            //    c.AddPolicy("CorsPolicy", options =>
+            //        options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("ApiPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .WithExposedHeaders("X-Total-Count"); // For pagination metadata
+                });
+            });
+
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
