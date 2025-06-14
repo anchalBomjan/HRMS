@@ -3,7 +3,11 @@ using HRMS.Application.Commands.StockAssign.Delete;
 using HRMS.Application.Commands.StockAssign.Update;
 using HRMS.Application.DTOs;
 using HRMS.Application.Queries.StockAssign.GetAllStockAssignmentsQuery;
+using HRMS.Application.Queries.StockAssign.GetEmployeesByStockIdQuery.ViewModel;
+using HRMS.Application.Queries.StockAssign.GetEmployeesByStockIdQuery;
 using HRMS.Application.Queries.StockAssign.GetStockAssignmentByIdQuery;
+using HRMS.Application.Queries.StockAssign.GetStocksByEmployeeIdQuery.ViewModel;
+using HRMS.Application.Queries.StockAssign.GetStocksByEmployeeIdQuery;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,5 +68,21 @@ namespace HRMS.API.Controllers
         }
 
 
+
+        // Get employees assigned to a specific stock item
+        [HttpGet("stock/{stockId}/employees")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<EmployeeAssignmentViewModel>))]
+        public async Task<ActionResult<List<EmployeeAssignmentViewModel>>> GetEmployeesByStockId(int stockId)
+        {
+            return Ok(await _mediator.Send(new GetEmployeesByStockIdQuery { StockId = stockId }));
+        }
+
+        // Get stocks assigned to a specific employee
+        [HttpGet("employee/{employeeId}/stocks")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<StockAssignmentViewModel>))]
+        public async Task<ActionResult<List<StockAssignmentViewModel>>> GetStocksByEmployeeId(int employeeId)
+        {
+            return Ok(await _mediator.Send(new GetStocksByEmployeeIdQuery{ EmployeeId = employeeId }));
+        }
     }
 }

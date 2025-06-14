@@ -543,6 +543,58 @@
     ]
   },
   {
+    "ContainingType": "HRMS.API.Controllers.StockAssignmentsController",
+    "Method": "GetStocksByEmployeeId",
+    "RelativePath": "api/StockAssignments/employee/{employeeId}/stocks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employeeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[HRMS.Application.Queries.StockAssign.GetStocksByEmployeeIdQuery.ViewModel.StockAssignmentViewModel, HRMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.StockAssignmentsController",
+    "Method": "GetEmployeesByStockId",
+    "RelativePath": "api/StockAssignments/stock/{stockId}/employees",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "stockId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[HRMS.Application.Queries.StockAssign.GetEmployeesByStockIdQuery.ViewModel.EmployeeAssignmentViewModel, HRMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "HRMS.API.Controllers.UserController",
     "Method": "AssignRoles",
     "RelativePath": "api/User/AssignRoles",
