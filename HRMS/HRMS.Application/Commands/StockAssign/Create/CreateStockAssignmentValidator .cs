@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HRMS.Application.Commands.StockAssign.Create
 {
-    public class ClassCreateStockAssignmentValidator : AbstractValidator<CreateStockAssignmentCommand>
+    public class CreateStockAssignmentValidator : AbstractValidator<CreateStockAssignmentCommand>
     {
-        public ClassCreateStockAssignmentValidator()
+        public CreateStockAssignmentValidator()
         {
             RuleFor(x => x.EmployeeId).GreaterThan(0);
             RuleFor(x => x.StockId).GreaterThan(0);
