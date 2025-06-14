@@ -1,4 +1,5 @@
 ﻿using HRMS.Application.Commands.StockAssign.Create;
+using HRMS.Application.Commands.StockAssign.Delete;
 using HRMS.Application.Commands.StockAssign.Update;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -37,6 +38,12 @@ namespace HRMS.API.Controllers
             return Ok(updatedId);
         }
 
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+        public async Task<ActionResult<int>> DeleteAssignment(int id)
+        {
+            return Ok(await _mediator.Send(new DeleteStockAssignmentCommand { Id = id }));
+        }
 
     }
 }
