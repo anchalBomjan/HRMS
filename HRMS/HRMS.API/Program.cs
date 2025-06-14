@@ -26,7 +26,7 @@ namespace HRMS.API
             
             //Consolidation infrastructure and JWT configuration
             builder.Services.AddInfrastructure(builder.Configuration);
-
+           
             // Add enum string conversion
 
             builder.Services.AddControllers()

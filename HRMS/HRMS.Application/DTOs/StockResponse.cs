@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HRMS.Application.DTOs
 {
-    public class StockDTO
+    public class StockResponse
     {
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace HRMS.Application.DTOs
         public string Description { get; set; }
         public StockType StockType { get; set; }
         public  decimal Quantity {  get; set; }
-        bool IsDozen=false;
+        
     }
 }

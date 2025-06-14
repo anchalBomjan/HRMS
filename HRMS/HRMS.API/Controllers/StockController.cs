@@ -1,6 +1,9 @@
 ﻿using HRMS.Application.Commands.stock.Create;
 using HRMS.Application.Commands.stock.Delete;
 using HRMS.Application.Commands.stock.Update;
+using HRMS.Application.DTOs;
+using HRMS.Application.Queries.stock.GetStockByIdQuery;
+using HRMS.Application.Queries.stock.GetStockQuery;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +28,21 @@ namespace HRMS.API.Controllers
         {
            return  Ok(await _mediator.Send(command));
 
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<StockResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<StockResponse>>> GetAllStocks()
+        {
+            return Ok(await _mediator.Send(new GetAllStocksQuery()));
+        }
+
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(typeof(StockResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<StockResponse>> GetStockById(int id)
+        {
+            return Ok(await _mediator.Send(new GetStockByIdQuery { Id=id }));
         }
 
 
