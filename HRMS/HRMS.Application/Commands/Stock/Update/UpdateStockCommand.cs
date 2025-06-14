@@ -15,7 +15,9 @@ namespace HRMS.Application.Commands.stock.Update
         public string Description { get; set; }
         public decimal Quantity { get; set; }
         public StockType Type { get; set; }
-        public bool IsDozen { get; set; }
+        public bool IsDozen { get; set; }=false;
+        public bool IsAdditive  = true; // New: false = absolute, true = additive
+
 
     }
 }
