@@ -33,7 +33,6 @@
     <Folder Include="Commands\StockAssign\Update\" />
     <Folder Include="Common\Mapping\" />
     <Folder Include="Queries\StockAssigment\" />
-    <Folder Include="Queries\stock\" />
   </ItemGroup>
 
   <ItemGroup>
