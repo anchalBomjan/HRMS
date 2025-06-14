@@ -440,6 +440,37 @@
     ]
   },
   {
+    "ContainingType": "HRMS.API.Controllers.StockAssignmentsController",
+    "Method": "UpdateAssignment",
+    "RelativePath": "api/StockAssignments/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "command",
+        "Type": "HRMS.Application.Commands.StockAssign.Update.UpdateStockAssignmentCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "HRMS.API.Controllers.UserController",
     "Method": "AssignRoles",
     "RelativePath": "api/User/AssignRoles",
