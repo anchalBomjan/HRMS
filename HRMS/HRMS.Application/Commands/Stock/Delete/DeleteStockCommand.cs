@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRMS.Application.Commands.Stock.Delete
+namespace HRMS.Application.Commands.stock.Delete
 {
     public  class DeleteStockCommand:IRequest<string>
     {
+
         public int Id { get; set; }
     }
 }

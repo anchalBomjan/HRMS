@@ -6,14 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRMS.Application.Commands.Stock.Update
+namespace HRMS.Application.Commands.stock.Update
 {
-    public class UpdateStockCommand:IRequest<string>
+    public  class UpdateStockCommand:IRequest<string>
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public StockType StockType { get; set; }
-        public  bool IsDozen {  get; set; }
+        public bool IsDozen { get; set; }
+
     }
 }

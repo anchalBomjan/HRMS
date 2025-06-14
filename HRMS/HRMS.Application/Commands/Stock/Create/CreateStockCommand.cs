@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRMS.Application.Commands.Stock.Create
+namespace HRMS.Application.Commands.stock.Create
 {
-    public  class CreadStockCommand:IRequest<int>
+    public  class CreateStockCommand:IRequest<int>
     {
-      
+
         public string Name { get; set; }
         public string Description { get; set; }
-        public StockType Type {  get; set; }
+        public StockType Type { get; set; }
         public decimal Quantity { get; set; }
-        public bool IsDozen {  get; set; }
+        public bool IsDozen { get; set; }
     }
 }
