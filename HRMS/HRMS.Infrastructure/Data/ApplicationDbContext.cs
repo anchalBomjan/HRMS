@@ -4,6 +4,7 @@ using HRMS.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Reflection.Emit;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,6 +30,11 @@ namespace HRMS.Infrastructure.Data
             CancellationToken cancellationToken = default) =>
             base.SaveChangesAsync(cancellationToken);
 
+
+
+        // This exposes Database via IApplicationDbContext
+        public DatabaseFacade Database => base.Database;
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

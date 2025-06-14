@@ -1,5 +1,6 @@
 ﻿using HRMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,7 @@ namespace HRMS.Application.Common.Interfaces
         DbSet<StockAssignment> StockAssignments { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
+        DatabaseFacade Database { get; } // ✅ Required for transactions
     }
 }

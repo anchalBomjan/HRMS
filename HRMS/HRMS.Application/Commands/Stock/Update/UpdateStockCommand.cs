@@ -13,7 +13,8 @@ namespace HRMS.Application.Commands.stock.Update
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public StockType StockType { get; set; }
+        public decimal Quantity { get; set; }
+        public StockType Type { get; set; }
         public bool IsDozen { get; set; }
 
     }
