@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HRMS.Application.Commands.stock.Update
@@ -14,8 +15,11 @@ namespace HRMS.Application.Commands.stock.Update
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Quantity { get; set; }
+
+       
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public StockType Type { get; set; }
-        public bool IsDozen { get; set; }=false;
+        public bool IsDozen { get; set; }= false;
         public bool IsAdditive  = true; // New: false = absolute, true = additive
 
 

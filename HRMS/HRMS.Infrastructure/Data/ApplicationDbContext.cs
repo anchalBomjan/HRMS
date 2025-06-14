@@ -78,7 +78,9 @@ namespace HRMS.Infrastructure.Data
                       .HasMaxLength(500);
 
                 entity.Property(s => s.Type)
-                      .HasConversion<int>();  // Store enum as int
+                      .HasConversion<string>() // Store enum as string
+                      .HasMaxLength(20);
+                       
 
                 entity.Property(s => s.Quantity)
                       .HasColumnType("decimal(18,2)")  // Supports fractional units

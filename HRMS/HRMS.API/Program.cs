@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace HRMS.API
 {
@@ -18,13 +19,21 @@ namespace HRMS.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            
 
-            builder.Services.AddControllers();
+           
             //For authentication
-
+            
             //Consolidation infrastructure and JWT configuration
             builder.Services.AddInfrastructure(builder.Configuration);
+
+            // Add enum string conversion
+
+            builder.Services.AddControllers()
+              .AddJsonOptions(options =>
+              {
+              options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+               });
 
             // MediatR Configuration
             builder.Services.AddMediatR(cfg =>
