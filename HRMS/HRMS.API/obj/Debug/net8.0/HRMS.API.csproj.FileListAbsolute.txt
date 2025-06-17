@@ -150,3 +150,10 @@ C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\HRMS.Infrastructure
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\HRMS.Application.pdb
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\HRMS.Infrastructure.pdb
 C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\HRMS.Domain.pdb
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\ClientApp\angular.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\ClientApp\audit-report.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\ClientApp\package-lock.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\ClientApp\package.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\ClientApp\tsconfig.app.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\ClientApp\tsconfig.json
+C:\Users\Anchal\Desktop\Imark\HRMS\HRMS.API\bin\Debug\net8.0\ClientApp\tsconfig.spec.json
