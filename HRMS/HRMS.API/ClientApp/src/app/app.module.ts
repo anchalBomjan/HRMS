@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegistrationComponent } from './features/auth/registration/registration.component';
+import { PrimengModule } from './primeng/primeng.module';
+import { MessageService, SharedModule } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,9 @@ import { RegistrationComponent } from './features/auth/registration/registration
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,  MessageService]
 })
 export class AppModule { }

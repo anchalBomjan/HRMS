@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/layout/header/header.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { DataGridComponent } from './components/data-grid/data-grid.component';
+import { PrimengModule } from '../primeng/primeng.module';
 
 
 
@@ -15,7 +16,8 @@ import { DataGridComponent } from './components/data-grid/data-grid.component';
     DataGridComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PrimengModule
   ]
 })
 export class SharedModule { }
