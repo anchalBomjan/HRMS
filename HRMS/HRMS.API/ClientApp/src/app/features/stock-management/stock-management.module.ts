@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StockListComponent } from './components/stock-list/stock-list.component';
-import { StockAssignmentsComponent } from './components/stock-assignments/stock-assignments.component';
-import { StockEditorComponent } from './components/stock-editor/stock-editor.component';
 
+import { StockManagementRoutingModule } from './stock-management-routing.module';
 
 
 @NgModule({
-  declarations: [
-    StockListComponent,
-    StockAssignmentsComponent,
-    StockEditorComponent
-  ],
+  declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    StockManagementRoutingModule
   ]
 })
 export class StockManagementModule { }

@@ -2,18 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputTextModule } from 'primeng/inputtext';
 import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './features/auth/login/login.component';
+import { RegistrationComponent } from './features/auth/registration/registration.component';
 
 @NgModule({
   declarations: [
-  
-  
+    AppComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,InputTextModule, AppRoutingModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
