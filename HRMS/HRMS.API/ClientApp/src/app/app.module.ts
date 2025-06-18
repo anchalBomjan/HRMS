@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // <-- ADD THIS!
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegistrationComponent } from './features/auth/registration/registration.component';
 import { PrimengModule } from './primeng/primeng.module';
-import { MessageService, SharedModule } from 'primeng/api';
+import { MessageService } from 'primeng/api'; // Remove SharedModule from primeng/api import
+import { SharedModule } from './shared/shared.module'; // <-- import your own SharedModule here
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,12 @@ import { MessageService, SharedModule } from 'primeng/api';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,SharedModule
+    BrowserAnimationsModule,  // <-- MUST BE INCLUDED
+    HttpClientModule,
+    AppRoutingModule,
+    SharedModule
   ],
-  providers: [],
-  bootstrap: [AppComponent,  MessageService]
+  providers: [MessageService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { HeaderComponent } from './components/layout/header/header.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
-import { DataGridComponent } from './components/data-grid/data-grid.component';
+
+import { RouterModule } from '@angular/router';
 import { PrimengModule } from '../primeng/primeng.module';
-
-
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent,
-    DataGridComponent
+    FooterComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
+    PrimengModule
+  ],
+  exports: [
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
     PrimengModule
   ]
 })
