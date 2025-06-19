@@ -1,1 +1,5 @@
-<p>sidebar works!</p>
+<p-sidebar [(visible)]="visible" position="left" [fullScreen]="false">
+    <div class="sidebar-content">
+      <p-panelMenu [model]="navItems" [multiple]="false" styleClass="w-full"></p-panelMenu>
+    </div>
+  </p-sidebar>

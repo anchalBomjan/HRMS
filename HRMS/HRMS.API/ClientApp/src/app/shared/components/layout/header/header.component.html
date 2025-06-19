@@ -1,1 +1,22 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <span class="navbar-brand">Library Management System</span>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto"></ul>
+      <div class="d-flex">
+        <div class="user-info text-white me-3">
+          <span *ngIf="loggedIn">Hi, {{ name }}</span>
+        </div>
+        <button class="btn btn-success me-2" routerLink="/profile">Profile</button>
+        <button class="btn btn-danger" (click)="logout()">Log Out</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="card my-2 mx-auto" style="width: 90%;">
+  <div class="card-body">
+    <h1 class="card-title text-center">{{ panelName }}</h1>
+  </div>
+</div>

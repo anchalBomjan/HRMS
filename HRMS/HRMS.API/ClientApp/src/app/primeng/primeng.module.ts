@@ -1,7 +1,4 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-// PrimeNG UI modules
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
@@ -14,12 +11,13 @@ import { MenubarModule } from 'primeng/menubar';
 import { CardModule } from 'primeng/card';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { TagModule } from 'primeng/tag';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { CalendarModule } from 'primeng/calendar';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { NgModule } from '@angular/core';
+import { AvatarModule } from 'primeng/avatar'; // ADD THIS IMPORT
 
 @NgModule({
   imports: [
@@ -39,7 +37,8 @@ import { MessageService, ConfirmationService } from 'primeng/api';
     CalendarModule,
     InputNumberModule,
     TagModule,
-    MultiSelectModule
+    MultiSelectModule,
+    AvatarModule 
   ],
   exports: [
     ButtonModule,
@@ -57,7 +56,8 @@ import { MessageService, ConfirmationService } from 'primeng/api';
     CalendarModule,
     InputNumberModule,
     TagModule,
-    MultiSelectModule
+    MultiSelectModule,
+    AvatarModule 
   ],
   providers: [
     MessageService,
