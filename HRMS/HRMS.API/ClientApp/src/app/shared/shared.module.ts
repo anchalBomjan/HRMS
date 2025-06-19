@@ -8,12 +8,14 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    ForbiddenComponent
   ],
   imports: [
     CommonModule,
