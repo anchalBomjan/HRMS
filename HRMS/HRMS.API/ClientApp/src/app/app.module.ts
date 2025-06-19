@@ -8,7 +8,15 @@ import { RegistrationComponent } from './features/auth/registration/registration
 import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
 
+
+
+
+
+export function  tokenGetter(){
+  return localStorage.getItem('authToken');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    SharedModule // This brings in all PrimeNG components
+    SharedModule ,// This brings in all PrimeNG components
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:44372'], // adjust as needed
+        disallowedRoutes: ['localhost:44372/api/Auth/login']
+      }
+    })
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
