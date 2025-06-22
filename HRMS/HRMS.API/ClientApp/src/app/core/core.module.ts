@@ -6,6 +6,7 @@ import { LoggerService } from './services/logger.service';
 import { authGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/role.guard';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @NgModule({

@@ -8,7 +8,7 @@ import { RegistrationComponent } from './features/auth/registration/registration
 import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -37,7 +37,7 @@ export function  tokenGetter(){
       }
     })
   ],
-  providers: [MessageService],
+  providers: [MessageService,JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
