@@ -10,9 +10,20 @@ const routes:Routes=[
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./features/layout/layout.module').then((m) => m.LayoutModule),
+  },
+  {
+    path:'dashboard',
+    loadChildren:()=>
+     import('./features/dashboard/dashboard.module').then((m)=>m.DashboardModule)
+
+  },
 
   {
-    path: '',               
+    path: '**',               
     redirectTo: 'auth/login', 
     pathMatch: 'full'      
   },
