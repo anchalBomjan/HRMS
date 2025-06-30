@@ -1,43 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './features/auth/login/login.component';
-import { RegistrationComponent } from './features/auth/registration/registration.component';
-import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { RouterOutlet } from '@angular/router';
 
-
-
-
-
-export function  tokenGetter(){
-  return localStorage.getItem('authToken');
-}
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegistrationComponent
+   
+ 
+   
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
     AppRoutingModule,
-    SharedModule ,// This brings in all PrimeNG components
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:44372'], // adjust as needed
-        disallowedRoutes: ['localhost:44372/api/Auth/login']
-      }
-    })
+    SharedModule,  // bezc app.component uses navbar
+    BrowserAnimationsModule,  // enables animations in our  Anular Application
+    HttpClientModule,
+    RouterOutlet,
+  
+
   ],
-  providers: [MessageService,JwtHelperService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

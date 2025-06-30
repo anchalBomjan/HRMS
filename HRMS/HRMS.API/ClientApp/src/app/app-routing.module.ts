@@ -1,37 +1,29 @@
-
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ForbiddenComponent } from './shared/components/forbidden/forbidden.component';
-import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth.guard';
-import { roleGuard } from './core/guards/role.guard';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
+const routes:Routes=[
 
   {
-    path: 'dashboard',
+    path: 'auth',
     loadChildren: () =>
-      import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
-    canActivate: [authGuard]
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
+
   {
-    path: 'user-management',
-    loadChildren: () =>
-      import('./features/user-management/user-management.module').then(m => m.UserManagementModule),
-    canActivate: [authGuard, roleGuard],
-    data: { roles: ['admin'] }
+    path: '',               
+    redirectTo: 'auth/login', 
+    pathMatch: 'full'      
   },
-  { path: 'forbidden', component: ForbiddenComponent },
-  { path: '**', redirectTo: 'dashboard' }
-];
-
-
+]
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
-  ]
+    RouterModule.forRoot(routes)]
+,
+exports:[RouterModule]
+
 })
 export class AppRoutingModule { }
