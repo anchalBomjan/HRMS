@@ -25,3 +25,22 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#generate folder and components throught this command
+ng g c features/auth/components/login
+ng g c features/auth/components/registration
+ng g c features/auth/components/reset
+ng g c features/auth/components/forget
+
+//ng g module features/auth --routing
+ng generate module features/auth --routing
+
+
+
+
+
+ng g c features/layout/components/page-header
+ng g c features/layout/components/page-side-bar
+ng g c features/layout/components/page-footer
+ng g module features/layout --routing 
+
+ng g service core/service/authApiService
