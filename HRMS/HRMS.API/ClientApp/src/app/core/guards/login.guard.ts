@@ -7,9 +7,8 @@ export const loginGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   const user = tokenService.getUser();
-
   if (user?.role === 'HR') {
-    router.navigate(['/hr/app-dashboard']);
+    router.navigate(['/home/app-dashboard']);
     return false;
   } else if (user?.role === 'User') {
     router.navigate(['/user/dashboard']);

@@ -12,18 +12,19 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule)
   },
+  // {
+  //   path: 'hr',
+  //   loadChildren: () => import('./features/hr/hr.module').then(m => m.HrModule),
+  //   canActivate: [authGuard],
+  //   data: { expectedRole: 'HR' }
+  // },
   {
-    path: 'hr',
-    loadChildren: () => import('./features/hr/hr.module').then(m => m.HrModule),
+    path: 'home',
+    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),
     canActivate: [authGuard],
     data: { expectedRole: 'HR' }
   },
-  {
-    path: 'user',
-    loadChildren: () => import('./features/user/user.module').then(m => m.UserModule),
-    canActivate: [authGuard, roleGuard],
-    data: { expectedRole: 'User' }
-  },
+
   {
     path: 'access-denied',
     component: AccessDeniedComponent

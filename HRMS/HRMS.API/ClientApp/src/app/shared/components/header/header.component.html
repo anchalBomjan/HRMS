@@ -1,6 +1,6 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
-    <a class="navbar-brand text-white" href="#">Library Management System</a>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
+    <a class="navbar-brand text-white" href="#">Human Management System</a>
   
     <div class="ms-auto d-flex align-items-center gap-3" *ngIf="isLoggedIn">
       <span class="text-white">Hi, {{ userName }}</span>
@@ -8,4 +8,29 @@
       <button pButton type="button" label="Logout" class="p-button-sm p-button-danger" (click)="logout()"></button>
     </div>
   </nav>
-  
+   -->
+
+
+   <!-- Updated header.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top px-3">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">Human Management System</a>
+      
+      <div class="d-flex align-items-center gap-3" *ngIf="isLoggedIn">
+        <span class="d-none d-md-inline text-white">Hi, {{ userName }}</span>
+        <button pButton type="button" icon="pi pi-user" 
+                class="p-button-rounded p-button-secondary p-button-sm d-none d-md-inline-block"
+                [routerLink]="['/profile']" pTooltip="Profile"></button>
+                
+        <button pButton type="button" icon="pi pi-sign-out" 
+                class="p-button-rounded p-button-danger p-button-sm"
+                (click)="logout()" pTooltip="Logout"></button>
+                
+        <!-- Mobile menu toggle -->
+        <button class="navbar-toggler d-lg-none ms-2" type="button" 
+                (click)="toggleMobileMenu()">
+          <span class="pi pi-ellipsis-v text-white"></span>
+        </button>
+      </div>
+    </div>
+  </nav>

@@ -23,4 +23,10 @@ export class HeaderComponent implements OnInit {
     this.tokenService.signOut();
     this.router.navigate(['/auth/login']);
   }
+
+  toggleMobileMenu() {
+    const menu = document.querySelector('.offcanvas');
+    menu?.classList.toggle('show');
+  }
+  
 }

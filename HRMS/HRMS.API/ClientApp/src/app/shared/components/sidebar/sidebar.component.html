@@ -1,1 +1,51 @@
-<p>sidebar works!</p>
+<!-- <div class="card mb-3">
+    <div class="card-body">
+      <h4 class="card-title text-center">{{ panelName }}</h4>
+    </div>
+  </div>
+  
+  <ul class="list-group list-group-flush">
+    <li
+      *ngFor="let item of navItems"
+      class="list-group-item"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      style="cursor: pointer;"
+    >
+      {{ item.label }}
+    </li>
+  </ul> -->
+  
+
+  <!-- Updated sidebar.component.html -->
+<div class="d-flex flex-column h-100">
+    <div class="card mb-3">
+      <div class="card-body text-center">
+        <h4 class="card-title mb-0">{{ panelName }}</h4>
+      </div>
+    </div>
+    
+    <ul class="list-group list-group-flush mb-auto">
+      <li *ngFor="let item of navItems" 
+          class="list-group-item list-group-item-action"
+          [routerLink]="item.route" 
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+        {{ item.label }}
+      </li>
+    </ul>
+    
+    <!-- Mobile user info -->
+    <div class="d-lg-none p-3 border-top">
+      <div class="d-flex align-items-center">
+        <div class="flex-grow-1">
+          <span class="d-block">Hi, {{ userName }}</span>
+          <small class="text-muted">{{ role }}</small>
+        </div>
+        <button pButton type="button" icon="pi pi-user" 
+                class="p-button-rounded p-button-text"
+                [routerLink]="['/profile']"></button>
+      </div>
+    </div>
+  </div>

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  sidebarVisible = false;
 
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
 }

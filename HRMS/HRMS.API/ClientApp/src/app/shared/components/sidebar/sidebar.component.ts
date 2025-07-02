@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,5 +7,47 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+  role: string | null = '';
+  userName: string | null = '';
+  panelName: string = '';
+  navItems: { label: string, route: string }[] = [];
 
+  constructor(private tokenService: TokenStorageService) {
+    const user = this.tokenService.getUser(); // { userName, role }
+
+    if (user && user.role) {
+      this.role = user.role;
+      this.userName = user.userName;
+      this.panelName = `${this.role} Panel`;
+      this.setNavItemsBasedOnRole(user.role);
+    }
+  }
+
+  setNavItemsBasedOnRole(role: string) {
+    switch (role) {
+      case 'Admin':
+        this.navItems = [
+          { label: 'Dashboard', route: '/admin/dashboard' },
+          { label: 'Manage Users', route: '/admin/users' },
+          { label: 'Reports', route: '/admin/reports' }
+        ];
+        break;
+      case 'HR':
+        this.navItems = [
+          { label: 'Dashboard', route: '/hr/app-dashboard' },
+          { label: 'Employees', route: '/hr/employees' },
+          { label: 'Leaves', route: '/hr/leaves' }
+        ];
+        break;
+      case 'User':
+        this.navItems = [
+          { label: 'Dashboard', route: '/user/dashboard' },
+          { label: 'My Profile', route: '/user/profile' },
+          { label: 'My Requests', route: '/user/requests' }
+        ];
+        break;
+      default:
+        this.navItems = [{ label: 'Home', route: '/home' }];
+    }
+  }
 }

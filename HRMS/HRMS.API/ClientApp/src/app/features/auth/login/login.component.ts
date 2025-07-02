@@ -57,7 +57,7 @@ export class LoginComponent {
 
           // Navigate by role
           if (role === 'HR' || role === 'User') {
-            this.router.navigate(['/hr/app-dashboard']);
+            this.router.navigate(['/home/app-dashboard']);
           } else if (role === 'User') {
             this.router.navigate(['/user/dashboard']);
           } else {
