@@ -3,6 +3,7 @@ using HRMS.Application.Commands.User.Create;
 using HRMS.Application.Commands.User.ForgetPassword;
 using HRMS.Application.Commands.User.ResetPassword;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,17 +22,22 @@ namespace HRMS.API.Controllers
 
         [HttpPost("Create")]
         [ProducesDefaultResponseType(typeof(int))]
+        [AllowAnonymous]
+
         public async Task<ActionResult> CreatUser(CreateUserCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
         [HttpPost("Login")]
+        [AllowAnonymous]
         public async Task<ActionResult> Login([FromBody] AuthCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
 
         [HttpPost("forget-Password")]
+        [AllowAnonymous]
+
         public async Task<ActionResult> ForgotPasswords([FromBody] ForgotPasswordCommand request)
         {
             //var token= await _mediator.Send(request);
@@ -46,6 +52,8 @@ namespace HRMS.API.Controllers
         }
 
         [HttpPost("reset-password")]
+        [AllowAnonymous]
+
         public async Task<ActionResult> ResetPassword([FromBody] ResetPasswordCommand request)
         {
             var success = await _mediator.Send(new ResetPasswordCommand

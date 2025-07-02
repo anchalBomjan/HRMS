@@ -1,30 +1,16 @@
-import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
+import { TokenStorageService } from './token-storage.service';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class TokenStorageService {
-  signOut(): void {
-    window.localStorage.clear();
-  }
+describe('TokenStorageService', () => {
+  let service: TokenStorageService;
 
-  saveToken(token: string): void {
-    localStorage.setItem(TOKEN_KEY, token);
-  }
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(TokenStorageService);
+  });
 
-  getToken(): string | null {
-    return localStorage.getItem(TOKEN_KEY);
-  }
-
-  saveUser(user: any): void {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
-
-  getUser(): any {
-    const user = localStorage.getItem(USER_KEY);
-    return user ? JSON.parse(user) : null;
-  }
-}
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});

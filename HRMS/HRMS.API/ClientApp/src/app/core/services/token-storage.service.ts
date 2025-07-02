@@ -1,14 +1,13 @@
+// src/app/core/services/token-storage.service.ts
 import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class TokenStorageService {
   signOut(): void {
-    window.localStorage.clear();
+    localStorage.clear();
   }
 
   saveToken(token: string): void {

@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, tap } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 import { AuthRequest } from '../models/AuthRequest';
 import { AuthResponse } from '../models/AuthResponse';
+import { jwtDecode } from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root',
@@ -23,10 +25,16 @@ export class AuthService {
   login(data: AuthRequest) {
     return this.http.post<AuthResponse>(this.apiUrl, data).pipe(
       tap((response) => {
-        this.tokenService.saveToken(response.token);
-        this.tokenService.saveUser(response);
+        const token = response.token;
+        const decoded: any = jwtDecode(token);
+        const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+        const userName = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+
+        this.tokenService.saveToken(token);
+        this.tokenService.saveUser({ userName, role });
         this.isLoggedInSubject.next(true);
-        this.redirectToDashboard(response.role);
+
+        this.redirectToDashboard(role);
       })
     );
   }
@@ -38,8 +46,8 @@ export class AuthService {
   }
 
   private redirectToDashboard(role: string) {
-    if (role === 'Hr') {
-      this.router.navigate(['/hr/dashboard']);
+    if (role === 'HR' || role === 'HR' || role === 'User') {
+      this.router.navigate(['/hr/app-dashboard']);
     } else if (role === 'User') {
       this.router.navigate(['/user/dashboard']);
     } else {
@@ -47,3 +55,6 @@ export class AuthService {
     }
   }
 }
+
+
+

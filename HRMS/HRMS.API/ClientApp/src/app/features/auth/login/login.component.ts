@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
@@ -11,7 +12,6 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
   loginForm: FormGroup;
   isSubmitted = false;
 
@@ -22,7 +22,6 @@ export class LoginComponent {
     private tokenStorage: TokenStorageService,
     private messageService: MessageService
   ) {
-    // Match form controls exactly with backend DTO casing
     this.loginForm = this.fb.group({
       UserName: ['', Validators.required],
       Password: ['', Validators.required]
@@ -37,28 +36,41 @@ export class LoginComponent {
 
     this.authService.login(credentials).subscribe({
       next: (response) => {
+        const token = response.token;
 
-        console.log(response);
-        this.tokenStorage.saveToken(response.token);
-        const user = {
-          userName: response.userName,
-          role: response.role
-        };
-        this.tokenStorage.saveUser(user);
+        try {
+          const decoded: any = jwtDecode(token);
+          const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+          const userName = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
 
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Login Successful',
-          detail: `Welcome ${response.userName}!`,
-          life: 3000
-        });
+          console.log('role and userName',role,userName);
+          // Save token and user
+          this.tokenStorage.saveToken(token);
+          this.tokenStorage.saveUser({ userName, role });
 
-        if (response.role === 'Hr' || response.role === 'User') {
-          this.router.navigate(['/hr/dashboard']);
-        } else if (response.role === 'User') {
-          this.router.navigate(['/user/dashboard']);
-        } else {
-          this.router.navigate(['/access-denied']);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Login Successful',
+            detail: `Welcome ${userName}`,
+            life: 3000
+          });
+
+          // Navigate by role
+          if (role === 'HR' || role === 'User') {
+            this.router.navigate(['/hr/app-dashboard']);
+          } else if (role === 'User') {
+            this.router.navigate(['/user/dashboard']);
+          } else {
+            this.router.navigate(['/access-denied']);
+          }
+        } catch (err) {
+          console.error('Token decode error:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Login Failed',
+            detail: 'Invalid token format',
+            life: 3000
+          });
         }
       },
       error: () => {

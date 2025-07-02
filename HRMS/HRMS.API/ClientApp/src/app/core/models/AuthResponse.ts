@@ -1,6 +1,6 @@
 export interface AuthResponse {
-    token: string;
-    role: string;
-    userName: string;
+  UserId:string;
+  name:string;
+  token:string;
   }
   

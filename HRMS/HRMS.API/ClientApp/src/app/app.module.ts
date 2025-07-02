@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AccessDeniedComponent } from './shared/components/access-denied/access-denied.component';
 import { CoreModule } from './core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { CoreModule } from './core/core.module';
                                     // thne there beacome so many dependency .. so we directly declare here to used direct call in app-routing
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     CoreModule

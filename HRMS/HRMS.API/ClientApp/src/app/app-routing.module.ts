@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccessDeniedComponent } from './shared/components/access-denied/access-denied.component';
+import { authGuard } from './core/guards/auth.guard';
+import { roleGuard } from './core/guards/role.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -12,16 +14,14 @@ const routes: Routes = [
   },
   {
     path: 'hr',
-    loadChildren: () =>
-      import('./features/hr/hr.module').then((m) => m.HrModule),
-   // canActivate: [authGuard, roleGuard],
-    data: { expectedRole: 'Admin' }
+    loadChildren: () => import('./features/hr/hr.module').then(m => m.HrModule),
+    canActivate: [authGuard],
+    data: { expectedRole: 'HR' }
   },
   {
     path: 'user',
-    loadChildren: () =>
-      import('./features/user/user.module').then((m) => m.UserModule),
-  //  canActivate: [authGuard, roleGuard],
+    loadChildren: () => import('./features/user/user.module').then(m => m.UserModule),
+    canActivate: [authGuard, roleGuard],
     data: { expectedRole: 'User' }
   },
   {
