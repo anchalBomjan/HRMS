@@ -3,28 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterOutlet } from '@angular/router';
+import { AccessDeniedComponent } from './shared/components/access-denied/access-denied.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-   
- 
-   
-  ],
+  AppComponent,                       //To  route this  access-denied  components form  app-routing module(root) we have to  register its components 
+  AccessDeniedComponent              //// beacuse this  component is directly call in in app-routing app so we declare in app.module
+  ],                                // we can do it by declaration in its own  sharemodule and export it and call it , means import in  app module by calling shared module 
+                                    // thne there beacome so many dependency .. so we directly declare here to used direct call in app-routing
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,  // bezc app.component uses navbar
-    BrowserAnimationsModule,  // enables animations in our  Anular Application
-    HttpClientModule,
-    RouterOutlet,
-  
-
+    SharedModule,
+    CoreModule
+    
   ],
-  providers: [],
+
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

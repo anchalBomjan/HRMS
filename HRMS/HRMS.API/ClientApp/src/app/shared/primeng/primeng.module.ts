@@ -9,6 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
+
 @NgModule({
   declarations: [],
   imports: [
@@ -20,10 +21,8 @@ import { MessageService } from 'primeng/api';
     ToolbarModule,
     DialogModule,
     ToastModule
-
   ],
-  exports:[
-
+  exports:[ FormsModule,
     TableModule,
     ButtonModule,
     InputTextModule,
@@ -31,9 +30,9 @@ import { MessageService } from 'primeng/api';
     ToolbarModule,
     DialogModule,
     ToastModule
-
-
   ],
   providers:[MessageService]
+
+  
 })
 export class PrimengModule { }

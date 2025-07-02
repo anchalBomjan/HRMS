@@ -37,7 +37,6 @@
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
-
           },
           "configurations": {
             "production": {
@@ -107,6 +106,6 @@
     }
   },
   "cli": {
-    "analytics": "8d4f76b2-104a-487c-865b-e42b1d8f6dd4"
+    "analytics": "c8dda1ca-806b-4869-8a0e-b6f1ebc7ddb9"
   }
 }
