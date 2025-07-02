@@ -35,35 +35,67 @@ namespace HRMS.Infrastructure.Services
         /// </summary>
 
 
-     
 
-        public async Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName, IList<string> roles)
+
+        //public async Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName, IList<string> roles)
+        //{
+        //    var user = new ApplicationUser()
+        //    {
+        //        FullName = fullName,
+        //        UserName = userName,
+        //        Email = email,
+
+        //    };
+        //    var result = await _userManager.CreateAsync(user, password);
+        //    if (!result.Succeeded)
+        //    {
+        //        var failure = result.Errors.Select(e =>
+        //        new ValidationFailure(nameof(user), e.Description));
+
+
+        //    }
+        //    var addUserRole = await _userManager.AddToRolesAsync(user, roles);
+        //    if (!addUserRole.Succeeded)
+        //    {
+        //        var failures = addUserRole.Errors
+        //            .Select(e => new ValidationFailure(nameof(roles), e.Description));
+        //        throw new ValidationException(failures);
+
+        //    }
+        //    return (result.Succeeded, user.Id);
+        //}
+
+
+        public async Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName)
         {
-            var user = new ApplicationUser()
+            var user = new ApplicationUser
             {
                 FullName = fullName,
                 UserName = userName,
-                Email = email,
-
+                Email = email
             };
+
+            // Create user
             var result = await _userManager.CreateAsync(user, password);
             if (!result.Succeeded)
             {
-                var failure = result.Errors.Select(e =>
-                new ValidationFailure(nameof(user), e.Description));
-
-
-            }
-            var addUserRole = await _userManager.AddToRolesAsync(user, roles);
-            if (!addUserRole.Succeeded)
-            {
-                var failures = addUserRole.Errors
-                    .Select(e => new ValidationFailure(nameof(roles), e.Description));
+                var failures = result.Errors
+                    .Select(e => new ValidationFailure(nameof(user), e.Description));
                 throw new ValidationException(failures);
-
             }
-            return (result.Succeeded, user.Id);
+
+            // Assign default role "User"
+            var addRoleResult = await _userManager.AddToRoleAsync(user, "User"); // Or use StaticUserRoles.USER
+            if (!addRoleResult.Succeeded)
+            {
+                var failures = addRoleResult.Errors
+                    .Select(e => new ValidationFailure(nameof(user), e.Description));
+                throw new ValidationException(failures);
+            }
+
+            return (true, user.Id);
         }
+
 
         public async Task<bool> IsUniqueUserName(string userName)
         {

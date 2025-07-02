@@ -17,7 +17,7 @@ namespace HRMS.Application.Commands.User.Create
         }
         public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var result = await _identityService.CreateUserAsync(request.UserName, request.Password, request.Email, request.FullName, request.Roles);
+            var result = await _identityService.CreateUserAsync(request.UserName, request.Password, request.Email, request.FullName);
             return result.isSucceed ? 1 : 0;
         }
     }

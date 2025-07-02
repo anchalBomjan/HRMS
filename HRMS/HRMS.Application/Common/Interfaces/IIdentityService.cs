@@ -10,7 +10,10 @@ namespace HRMS.Application.Common.Interfaces
     {
 
         //Use section
-        Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName, IList<string> roles);
+        //Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName, IList<string> roles
+        //
+        Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName);
+
         Task<bool> SigninUserAsync(string userName, string password);
 
 

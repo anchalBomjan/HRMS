@@ -19,8 +19,8 @@ namespace HRMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
-    [Authorize(Roles ="User, HR")]
+   // [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+   // [Authorize(Roles ="User, HR")]
     public class UserController : ControllerBase
     {
 
@@ -30,12 +30,7 @@ namespace HRMS.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("Create")]
-        [ProducesDefaultResponseType(typeof(int))]
-        public async Task<ActionResult>CreatUser(CreateUserCommand command)
-        {
-            return Ok(await _mediator.Send(command));
-        }
+    
 
         [HttpGet("GetAll")]
         [ProducesDefaultResponseType(typeof(List<UserResponseDTO>))]

@@ -1,4 +1,5 @@
 ﻿using HRMS.Application.Commands.Auth;
+using HRMS.Application.Commands.User.Create;
 using HRMS.Application.Commands.User.ForgetPassword;
 using HRMS.Application.Commands.User.ResetPassword;
 using MediatR;
@@ -17,6 +18,13 @@ namespace HRMS.API.Controllers
             _mediator = mediator;
         }
 
+
+        [HttpPost("Create")]
+        [ProducesDefaultResponseType(typeof(int))]
+        public async Task<ActionResult> CreatUser(CreateUserCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
         [HttpPost("Login")]
         public async Task<ActionResult> Login([FromBody] AuthCommand command)
         {

@@ -1,6 +1,32 @@
 [
   {
     "ContainingType": "HRMS.API.Controllers.AuthController",
+    "Method": "CreatUser",
+    "RelativePath": "api/Auth/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "HRMS.Application.Commands.User.Create.CreateUserCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 0
+      }
+    ]
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.AuthController",
     "Method": "ForgotPasswords",
     "RelativePath": "api/Auth/forget-Password",
     "HttpMethod": "POST",
@@ -605,32 +631,6 @@
       {
         "Name": "command",
         "Type": "HRMS.Application.Commands.User.Update.AssignUsersRole.AssignUserRoleCommand",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Int32",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 0
-      }
-    ]
-  },
-  {
-    "ContainingType": "HRMS.API.Controllers.UserController",
-    "Method": "CreatUser",
-    "RelativePath": "api/User/Create",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "command",
-        "Type": "HRMS.Application.Commands.User.Create.CreateUserCommand",
         "IsRequired": true
       }
     ],
