@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-employee-create',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class EmployeeCreateComponent {
 
+
+  constructor(private messeageService:MessageService)
+  {
+
+
+  }
 }
