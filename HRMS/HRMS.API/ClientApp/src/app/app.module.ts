@@ -23,7 +23,7 @@ import { EmployeeModule } from './features/employee/employee.module';
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    EmployeeModule  // we have to  import here to run overall project
+    EmployeeModule  // we have to  import to  able to use of primengmodule
     
   ],
 
