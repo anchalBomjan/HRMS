@@ -6,6 +6,7 @@ import { SharedModule } from './shared/shared.module';
 import { AccessDeniedComponent } from './shared/components/access-denied/access-denied.component';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeModule } from './features/employee/employee.module';
 ;
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    EmployeeModule  // we have to  import here to run overall project
     
   ],
 

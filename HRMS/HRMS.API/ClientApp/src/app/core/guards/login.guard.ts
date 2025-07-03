@@ -5,7 +5,6 @@ import { TokenStorageService } from '../services/token-storage.service';
 export const loginGuard: CanActivateFn = () => {
   const tokenService = inject(TokenStorageService);
   const router = inject(Router);
-
   const user = tokenService.getUser();
   if (user?.role === 'HR') {
     router.navigate(['/home/app-dashboard']);

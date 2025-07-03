@@ -12,6 +12,8 @@ import { HasRoleDirective } from './directives/has-role.directive';
 import { InputMaskDirective } from './directives/input-mask.directive';
 import { RouterModule } from '@angular/router';
 import { PrimengModule } from './primeng/primeng.module';
+import { EmployeeListComponent } from '../features/employee/components/employee-list/employee-list.component';
+import { TableModule } from 'primeng/table';
 
 
 
@@ -22,7 +24,6 @@ import { PrimengModule } from './primeng/primeng.module';
     SidebarComponent,
     LoadingSpinnerComponent,
     ErrorDisplayComponent,
-    
     SafeHtmlPipe,
     RoleNamePipe,
     DateFormatPipe,
@@ -30,7 +31,7 @@ import { PrimengModule } from './primeng/primeng.module';
     InputMaskDirective
   ],
   imports: [
-    CommonModule,RouterModule,PrimengModule
+    CommonModule,RouterModule,PrimengModule,
   
   ],
 

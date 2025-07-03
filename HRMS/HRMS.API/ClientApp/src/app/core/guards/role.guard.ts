@@ -16,4 +16,3 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   router.navigate(['/access-denied']);
   return false;
 };
-//  dont use authrole guard

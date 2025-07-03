@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToolbarModule } from 'primeng/toolbar'; 
@@ -14,8 +14,10 @@ import { MessageService } from 'primeng/api';
   declarations: [],
   imports: [
     FormsModule,
-    TableModule,
     ButtonModule,
+    TableModule,
+   
+    
     InputTextModule,
     DropdownModule,
     ToolbarModule,
@@ -23,8 +25,10 @@ import { MessageService } from 'primeng/api';
     ToastModule
   ],
   exports:[ FormsModule,
-    TableModule,
+ 
     ButtonModule,
+    TableModule,
+   
     InputTextModule,
     DropdownModule,
     ToolbarModule,
