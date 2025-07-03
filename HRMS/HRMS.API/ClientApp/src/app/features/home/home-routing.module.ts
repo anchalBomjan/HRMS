@@ -5,13 +5,19 @@ import { EmployeeCreateComponent } from '../employee/components/employee-create/
 
 const routes: Routes = [
   {
-    path:'app-dashboard',component:DashboardComponent
+    path:'app-dashboard',component:DashboardComponent,
+    children:[
+      {
+        path: '',
+        component: EmployeeCreateComponent,
+    
+    
+      }
+    
+    ]
   },
 
-  {
-
-    path:'app-employee-create',component:EmployeeCreateComponent
-  }
+ 
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -24,15 +24,18 @@ export class EmployeeApiServiceService {
 
   getEmployeeById(id:number):Observable<Employee>{
     return this.http.get<Employee>(`${this.baseUrl}/${id}`);
-     //return this.http.get<Employee>(`${this.baseUrl}/${id}`);
-    // return this.http.put(`${this.baseUrl}/${id}`, employeeData);
-
-
+  
   }
 
 
   updateEmployee(id:number,employeeData:any):Observable<any>{
     return this.http.put(`${this.baseUrl}/${id}`,employeeData);
+
+  }
+
+  deleteEmployee(id:number):Observable<{message:string}>{
+    return  this.http.delete<{message:string}>(`${this.baseUrl}/${id}`);
+
 
   }
   

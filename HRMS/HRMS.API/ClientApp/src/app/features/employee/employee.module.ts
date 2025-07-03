@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { EmployeeRoutingModule } from './employee-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -22,7 +20,6 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
     ReactiveFormsModule,
     RouterModule,
     SharedModule,
-    EmployeeRoutingModule
   ]
 })
 export class EmployeeModule { }

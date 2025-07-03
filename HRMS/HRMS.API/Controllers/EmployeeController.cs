@@ -1,4 +1,5 @@
 ﻿using HRMS.Application.Commands.employee.Create;
+using HRMS.Application.Commands.employee.Delete;
 using HRMS.Application.Commands.employee.Update;
 using HRMS.Application.Queries.employee.GetAllEmployeesQuery;
 using HRMS.Application.Queries.employee.GetEmployeeByIdQuery;
@@ -54,6 +55,19 @@ namespace HRMS.API.Controllers
 
 
         }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteEmployeeCommand { Id = id });
+
+            if (result.Contains("not found", StringComparison.OrdinalIgnoreCase))
+            {
+                return NotFound(new { message = result });
+            }
+
+            return Ok(new { message = result });
+        }
+
 
     }
 }
