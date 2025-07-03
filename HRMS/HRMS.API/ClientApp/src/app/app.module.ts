@@ -6,11 +6,14 @@ import { SharedModule } from './shared/shared.module';
 import { AccessDeniedComponent } from './shared/components/access-denied/access-denied.component';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+;
 
 @NgModule({
   declarations: [
   AppComponent,                       //To  route this  access-denied  components form  app-routing module(root) we have to  register its components 
-  AccessDeniedComponent              //// beacuse this  component is directly call in in app-routing app so we declare in app.module
+  AccessDeniedComponent, 
+ 
+            //// beacuse this  component is directly call in in app-routing app so we declare in app.module
   ],                                // we can do it by declaration in its own  sharemodule and export it and call it , means import in  app module by calling shared module 
                                     // thne there beacome so many dependency .. so we directly declare here to used direct call in app-routing
   imports: [

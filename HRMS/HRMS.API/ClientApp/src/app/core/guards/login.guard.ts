@@ -11,7 +11,7 @@ export const loginGuard: CanActivateFn = () => {
     router.navigate(['/home/app-dashboard']);
     return false;
   } else if (user?.role === 'User') {
-    router.navigate(['/user/dashboard']);
+    router.navigate(['/home/app-dashboard']);
     return false;
   }
 
