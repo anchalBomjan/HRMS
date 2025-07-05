@@ -1,11 +1,11 @@
 # Human Resource Management System(HRMS)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
 
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Angular 16.2.12](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-512BD4?style=for-the-badge&logo=.net&logoColor=white)
 ## 💻 UI Libraries & Frameworks
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![PrimeNG](https://img.shields.io/badge/PrimeNG-00ADA4?style=for-the-badge&logo=prime&logoColor=white)
+![PrimeNG 16.2.0](https://img.shields.io/badge/PrimeNG-00ADA4?style=for-the-badge&logo=prime&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap_5.2.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 ## 🧩 Styling & Components
@@ -20,7 +20,7 @@
 
 ## 📦 Package Managers & Build
 ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
-![Angular CLI](https://img.shields.io/badge/Angular_CLI-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Angular CLI 16.2.12](https://img.shields.io/badge/Angular_CLI-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 
 C# ASP.NET Core ASP.NET MVC ASP.NET Web
 🛢️ Databases
