@@ -40,7 +40,7 @@ export class EmployeeListComponent {
   }
   
 
-  onDeleteEmployee(id:number){
+  deleteEmployee(id:number){
     if(confirm('Are you sure you want to delete this employee?')){
       this.employeeService.deleteEmployee(id).subscribe({
         next:(res)=>{
