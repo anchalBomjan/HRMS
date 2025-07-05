@@ -20,17 +20,14 @@ export class EmployeeEditComponent {
     private messageService: MessageService,
     private router: Router
   ) {
-    // Get ID from route param immediately
     this.employeeId = Number(this.route.snapshot.paramMap.get('id'));
 
-    // Initialize form
     this.employeeForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required]
     });
 
-    // Load employee data
     this.employeeService.getEmployeeById(this.employeeId).subscribe({
       next: (emp) => {
         this.employeeForm.patchValue(emp);
@@ -44,31 +41,26 @@ export class EmployeeEditComponent {
 
   onSubmit() {
     if (this.employeeForm.valid) {
-      this.employeeService.updateEmployee(this.employeeId, this.employeeForm.value).subscribe({
+      // ✅ Important: include `id` in the payload (because backend checks for id match)
+      const payload = {
+        id: this.employeeId,
+        ...this.employeeForm.value
+      };
+
+      this.employeeService.updateEmployee(this.employeeId, payload).subscribe({
         next: (res) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Updated',
-            detail: 'Employee updated successfully'
-          });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: res });
           setTimeout(() => {
             this.router.navigate(['/home/app-dashboard/employees']);
           }, 1500);
         },
-        error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to update employee'
-          });
+        error: (err) => {
+          console.error(err);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: err.error?.message || 'Update failed' });
         }
       });
     } else {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Validation',
-        detail: 'Please fill all required fields'
-      });
+      this.messageService.add({ severity: 'warn', summary: 'Invalid', detail: 'Please fill all required fields' });
     }
   }
 }
