@@ -6,6 +6,7 @@ import { EmployeeCreateComponent } from './components/employee-create/employee-c
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     EmployeeRoutingModule,
     SharedModule
   ]

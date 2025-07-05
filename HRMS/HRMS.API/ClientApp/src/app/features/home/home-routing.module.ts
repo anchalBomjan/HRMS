@@ -9,24 +9,16 @@ const routes: Routes = [
   {
     path:'app-dashboard',component:DashboardComponent,
     children:[
-      // {
-      //   path: '',
-      //   component: EmployeeCreateComponent,
-      // },
+    
         { 
-         // path: 'employees', 
-         path:'',
+        
+         path:'employees',
           component: EmployeeListComponent
          },
+         { path: 'employees/create', component: EmployeeCreateComponent },
+         { path: 'employees/edit/:id', component: EmployeeEditComponent },
 
-        { path: 'employees/create', 
-        component: EmployeeCreateComponent
-        },
-        {
-           path:'employees/edit/:id',
-          
-          component:EmployeeEditComponent
-        }
+      
     
       
     

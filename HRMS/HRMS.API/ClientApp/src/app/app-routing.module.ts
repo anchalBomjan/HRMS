@@ -29,11 +29,11 @@ const routes: Routes = [
     path: 'access-denied',
     component: AccessDeniedComponent
   },
-  {
-    path: '**',
-    redirectTo: 'auth/login'
+  // {
+  //   path: '**',
+  //   redirectTo: 'auth/login'
 
-  }
+  // }
 ];
 
 @NgModule({

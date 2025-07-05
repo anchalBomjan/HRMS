@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../models/Employee';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,9 @@ import { Employee } from '../models/Employee';
 export class EmployeeApiServiceService {
 
 
-  private baseUrl='${environment.apiUrl}Employee';
+
+  private baseUrl = `${environment.apiUrl}/Employee`;
+
   constructor(private http:HttpClient){}
 
   GetAllEmployee():Observable<Employee[]>{

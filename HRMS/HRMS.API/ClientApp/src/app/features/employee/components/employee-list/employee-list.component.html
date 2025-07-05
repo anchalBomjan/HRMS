@@ -1,11 +1,11 @@
 
-
 <p-toast></p-toast>
 <div class="container mt-3">
     <p-button label="Add New" (onClick)="router.navigate(['/app-dashboard/employees/create'])"></p-button>
 <p-table [value]="employees">
       <ng-template pTemplate="header">
         <tr>
+          <th>Id</th>
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
@@ -14,11 +14,12 @@
       </ng-template>
       <ng-template pTemplate="body" let-emp>
         <tr>
-          <td>{{ emp.Name }}</td>
-          <td>{{ emp.Email }}</td>
-          <td>{{ emp.PhoneNumber }}</td>
+          <td>{{emp.id}}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.phoneNumber }}</td>
           <td>
-            <button class="btn btn-sm btn-primary" (click)="editEmployee(emp.Id)">Edit</button>
+            <button class="btn btn-sm btn-primary" (click)="editEmployee(emp.id)">Edit</button>
           </td>
         </tr>
       </ng-template>
@@ -26,3 +27,4 @@
 
   </div>
   
+ 

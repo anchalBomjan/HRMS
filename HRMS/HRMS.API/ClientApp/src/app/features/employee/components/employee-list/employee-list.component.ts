@@ -24,12 +24,21 @@ export class EmployeeListComponent {
 
   }
   loadEmployee(){
-    this.employeeService.GetAllEmployee().subscribe(data=> this.employees=data);
+    // this.employeeService.GetAllEmployee().subscribe(data=> this.employees=data );
+ 
+    this.employeeService.GetAllEmployee().subscribe({
+      next:(data)=>{
+        this.employees=data;
+        console.log('fetch employees:',data);
+      }
+    })
+    
   }
 
-  editEmployee(id:number){
-    this.router.navigate(['app-dashboard/empoyees/edit',id])
+  editEmployee(id: number) {
+    this.router.navigate(['/home/app-dashboard/employees/edit', id]);
   }
+  
 
   onDeleteEmployee(id:number){
     if(confirm('Are you sure you want to delete this employee?')){
