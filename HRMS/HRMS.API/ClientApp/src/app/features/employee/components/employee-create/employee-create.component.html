@@ -1,4 +1,4 @@
-<p-toast></p-toast>
+<!-- <p-toast></p-toast>
 <div class="container mt-4">
   <div class="card p-4 shadow">
     <h4>Create Employee</h4>
@@ -19,6 +19,67 @@
       </div>
 
       <button pButton type="submit" label="Create" class="btn btn-primary"></button>
+    </form>
+  </div>
+</div> -->
+<p-toast></p-toast>
+
+<div class="container mt-5">
+  <div class="card shadow rounded-4 p-4">
+    <h3 class="text-center mb-4 text-primary"> Create New Employee</h3>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="needs-validation">
+      <div class="row g-3">
+        <!-- Name -->
+        <div class="col-md-6">
+          <label for="name" class="form-label fw-bold">Full Name</label>
+          <input
+            pInputText
+            id="name"
+            type="text"
+            class="form-control"
+            formControlName="name"
+            placeholder="Enter employee name"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6">
+          <label for="email" class="form-label fw-bold">Email Address</label>
+          <input
+            pInputText
+            id="email"
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Enter email"
+          />
+        </div>
+
+        <!-- Phone Number -->
+        <div class="col-md-6">
+          <label for="phoneNumber" class="form-label fw-bold">Phone Number</label>
+          <input
+            pInputText
+            id="phoneNumber"
+            type="text"
+            class="form-control"
+            formControlName="phoneNumber"
+            placeholder="Enter phone number"
+          />
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-end mt-4">
+        <button
+          pButton
+          type="submit"
+          label="Create"
+          class="btn btn-primary px-4 py-2 rounded-pill shadow-sm"
+          [disabled]="employeeForm.invalid"
+        ></button>
+      </div>
     </form>
   </div>
 </div>

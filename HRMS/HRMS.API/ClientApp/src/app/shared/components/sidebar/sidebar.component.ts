@@ -34,8 +34,8 @@ export class SidebarComponent {
         break;
       case 'HR':
         this.navItems = [
-          { label: 'Dashboard', route: '/hr/app-dashboard' },
-          { label: 'Employees', route: '/hr/employees' },
+          { label: 'Dashboard', route: '/home/app-dashboard/' },
+          { label: 'Employees', route: '/home/app-dashboard/employees' },
           { label: 'Leaves', route: '/hr/leaves' }
         ];
         break;

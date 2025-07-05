@@ -32,7 +32,10 @@ export class EmployeeCreateComponent {
 
           console.log('employee posting data',res)
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Employee created successfully' });
-          this.router.navigate(['/app-dashboard/employees']);
+         
+          setTimeout(() => {
+            this.router.navigate(['/home/app-dashboard/employees']);
+          }, 2000);
         },
         error: () => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to create employee' });

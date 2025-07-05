@@ -53,6 +53,9 @@ export class EmployeeListComponent {
             detail: res.message,
 
           });
+      
+          this.loadEmployee();
+
         },
         error:(err)=>{
           this.messageservice.add({
@@ -62,6 +65,8 @@ export class EmployeeListComponent {
           })
         }
       })
+
+     
     }
 
 
