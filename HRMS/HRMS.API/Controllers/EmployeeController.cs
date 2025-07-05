@@ -41,34 +41,34 @@ namespace HRMS.API.Controllers
             return Ok(await _mediator.Send(new GetEmployeeByIdQuery { Id = id }));
         }
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
-        //{
-
-        //    if(id!=command.Id)
-        //    {
-        //        return BadRequest("ID Mismatch");
-        //    }
-        //    var result=await _mediator.Send(command);
-
-        //    //  return Ok(result);
-        //    return Ok("Employee updated successfully");
-
-
-        //}
         [HttpPut("{id}")]
-        public async Task<ActionResult<object>> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
+        public async Task<IActionResult> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
         {
-            if (id != command.Id)
-                return BadRequest(new { message = "ID mismatch" });
 
+            if (id != command.Id)
+            {
+                return BadRequest("ID Mismatch");
+            }
             var result = await _mediator.Send(command);
 
-            if (result == "Employee not found")
-                return NotFound(new { message = result });
+            //  return Ok(result);
+            return Ok("Employee updated successfully");
 
-            return Ok(new { message = result }); // JSON object: { "message": "..." }
+
         }
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<object>> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
+        //{
+        //    if (id != command.Id)
+        //        return BadRequest(new { message = "ID mismatch" });
+
+        //    var result = await _mediator.Send(command);
+
+        //    if (result == "Employee not found")
+        //        return NotFound(new { message = result });
+
+        //    return Ok(new { message = result }); // JSON object: { "message": "..." }
+        //}
 
 
 
