@@ -10,7 +10,7 @@ import { Stock } from '../models/stock';
 export class StockApiService {
 
 
-  private baseUrl = `${environment.apiUrl}Stock`;
+  private baseUrl = `${environment.apiUrl}/Stock`;
 
   constructor(private http: HttpClient) {}
 

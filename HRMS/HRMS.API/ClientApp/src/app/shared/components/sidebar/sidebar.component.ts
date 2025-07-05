@@ -36,6 +36,8 @@ export class SidebarComponent {
         this.navItems = [
           { label: 'Dashboard', route: '/home/app-dashboard/' },
           { label: 'Employees', route: '/home/app-dashboard/employees' },
+
+          {label:'Stock',route:'/home/app-dashboard/stocks'},
           { label: 'Leaves', route: '/hr/leaves' }
         ];
         break;

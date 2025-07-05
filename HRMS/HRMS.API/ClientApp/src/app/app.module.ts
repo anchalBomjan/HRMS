@@ -7,6 +7,7 @@ import { AccessDeniedComponent } from './shared/components/access-denied/access-
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeModule } from './features/employee/employee.module';
+import { StockModule } from './features/stock/stock.module';
 ;
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EmployeeModule } from './features/employee/employee.module';
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    EmployeeModule  // we have to  import to  able to use of primengmodule
+    EmployeeModule,  // we have to  import to  able to use of primengmodule
+    StockModule
     
   ],
 
