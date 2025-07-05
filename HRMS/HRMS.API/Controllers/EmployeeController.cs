@@ -41,34 +41,22 @@ namespace HRMS.API.Controllers
             return Ok(await _mediator.Send(new GetEmployeeByIdQuery { Id = id }));
         }
 
+      
+       
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
+        public async Task<ActionResult<string>> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
         {
-
             if (id != command.Id)
-            {
                 return BadRequest("ID Mismatch");
-            }
+
             var result = await _mediator.Send(command);
 
-            //  return Ok(result);
-            return Ok("Employee updated successfully");
+            if (result.Contains("not found", StringComparison.OrdinalIgnoreCase))
+                return NotFound(result); // sends "Employee not found"
 
-
+            return Ok(result); // sends "Employee updated successfully"
         }
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult<object>> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
-        //{
-        //    if (id != command.Id)
-        //        return BadRequest(new { message = "ID mismatch" });
 
-        //    var result = await _mediator.Send(command);
-
-        //    if (result == "Employee not found")
-        //        return NotFound(new { message = result });
-
-        //    return Ok(new { message = result }); // JSON object: { "message": "..." }
-        //}
 
 
 
