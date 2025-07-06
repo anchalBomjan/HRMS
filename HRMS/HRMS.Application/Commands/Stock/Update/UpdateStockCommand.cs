@@ -20,7 +20,8 @@ namespace HRMS.Application.Commands.stock.Update
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public StockType Type { get; set; }
         public bool IsDozen { get; set; }= false;
-        public bool IsAdditive  = true; // New: false = absolute, true = additive
+        // public bool IsAdditive  = true; // New: false = absolute, true = additive
+        public bool IsAdditive { get; set; } = true; // ✅ CORRECT
 
 
     }

@@ -27,11 +27,15 @@ export class StockApiService {
   }
 
   updateStock(id: number, stock: Stock): Observable<string> {
-    return this.http.put<string>(`${this.baseUrl}/${id}`, stock);
+    return this.http.put<string>(`${this.baseUrl}/${stock.id}`, stock);
   }
+  // updateStock(id: number, stock: Stock): Observable<string> {
+  //   // FIX: Use route parameter instead of stock.id
+  //   return this.http.put<string>(`${this.baseUrl}/${id}`, stock);
+  // }
 
   deleteStock(id: number): Observable<string> {
-    return this.http.delete<string>(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' as 'text' });
   }
- 
+  
 }

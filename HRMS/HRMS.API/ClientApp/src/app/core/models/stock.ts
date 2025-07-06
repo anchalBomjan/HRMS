@@ -8,4 +8,6 @@ export interface Stock {
   stockType: StockType;
   quantity: number;
   isDozen: boolean;
+  isAdditive?: boolean; // ✅ new field
+
   }
