@@ -1,5 +1,5 @@
 export enum StockType {
-    UnKnown = 'UnKnown',
-    Asset = 'Asset',
-    Consumable = 'Consumable'
+  UnKnown = 'UnKnown',
+  Asset = 'Asset',
+  Consumable = 'Consumable'
   }
