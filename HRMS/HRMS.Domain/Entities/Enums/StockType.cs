@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HRMS.Domain.Entities.Enums
 {
-
+    
     //An enum (short for enumeration) in C# is a value type that allows you to define a set of named constants.
     public enum StockType
     {

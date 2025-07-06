@@ -77,10 +77,11 @@ namespace HRMS.Infrastructure.Data
                 entity.Property(s => s.Description)
                       .HasMaxLength(500);
 
-                entity.Property(s => s.Type)
-                      .HasConversion<string>() // Store enum as string
-                      .HasMaxLength(20);
-                       
+                //entity.Property(s => s.Type)
+                //      .HasConversion<string>() // Store enum as string
+                //      .HasMaxLength(20);
+                entity.Property(s => s.Type);
+
 
                 entity.Property(s => s.Quantity)
                       .HasColumnType("decimal(18,2)")  // Supports fractional units
@@ -117,6 +118,7 @@ namespace HRMS.Infrastructure.Data
                 entity.HasIndex(a => a.EmployeeId);
                 entity.HasIndex(a => new { a.StockId, a.EmployeeId });  // Composite index
             });
+
         }
     }
 }

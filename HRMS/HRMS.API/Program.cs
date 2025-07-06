@@ -43,6 +43,15 @@ namespace HRMS.API
 
             });
 
+            // for enum value
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+
+
+
+                });
 
            // CORS Configuration
             builder.Services.AddCors(c =>

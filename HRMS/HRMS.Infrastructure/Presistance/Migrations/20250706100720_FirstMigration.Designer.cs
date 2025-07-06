@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRMS.Infrastructure.Presistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250611042822_FirstMigration")]
+    [Migration("20250706100720_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -75,6 +75,12 @@ namespace HRMS.Infrastructure.Presistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("decimal(18,2)")
                         .HasDefaultValue(0m);
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");

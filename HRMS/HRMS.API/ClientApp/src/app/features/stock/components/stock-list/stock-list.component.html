@@ -84,8 +84,9 @@
     </form>
   </p-dialog>
 </div> -->
+
 <p-toast></p-toast>
-<p-toast></p-toast>
+
 <div class="container mt-3">
   <button pButton type="button" label="Add New Stock" icon="pi pi-plus" class="mb-3" (click)="showCreateDialog()"></button>
 
@@ -120,6 +121,7 @@
       <div class="mb-3">
         <label for="name">Name *</label>
         <input id="name" pInputText formControlName="name" class="form-control" />
+        <small *ngIf="stockForm.controls['name'].invalid && stockForm.controls['name'].touched" class="text-danger">Name is required.</small>
       </div>
 
       <div class="mb-3">
@@ -137,12 +139,17 @@
           placeholder="Select Stock Type"
           [style]="{ width: '100%' }"
         ></p-dropdown>
-        <small *ngIf="stockForm.controls['stockType'].invalid && stockForm.controls['stockType'].touched" class="text-danger">Stock type is required.</small>
+        <small *ngIf="stockForm.controls['stockType'].invalid && stockForm.controls['stockType'].touched" class="text-danger">
+          Stock type is required and must be Asset or Consumable.
+        </small>
       </div>
 
       <div class="mb-3">
-        <label for="quantity">Quantity *</label>
-        <input id="quantity" type="number" pInputText formControlName="quantity" class="form-control" min="0" />
+        <label for="quantity" class="required">Quantity </label>
+        <input id="quantity" type="number" required pInputText formControlName="quantity" class="form-control" min="0" />
+        <small *ngIf="stockForm.controls['quantity'].invalid && stockForm.controls['quantity'].touched" class="text-danger">
+          Quantity must be 0 or more.
+        </small>
       </div>
 
       <div class="form-check mb-3">
@@ -157,5 +164,4 @@
     </form>
   </p-dialog>
 </div>
-
 

@@ -112,11 +112,8 @@
 
 // }
 
-
-
-
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { StockApiService } from 'src/app/core/services/stock-api.service';
 import { Stock } from 'src/app/core/models/stock';
 import { StockType } from 'src/app/core/models/stock-type.enum';
@@ -136,6 +133,7 @@ export class StockListComponent {
   selectedStockId?: number;
 
   stockTypes = [
+    {label:'Unknown',value:StockType.Consumable},
     { label: 'Asset', value: StockType.Asset },
     { label: 'Consumable', value: StockType.Consumable }
   ];
@@ -143,12 +141,13 @@ export class StockListComponent {
   constructor(
     private fb: FormBuilder,
     private stockService: StockApiService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cd: ChangeDetectorRef
   ) {
     this.stockForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
-      stockType: [null, Validators.required],
+      stockType: [null, [Validators.required, this.forbidUnknownValidator]],
       quantity: [0, [Validators.required, Validators.min(0)]],
       isDozen: [false]
     });
@@ -156,10 +155,15 @@ export class StockListComponent {
     this.loadStocks();
   }
 
+  forbidUnknownValidator(control: AbstractControl): ValidationErrors | null {
+    return control.value === StockType.UnKnown ? { unknownSelected: true } : null;
+  }
+
   loadStocks() {
     this.stockService.getAllStocks().subscribe({
       next: (data) => (this.stocks = data),
-      error: () => this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load stocks' })
+      error: () =>
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load stocks' })
     });
   }
 
@@ -172,14 +176,29 @@ export class StockListComponent {
       quantity: 0,
       isDozen: false
     });
-    this.dialogVisible = true;
+
+    setTimeout(() => {
+      this.dialogVisible = true;
+      this.cd.detectChanges();
+    }, 0);
   }
 
   showEditDialog(stock: Stock) {
     this.isEditMode = true;
     this.selectedStockId = stock.id;
-    this.stockForm.patchValue(stock);
-    this.dialogVisible = true;
+
+    // If editing, make sure Unknown is not accepted:
+    let stockTypeValue = stock.stockType === StockType.UnKnown ? null : stock.stockType;
+
+    this.stockForm.patchValue({
+      ...stock,
+      stockType: stockTypeValue
+    });
+
+    setTimeout(() => {
+      this.dialogVisible = true;
+      this.cd.detectChanges();
+    }, 0);
   }
 
   saveStock() {
@@ -190,6 +209,8 @@ export class StockListComponent {
 
     const formValue: Stock = this.stockForm.value;
 
+    console.log('create stock', formValue);
+   
     if (this.isEditMode && this.selectedStockId) {
       this.stockService.updateStock(this.selectedStockId, formValue).subscribe({
         next: () => {
@@ -230,4 +251,5 @@ export class StockListComponent {
     this.dialogVisible = false;
   }
 }
+
 

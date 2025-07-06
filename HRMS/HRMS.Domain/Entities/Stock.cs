@@ -17,7 +17,8 @@ namespace HRMS.Domain.Entities
 
 
         //use  enum for stock types
-        public StockType Type { get; set; } = StockType.UnKnown;
+
+        public StockType Type { get; set; }
       
         public decimal Quantity { get; set; }
 

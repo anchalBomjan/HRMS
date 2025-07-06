@@ -14,8 +14,8 @@ namespace HRMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
-    [Authorize(Roles ="User,HR")]
+    //[Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(Roles ="User,HR")]
     public class RoleController : ControllerBase
     {
         private readonly IMediator _mediator;
