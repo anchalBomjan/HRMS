@@ -9,3 +9,12 @@
   position: sticky;
   top: 56px; // match header height to pin it below header
 }
+
+ul.list-unstyled {
+  padding-left: 0.5rem;
+  font-size: 0.9rem;
+
+  a {
+    padding-left: 1rem;
+  }
+}

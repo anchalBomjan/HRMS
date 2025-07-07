@@ -1,55 +1,4 @@
-<!-- <div class="card mb-3">
-    <div class="card-body">
-      <h4 class="card-title text-center">{{ panelName }}</h4>
-    </div>
-  </div>
-  
-  <ul class="list-group list-group-flush">
-    <li
-      *ngFor="let item of navItems"
-      class="list-group-item"
-      [routerLink]="item.route"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      style="cursor: pointer;"
-    >
-      {{ item.label }}
-    </li>
-  </ul> -->
-  
-
-  <!-- Updated sidebar.component.html -->
-<!-- <div class="d-flex flex-column h-100">
-    <div class="card mb-3">
-      <div class="card-body text-center">
-        <h4 class="card-title mb-0">{{ panelName }}</h4>
-      </div>
-    </div>
-    
-    <ul class="list-group list-group-flush mb-auto">
-      <li *ngFor="let item of navItems" 
-          class="list-group-item list-group-item-action"
-          [routerLink]="item.route" 
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">
-        {{ item.label }}
-      </li>
-    </ul>
-    
-  
-    <div class="d-lg-none p-3 border-top">
-      <div class="d-flex align-items-center">
-        <div class="flex-grow-1">
-          <span class="d-block">Hi, {{ userName }}</span>
-          <small class="text-muted">{{ role }}</small>
-        </div>
-        <button pButton type="button" icon="pi pi-user" 
-                class="p-button-rounded p-button-text"
-                [routerLink]="['/profile']"></button>
-      </div>
-    </div>
-  </div> -->
-  <!-- sidebar.component.html -->
+<!-- 
 <div class="d-flex flex-column h-100">
   <div class="card mb-3">
     <div class="card-body text-center">
@@ -68,7 +17,6 @@
     </a>
   </ul>
 
-  <!-- Mobile user info -->
   <div class="d-lg-none p-3 border-top">
     <div class="d-flex align-items-center">
       <div class="flex-grow-1">
@@ -80,4 +28,55 @@
               [routerLink]="['/profile']"></button>
     </div>
   </div>
+</div> -->
+
+<div class="d-flex flex-column h-100">
+  <div class="card mb-3">
+    <div class="card-body text-center">
+      <h4 class="card-title mb-0">{{ panelName }}</h4>
+    </div>
+  </div>
+
+  <ul class="list-group list-group-flush mb-auto">
+    <ng-container *ngFor="let item of navItems">
+      <!-- Dropdown Parent -->
+      <li *ngIf="item.children; else singleLink" class="list-group-item">
+        <div class="fw-bold">{{ item.label }}</div>
+        <ul class="list-unstyled ms-3 mt-2">
+          <li *ngFor="let child of item.children">
+            <a [routerLink]="child.route"
+               routerLinkActive="active"
+               class="text-decoration-none d-block py-1">
+              {{ child.label }}
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Regular Single Link -->
+      <ng-template #singleLink>
+        <a class="list-group-item list-group-item-action"
+           [routerLink]="item.route"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }"
+           style="cursor: pointer;">
+          {{ item.label }}
+        </a>
+      </ng-template>
+    </ng-container>
+  </ul>
+
+  <!-- Mobile User Info -->
+  <div class="d-lg-none p-3 border-top">
+    <div class="d-flex align-items-center">
+      <div class="flex-grow-1">
+        <span class="d-block">Hi, {{ userName }}</span>
+        <small class="text-muted">{{ role }}</small>
+      </div>
+      <button pButton type="button" icon="pi pi-user"
+              class="p-button-rounded p-button-text"
+              [routerLink]="['/profile']"></button>
+    </div>
+  </div>
 </div>
+
