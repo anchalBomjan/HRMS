@@ -12,9 +12,6 @@ import { HasRoleDirective } from './directives/has-role.directive';
 import { InputMaskDirective } from './directives/input-mask.directive';
 import { RouterModule } from '@angular/router';
 import { PrimengModule } from './primeng/primeng.module';
-import { EmployeeListComponent } from '../features/employee/components/employee-list/employee-list.component';
-import { TableModule } from 'primeng/table';
-
 
 
 @NgModule({

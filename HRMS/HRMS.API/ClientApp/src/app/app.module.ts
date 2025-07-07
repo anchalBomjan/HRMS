@@ -8,7 +8,8 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeModule } from './features/employee/employee.module';
 import { StockModule } from './features/stock/stock.module';
-;
+import { AssignstockModule } from './features/assignstock/assignstock.module';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { StockModule } from './features/stock/stock.module';
     SharedModule,
     CoreModule,
     EmployeeModule,  // we have to  import to  able to use of primengmodule
-    StockModule
+    StockModule,
+    AssignstockModule
+  
     
   ],
 

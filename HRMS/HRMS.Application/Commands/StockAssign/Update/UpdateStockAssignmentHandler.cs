@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace HRMS.Application.Commands.StockAssign.Update
 {
     public  class UpdateStockAssignmentHandler:IRequestHandler<UpdateStockAssignmentCommand,int>
