@@ -58,6 +58,7 @@
 //     }
 //   }
 // }
+
 import { Component } from '@angular/core';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
@@ -65,6 +66,7 @@ interface NavItem {
   label: string;
   route?: string;
   children?: NavItem[];
+  expanded?: boolean;
 }
 
 @Component({
@@ -91,17 +93,12 @@ export class SidebarComponent {
 
   setNavItemsBasedOnRole(role: string) {
     switch (role) {
-      case 'Admin':
+      case 'User':
         this.navItems = [
           { label: 'Dashboard', route: '/admin/dashboard' },
-          {
-            label: 'User Management',
-            children: [
-              { label: 'Manage Users', route: '/admin/users' },
-              { label: 'Roles', route: '/admin/roles' },
-              { label: 'Permissions', route: '/admin/permissions' }
-            ]
-          },
+          { label: 'My Profile', route: '/user/profile' },
+          { label: 'My Requests', route: '/user/requests' },
+          
           { label: 'Reports', route: '/admin/reports' }
         ];
         break;
@@ -111,24 +108,17 @@ export class SidebarComponent {
           { label: 'Dashboard', route: '/home/app-dashboard/' },
           { label: 'Employees', route: '/home/app-dashboard/employees' },
           { label: 'Stock', route: '/home/app-dashboard/stocks' },
-          { label: 'Assign Stock', route: '/home/app-dashboard/assignments' },
+          { label: 'AssignStock', route: '/home/app-dashboard/assignments' },
           {
             label: 'User Management',
+            expanded: false,
             children: [
-              { label: 'Manage Users', route: '/home/app-dashboard/ManagesUser' },
-              { label: 'Roles', route: '/home/app-dashboard/user-roles' },
-              { label: 'Permissions', route: '/home/app-dashboard/user-permissions' }
+              { label: 'Manage Users', route: '/admin/users' },
+              { label: 'Roles', route: '/admin/roles' },
+              { label: 'Permissions', route: '/admin/permissions' }
             ]
           },
           { label: 'Leaves', route: '/hr/leaves' }
-        ];
-        break;
-
-      case 'User':
-        this.navItems = [
-          { label: 'Dashboard', route: '/user/dashboard' },
-          { label: 'My Profile', route: '/user/profile' },
-          { label: 'My Requests', route: '/user/requests' }
         ];
         break;
 
@@ -136,4 +126,10 @@ export class SidebarComponent {
         this.navItems = [{ label: 'Home', route: '/home' }];
     }
   }
+
+  toggleSubMenu(item: NavItem) {
+    item.expanded = !item.expanded;
+  }
 }
+
+

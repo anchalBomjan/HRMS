@@ -30,53 +30,33 @@
   </div>
 </div> -->
 
-<div class="d-flex flex-column h-100">
-  <div class="card mb-3">
-    <div class="card-body text-center">
-      <h4 class="card-title mb-0">{{ panelName }}</h4>
+
+<ul class="list-group list-group-flush mb-auto">
+  <li *ngFor="let item of navItems" class="list-group-item sidebar-item">
+    <div *ngIf="item.children; else singleLink"
+         class="nav-parent"
+         (click)="toggleSubMenu(item)">
+      <span class="nav-label">{{ item.label }}</span>
+      <i class="pi"
+         [ngClass]="item.expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
     </div>
-  </div>
 
-  <ul class="list-group list-group-flush mb-auto">
-    <ng-container *ngFor="let item of navItems">
-      <!-- Dropdown Parent -->
-      <li *ngIf="item.children; else singleLink" class="list-group-item">
-        <div class="fw-bold">{{ item.label }}</div>
-        <ul class="list-unstyled ms-3 mt-2">
-          <li *ngFor="let child of item.children">
-            <a [routerLink]="child.route"
-               routerLinkActive="active"
-               class="text-decoration-none d-block py-1">
-              {{ child.label }}
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Regular Single Link -->
-      <ng-template #singleLink>
-        <a class="list-group-item list-group-item-action"
-           [routerLink]="item.route"
+    <ul *ngIf="item.expanded" class="list-group list-group-flush ms-3 mt-2">
+      <li *ngFor="let child of item.children" class="list-group-item sidebar-subitem">
+        <a [routerLink]="child.route"
            routerLinkActive="active"
-           [routerLinkActiveOptions]="{ exact: true }"
-           style="cursor: pointer;">
-          {{ item.label }}
+           class="nav-link">
+          <span class="nav-label">{{ child.label }}</span>
         </a>
-      </ng-template>
-    </ng-container>
-  </ul>
+      </li>
+    </ul>
 
-  <!-- Mobile User Info -->
-  <div class="d-lg-none p-3 border-top">
-    <div class="d-flex align-items-center">
-      <div class="flex-grow-1">
-        <span class="d-block">Hi, {{ userName }}</span>
-        <small class="text-muted">{{ role }}</small>
-      </div>
-      <button pButton type="button" icon="pi pi-user"
-              class="p-button-rounded p-button-text"
-              [routerLink]="['/profile']"></button>
-    </div>
-  </div>
-</div>
-
+    <ng-template #singleLink>
+      <a [routerLink]="item.route"
+         routerLinkActive="active"
+         class="nav-link">
+        <span class="nav-label">{{ item.label }}</span>
+      </a>
+    </ng-template>
+  </li>
+</ul>

@@ -14,8 +14,6 @@ import { StockApiService } from 'src/app/core/services/stock-api.service';
   styleUrls: ['./assign-stock-create.component.scss']
 })
 export class AssignStockCreateComponent {
-
-
   assignForm: FormGroup;
   employees: Employee[] = [];
   stocks: Stock[] = [];

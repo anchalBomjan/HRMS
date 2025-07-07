@@ -115,6 +115,8 @@
     </tr>
   </thead>
   <tbody>
+
+    
     <tr *ngFor="let assignment of stockAssignments">
       <td>{{ assignment.id }}</td>
       <td>{{ assignment.employeeName }}</td>
@@ -130,7 +132,6 @@
   </tbody>
 </table>
 
-<!-- 🔹 Dialog for Create/Edit -->
 
 <p-dialog header="{{ isEditMode ? 'Edit Assignment' : 'New Assignment' }}"
           [(visible)]="dialogVisible"

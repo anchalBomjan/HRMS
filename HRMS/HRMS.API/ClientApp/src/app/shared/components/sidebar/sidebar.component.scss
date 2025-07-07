@@ -10,11 +10,30 @@
   top: 56px; // match header height to pin it below header
 }
 
-ul.list-unstyled {
-  padding-left: 0.5rem;
-  font-size: 0.9rem;
-
-  a {
-    padding-left: 1rem;
-  }
+.nav-link, .nav-parent {
+  text-decoration: none;
 }
+
+.nav-label {
+  color: black;
+  transition: color 0.2s ease;
+}
+
+/* 🔵 Turn label blue on hover */
+.nav-link:hover .nav-label,
+.nav-parent:hover .nav-label {
+  color: #0d6efd; // Bootstrap primary blue
+}
+
+/* 🔵 Turn label blue when active (clicked/selected) */
+.nav-link.active .nav-label {
+  color: #0d6efd;
+}
+
+/* Optional: Remove list group background/borders if any */
+.sidebar-item,
+.sidebar-subitem {
+  background-color: transparent;
+  border: none;
+}
+

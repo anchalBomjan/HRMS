@@ -49,6 +49,8 @@ namespace HRMS.API.Controllers
             return Ok(result);
         }
 
+
+
         [HttpGet("GetUserDetails/{userId}")]
         [ProducesDefaultResponseType(typeof(UserDetailsResponseDTO))]
         public async Task<IActionResult> GetUserDetails(string userId)
@@ -68,6 +70,7 @@ namespace HRMS.API.Controllers
                 });
             }
         }
+
         [HttpGet("GetUserDetailsByUserName/{userName}")]
         [ProducesDefaultResponseType(typeof(UserDetailsResponseDTO))]
         public async Task<IActionResult> GetUserDetailsByUserName(string userName)
@@ -94,6 +97,7 @@ namespace HRMS.API.Controllers
             return Ok(result);
         }
 
+
         [HttpGet("GetAllUserDetails")]
         [ProducesDefaultResponseType(typeof(UserDetailsResponseDTO))]
         public async Task<IActionResult> GetAllUserDetails()
@@ -101,6 +105,8 @@ namespace HRMS.API.Controllers
             var result = await _mediator.Send(new GetAllUsersDetailsQuery());
             return Ok(result);
         }
+
+
 
         [HttpPut("EditUserProfile/{id}")]
         [ProducesDefaultResponseType(typeof(int))]
