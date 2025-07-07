@@ -5,6 +5,8 @@ import { EmployeeCreateComponent } from '../employee/components/employee-create/
 import { EmployeeListComponent } from '../employee/components/employee-list/employee-list.component';
 import { EmployeeEditComponent } from '../employee/components/employee-edit/employee-edit.component';
 import { StockListComponent } from '../stock/components/stock-list/stock-list.component';
+import { AssignStockListComponent } from '../assignstock/components/assign-stock-list/assign-stock-list.component';
+import { AssignStockCreateComponent } from '../assignstock/components/assign-stock-create/assign-stock-create.component';
 
 const routes: Routes = [
   {
@@ -25,7 +27,11 @@ const routes: Routes = [
         component: StockListComponent
       },
 
-      
+      { path: 'assignments', component:AssignStockListComponent },
+      {
+        path:'assign-stock-create',component:AssignStockCreateComponent
+      }
+
     
       
     

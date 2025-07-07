@@ -38,7 +38,7 @@ export class SidebarComponent {
           { label: 'Employees', route: '/home/app-dashboard/employees' },
 
           {label:'Stock',route:'/home/app-dashboard/stocks'},
-          {label:'AssignStock',route:'/home/app-dashboard/Assignstocks'},
+          {label:'AssignStock',route:'/home/app-dashboard/assignments'},
           {label:'Manages User',route:'/home/app-dashboard/ManagesUser'},
           // {label:'Stock',route:'/home/app-dashboard/stocks'},
 
