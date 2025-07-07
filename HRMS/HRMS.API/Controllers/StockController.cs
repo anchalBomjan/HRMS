@@ -5,7 +5,7 @@ using HRMS.Application.Common.Pagination;
 using HRMS.Application.DTOs;
 using HRMS.Application.Queries.stock.GetStockByIdQuery;
 using HRMS.Application.Queries.stock.GetStockQuery;
-using HRMS.Application.Queries.stock.GetStockQuery.PaginationResponse;
+using HRMS.Domain.Entities.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -57,14 +57,26 @@ namespace HRMS.API.Controllers
         }
 
 
+        //[HttpPut("{id}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<ActionResult<string>> Update(int id, UpdateStockCommand command)
+        //{
+        //    if (id != command.Id)
+        //        return BadRequest("ID mismatch");
+
+        //    return Ok(await _mediator.Send(command));
+        //}
         [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<string>> Update(int id, UpdateStockCommand command)
         {
             if (id != command.Id)
                 return BadRequest("ID mismatch");
+
+            // Add explicit validation
+            if (!Enum.IsDefined(typeof(StockType), command.Type))
+                return BadRequest("Invalid stock type");
 
             return Ok(await _mediator.Send(command));
         }

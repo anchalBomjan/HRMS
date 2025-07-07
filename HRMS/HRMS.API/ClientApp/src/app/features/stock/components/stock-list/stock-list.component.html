@@ -1,4 +1,4 @@
-
+<!-- 
 <p-toast></p-toast>
 
 <div class="container mt-3">
@@ -27,7 +27,10 @@
         <td>{{ stock.id }}</td>
         <td>{{ stock.name }}</td>
         <td>{{ stock.description }}</td>
-        <td>{{ stock.stockType }}</td>
+       <td>
+        {{ getStockTypeLabel(stock.stockType) }}
+      </td>
+      
         <td>{{ stock.quantity }}</td>
         <td>
           <button
@@ -143,6 +146,381 @@
       </div>
     </form>
   </p-dialog>
+</div> -->
+
+<!-- this below code is spliting into two components -->
+ <!-- <p-toast></p-toast>
+
+ <div class="container mt-3">
+   <button
+     pButton
+     type="button"
+     label="Add New Stock"
+     icon="pi pi-plus"
+     class="mb-3"
+     (click)="showCreateDialog()"
+   ></button>
+ 
+   <p-table [value]="stocks" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+     <ng-template pTemplate="header">
+       <tr>
+         <th>ID</th>
+         <th>Name</th>
+         <th>Description</th>
+         <th>Stock Type</th>
+         <th>Quantity</th>
+         <th>Actions</th>
+       </tr>
+     </ng-template>
+     <ng-template pTemplate="body" let-stock>
+       <tr>
+         <td>{{ stock.id }}</td>
+         <td>{{ stock.name }}</td>
+         <td>{{ stock.description }}</td>
+        
+        <td>{{ stockTypeLabels[stock.stockType] || 'Unknown' }}</td>
+
+         <td>{{ stock.quantity }}</td>
+         <td>
+           <button
+             pButton
+             icon="pi pi-pencil"
+             class="p-button-text"
+             (click)="showEditDialog(stock)"
+           ></button>
+           <button
+             pButton
+             icon="pi pi-trash"
+             class="p-button-danger p-button-text"
+             (click)="confirmDelete(stock.id!)"
+           ></button>
+         </td>
+       </tr>
+     </ng-template>
+   </p-table>
+ 
+   <p-dialog
+     header="{{ isEditMode ? 'Edit Stock' : 'Create Stock' }}"
+     [(visible)]="dialogVisible"
+     [modal]="true"
+     [style]="{ width: '450px' }"
+   >
+     <form [formGroup]="stockForm" (ngSubmit)="saveStock()">
+       <div *ngIf="isEditMode" class="alert alert-info mb-3">
+         <i class="pi pi-info-circle me-2"></i>
+         By default, quantity will be <strong>added</strong> to existing stock.
+         Uncheck "Add quantity" to replace instead.
+       </div>
+       
+       <div class="mb-3">
+         <label for="name">Name *</label>
+         <input id="name" pInputText formControlName="name" class="form-control" />
+         <small *ngIf="stockForm.get('name')?.invalid && stockForm.get('name')?.touched"
+           class="text-danger">
+           Name is required.
+         </small>
+       </div>
+ 
+       <div class="mb-3">
+         <label for="description">Description</label>
+         <textarea
+           id="description"
+           pInputTextarea
+           formControlName="description"
+           class="form-control"
+         ></textarea>
+       </div>
+ 
+       <div class="mb-3">
+         <label for="stockType">Stock Type *</label>
+         <p-dropdown
+      [options]="stockTypes"
+       formControlName="stockType"
+       optionLabel="label"
+       optionValue="value"
+       placeholder="Select Stock Type"
+        [style]="{ width: '100%' }"
+       ></p-dropdown>
+
+         
+         <small *ngIf="stockForm.get('stockType')?.invalid && stockForm.get('stockType')?.touched"
+           class="text-danger">
+           Stock type is required.
+         </small>
+       </div>
+ 
+       <div class="mb-3">
+         <label for="quantity">Quantity *</label>
+         <input
+           id="quantity"
+           type="number"
+           pInputText
+           formControlName="quantity"
+           class="form-control"
+           min="0"
+         />
+         <small *ngIf="stockForm.get('quantity')?.invalid && stockForm.get('quantity')?.touched"
+           class="text-danger">
+           Quantity must be 0 or more.
+         </small>
+       </div>
+ 
+       <div class="form-check mb-3">
+         <input
+           type="checkbox"
+           id="isAdditive"
+           formControlName="isAdditive"
+           class="form-check-input"
+         />
+         <label for="isAdditive" class="form-check-label">
+           Add quantity (instead of replacing)
+         </label>
+       </div>
+ 
+       <div class="form-check mb-3">
+         <input type="checkbox" id="isDozen" formControlName="isDozen" class="form-check-input" />
+         <label for="isDozen" class="form-check-label">Quantity in dozens</label>
+       </div>
+ 
+       <div class="d-flex justify-content-end">
+         <button
+           pButton
+           type="button"
+           label="Cancel"
+           class="p-button-secondary me-2"
+           (click)="hideDialog()"
+         ></button>
+         <button
+           pButton
+           type="submit"
+           label="{{ isEditMode ? 'Update' : 'Create' }}"
+           class="p-button-primary"
+           [disabled]="stockForm.invalid"
+         ></button>
+       </div>
+     </form>
+   </p-dialog>
+ </div> -->
+
+
+ <!-- second -->
+ <!-- <p-toast></p-toast>
+
+<div class="container mt-3">
+  <button
+    pButton
+    type="button"
+    label="Add New Stock"
+    icon="pi pi-plus"
+    class="mb-3"
+    (click)="showCreateDialog()"
+  ></button>
+
+  <p-table [value]="stocks" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Stock Type</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-stock>
+      <tr>
+        <td>{{ stock.id }}</td>
+        <td>{{ stock.name }}</td>
+        <td>{{ stock.description }}</td>
+        <td>{{ stockTypeLabels[stock.stockType] || 'Unknown' }}</td>
+        <td>{{ stock.quantity }}</td>
+        <td>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    header="Create New Stock"
+    [(visible)]="createDialogVisible"
+    [modal]="true"
+    [closable]="true"
+    [style]="{ width: '700px', height: '600px' }"
+  >
+    <app-stock-create
+      (stockCreated)="onStockCreated()"
+      (cancelCreate)="onCancelCreate()"
+    ></app-stock-create>
+  </p-dialog>
+</div> -->
+
+<p-toast></p-toast>
+
+<div class="container mt-3">
+  <!-- ➕ ADD NEW BUTTON -->
+  <button
+    pButton
+    type="button"
+    label="Add New Stock"
+    icon="pi pi-plus"
+    class="mb-3"
+    (click)="showCreateDialog()"
+  ></button>
+
+  <!-- 📋 STOCK TABLE -->
+  <p-table [value]="stocks" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Stock Type</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-stock>
+      <tr>
+        <td>{{ stock.id }}</td>
+        <td>{{ stock.name }}</td>
+        <td>{{ stock.description }}</td>
+        <td>{{ stockTypeLabels[stock.stockType] }}</td>
+        <td>{{ stock.quantity }}</td>
+        <td>
+          <button
+            pButton
+            icon="pi pi-pencil"
+            class="p-button-text"
+            (click)="showEditDialog(stock)"
+          ></button>
+          <button
+            pButton
+            icon="pi pi-trash"
+            class="p-button-danger p-button-text"
+            (click)="confirmDelete(stock.id!)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- 🔹 CREATE STOCK DIALOG -->
+  <p-dialog
+    header="Create New Stock"
+    [(visible)]="createDialogVisible"
+    [modal]="true"
+    [closable]="true"
+    [style]="{ width: '500px' }"
+  >
+    <app-stock-create (created)="onStockCreated()"></app-stock-create>
+  </p-dialog>
+
+  <!-- 🔧 EDIT STOCK DIALOG -->
+  <p-dialog
+    header="Edit Stock"
+    [(visible)]="editDialogVisible"
+    [modal]="true"
+    [closable]="true"
+    [style]="{ width: '500px' }"
+  >
+    <form [formGroup]="stockForm" (ngSubmit)="saveStock()">
+      <div class="mb-3">
+        <label for="name">Name *</label>
+        <input id="name" pInputText formControlName="name" class="form-control" />
+        <small
+          *ngIf="stockForm.get('name')?.invalid && stockForm.get('name')?.touched"
+          class="text-danger"
+        >
+          Name is required.
+        </small>
+      </div>
+
+      <div class="mb-3">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          pInputTextarea
+          formControlName="description"
+          class="form-control"
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="stockType">Stock Type *</label>
+        <p-dropdown
+          [options]="stockTypes"
+          formControlName="stockType"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select Stock Type"
+          [style]="{ width: '100%' }"
+        ></p-dropdown>
+
+
+
+ 
+
+
+        <small
+          *ngIf="stockForm.get('stockType')?.invalid && stockForm.get('stockType')?.touched"
+          class="text-danger"
+        >
+          Stock type is required.
+        </small>
+      </div>
+
+      <div class="mb-3">
+        <label for="quantity">Quantity *</label>
+        <input
+          id="quantity"
+          type="number"
+          pInputText
+          formControlName="quantity"
+          class="form-control"
+          min="0"
+        />
+        <small
+          *ngIf="stockForm.get('quantity')?.invalid && stockForm.get('quantity')?.touched"
+          class="text-danger"
+        >
+          Quantity must be 0 or more.
+        </small>
+      </div>
+
+      <div class="form-check mb-3">
+        <input type="checkbox" id="isDozen" formControlName="isDozen" class="form-check-input" />
+        <label for="isDozen" class="form-check-label">Quantity in dozens</label>
+      </div>
+
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          id="isAdditive"
+          formControlName="isAdditive"
+          class="form-check-input"
+        />
+        <label for="isAdditive" class="form-check-label">Add quantity (instead of replacing)</label>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button
+          pButton
+          type="button"
+          label="Cancel"
+          class="p-button-secondary me-2"
+          (click)="hideEditDialog()"
+        ></button>
+        <button
+          pButton
+          type="submit"
+          label="Update"
+          class="p-button-primary"
+          [disabled]="stockForm.invalid"
+        ></button>
+      </div>
+    </form>
+  </p-dialog>
 </div>
 
 
+ 

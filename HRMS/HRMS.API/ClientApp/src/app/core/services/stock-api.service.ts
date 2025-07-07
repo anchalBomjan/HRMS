@@ -26,8 +26,13 @@ export class StockApiService {
     return this.http.post<number>(`${this.baseUrl}`, stock);
   }
 
+  // updateStock(id: number, stock: Stock): Observable<string> {
+  //   return this.http.put<string>(`${this.baseUrl}/${id}`, stock);
+  // }
   updateStock(id: number, stock: Stock): Observable<string> {
-    return this.http.put<string>(`${this.baseUrl}/${stock.id}`, stock);
+    return this.http.put(`${this.baseUrl}/${id}`, stock, {
+      responseType: 'text' as 'text'
+    });
   }
   // updateStock(id: number, stock: Stock): Observable<string> {
   //   // FIX: Use route parameter instead of stock.id

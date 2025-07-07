@@ -16,9 +16,9 @@ namespace HRMS.Application.Commands.stock.Update
         public string Description { get; set; }
         public decimal Quantity { get; set; }
 
-       
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public StockType Type { get; set; }
+        [JsonPropertyName("stockType")]
+
+        public StockType Type { get; set; } = StockType.UnKnown; // Default value
         public bool IsDozen { get; set; }= false;
         // public bool IsAdditive  = true; // New: false = absolute, true = additive
         public bool IsAdditive { get; set; } = true; // ✅ CORRECT
