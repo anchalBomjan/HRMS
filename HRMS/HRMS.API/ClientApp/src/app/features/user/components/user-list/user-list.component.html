@@ -10,7 +10,7 @@
         <tr>
           <th>Full Name</th>
           <th>Email</th>
-          <th>Roles</th>
+          <th>User Name</th>
           <th>Actions</th>
         </tr>
       </ng-template>
@@ -18,9 +18,7 @@
         <tr>
           <td>{{ user.fullName }}</td>
           <td>{{ user.email }}</td>
-          <td>
-            <span class="badge bg-success me-1" *ngFor="let role of user.roles">{{ role }}</span>
-          </td>
+          <td>{{ user.userName }}</td>
           <td>
             <button class="btn btn-danger btn-sm" (click)="onDeleteUser(user.id)">Delete</button>
           </td>
@@ -30,7 +28,6 @@
   
     <!-- Assign Role Dialog -->
     <p-dialog [(visible)]="displayAssignDialog" [modal]="true" header="Assign Roles to User" [style]="{ width: '450px' }">
-
       <div class="p-fluid">
         <!-- Select User -->
         <div class="field">
@@ -40,7 +37,8 @@
             [(ngModel)]="selectedUser"
             optionLabel="fullName"
             placeholder="Select user"
-            inputId="user">
+            inputId="user"
+            [filter]="true">
           </p-dropdown>
         </div>
   
