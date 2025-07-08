@@ -8,6 +8,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 
 @NgModule({
@@ -17,7 +19,7 @@ import { MessageService } from 'primeng/api';
     ButtonModule,
     TableModule,
    
-    
+    MultiSelectModule,
     InputTextModule,
     DropdownModule,
     ToolbarModule,
@@ -28,7 +30,7 @@ import { MessageService } from 'primeng/api';
  
     ButtonModule,
     TableModule,
-   
+    MultiSelectModule,
     InputTextModule,
     DropdownModule,
     ToolbarModule,

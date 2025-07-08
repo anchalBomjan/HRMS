@@ -1,1 +1,70 @@
-<p>user-list works!</p>
+<div class="container mt-4">
+    <h4>User Management</h4>
+  
+    <!-- Assign Roles Button -->
+    <button pButton label="Assign Roles" icon="pi pi-user-edit" (click)="openAssignDialog()" class="mb-3"></button>
+  
+    <!-- Users Table -->
+    <p-table [value]="users" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Roles</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{ user.fullName }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span class="badge bg-success me-1" *ngFor="let role of user.roles">{{ role }}</span>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="onDeleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  
+    <!-- Assign Role Dialog -->
+    <p-dialog [(visible)]="displayAssignDialog" [modal]="true" header="Assign Roles to User" [style]="{ width: '450px' }">
+
+      <div class="p-fluid">
+        <!-- Select User -->
+        <div class="field">
+          <label for="user">User</label>
+          <p-dropdown
+            [options]="users"
+            [(ngModel)]="selectedUser"
+            optionLabel="fullName"
+            placeholder="Select user"
+            inputId="user">
+          </p-dropdown>
+        </div>
+  
+        <!-- Select Roles -->
+        <div class="field mt-3">
+          <label for="roles">Roles</label>
+          <p-multiSelect
+            [options]="availableRoles"
+            [(ngModel)]="selectedRoles"
+            optionLabel="roleName"
+            display="chip"
+            placeholder="Select roles"
+            inputId="roles">
+          </p-multiSelect>
+        </div>
+  
+        <!-- Submit -->
+        <div class="field mt-4">
+          <button pButton label="Assign" icon="pi pi-check" (click)="onAssignRoles()"></button>
+        </div>
+      </div>
+    </p-dialog>
+  
+    <!-- Toast -->
+    <p-toast></p-toast>
+  </div>
+  

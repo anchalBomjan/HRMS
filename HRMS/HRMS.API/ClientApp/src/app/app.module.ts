@@ -10,6 +10,7 @@ import { EmployeeModule } from './features/employee/employee.module';
 import { StockModule } from './features/stock/stock.module';
 import { AssignstockModule } from './features/assignstock/assignstock.module';
 import { RoleModule } from './features/role/role.module';
+import { UserModule } from './features/user/user.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RoleModule } from './features/role/role.module';
     EmployeeModule,  // we have to  import to  able to use of primengmodule
     StockModule,
     AssignstockModule,
-    RoleModule
+    RoleModule,
+    UserModule
    
     
     

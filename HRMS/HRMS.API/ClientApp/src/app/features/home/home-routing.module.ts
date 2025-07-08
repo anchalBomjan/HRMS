@@ -8,6 +8,7 @@ import { StockListComponent } from '../stock/components/stock-list/stock-list.co
 import { AssignStockListComponent } from '../assignstock/components/assign-stock-list/assign-stock-list.component';
 import { AssignStockCreateComponent } from '../assignstock/components/assign-stock-create/assign-stock-create.component';
 import { RoleListComponent } from '../role/role-list/role-list.component';
+import { UserListComponent } from '../user/components/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,9 @@ const routes: Routes = [
 
       {path:'app-role-list',component:RoleListComponent
 
+      },
+      {
+        path:'app-user-list',component:UserListComponent
       }
     
       
