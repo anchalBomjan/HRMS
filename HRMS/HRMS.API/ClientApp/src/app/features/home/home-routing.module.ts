@@ -7,6 +7,7 @@ import { EmployeeEditComponent } from '../employee/components/employee-edit/empl
 import { StockListComponent } from '../stock/components/stock-list/stock-list.component';
 import { AssignStockListComponent } from '../assignstock/components/assign-stock-list/assign-stock-list.component';
 import { AssignStockCreateComponent } from '../assignstock/components/assign-stock-create/assign-stock-create.component';
+import { RoleListComponent } from '../role/role-list/role-list.component';
 
 const routes: Routes = [
   {
@@ -30,8 +31,11 @@ const routes: Routes = [
       { path: 'assignments', component:AssignStockListComponent },
       {
         path:'assign-stock-create',component:AssignStockCreateComponent
-      }
+      },
 
+      {path:'app-role-list',component:RoleListComponent
+
+      }
     
       
     

@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeModule } from './features/employee/employee.module';
 import { StockModule } from './features/stock/stock.module';
 import { AssignstockModule } from './features/assignstock/assignstock.module';
+import { RoleModule } from './features/role/role.module';
 
 
 @NgModule({
@@ -27,7 +28,10 @@ import { AssignstockModule } from './features/assignstock/assignstock.module';
     CoreModule,
     EmployeeModule,  // we have to  import to  able to use of primengmodule
     StockModule,
-    AssignstockModule
+    AssignstockModule,
+    RoleModule
+   
+    
     
     
   

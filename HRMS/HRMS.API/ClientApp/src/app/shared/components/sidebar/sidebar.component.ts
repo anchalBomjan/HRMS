@@ -114,7 +114,7 @@ export class SidebarComponent {
             expanded: false,
             children: [
               { label: 'Manage Users', route: '/admin/users' },
-              { label: 'Roles', route: '/admin/roles' },
+              { label: 'Roles', route: '/home/app-dashboard/app-role-list' },
               { label: 'Permissions', route: '/admin/permissions' }
             ]
           },
