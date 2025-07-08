@@ -2,7 +2,7 @@ export interface IStockAssignmentDTO {
     id: number;
     employeeName: string;
     stockName: string;
-    stockType: string;             // ✅ Add this line
+    stockType: string;            
     assignedQuantity: number;
     assignmentDate: string;
   }
