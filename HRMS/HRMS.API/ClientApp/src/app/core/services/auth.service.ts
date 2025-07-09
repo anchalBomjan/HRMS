@@ -29,8 +29,10 @@ export class AuthService {
         const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
         const userName = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
 
+        const userId = decoded['userId']; // 👈 Extract userId
+
         this.tokenService.saveToken(token);
-        this.tokenService.saveUser({ userName, role });
+        this.tokenService.saveUser({ userName, role ,userId});
         this.isLoggedInSubject.next(true);
 
         this.redirectToDashboard(role);

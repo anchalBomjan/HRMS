@@ -9,6 +9,7 @@ import { AssignStockListComponent } from '../assignstock/components/assign-stock
 import { AssignStockCreateComponent } from '../assignstock/components/assign-stock-create/assign-stock-create.component';
 import { RoleListComponent } from '../role/role-list/role-list.component';
 import { UserListComponent } from '../user/components/user-list/user-list.component';
+import { AssignstockgetbyuseridlistComponent } from '../assign-stock-get-userid/components/assignstockgetbyuseridlist/assignstockgetbyuseridlist.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
       },
       {
         path:'app-user-list',component:UserListComponent
+      },
+
+      {
+        path:'app-assignstockgetbyuseridlist',component:AssignstockgetbyuseridlistComponent
       }
     
       

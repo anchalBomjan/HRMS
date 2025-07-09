@@ -11,12 +11,13 @@ import { StockModule } from './features/stock/stock.module';
 import { AssignstockModule } from './features/assignstock/assignstock.module';
 import { RoleModule } from './features/role/role.module';
 import { UserModule } from './features/user/user.module';
+import { AssignStockGetUseridModule } from './features/assign-stock-get-userid/assign-stock-get-userid.module';
 
 
 @NgModule({
   declarations: [
   AppComponent,                       //To  route this  access-denied  components form  app-routing module(root) we have to  register its components 
-  AccessDeniedComponent 
+  AccessDeniedComponent, 
  
                                       //// beacuse this  component is directly call in in app-routing app so we declare in app.module
   ],                                // we can do it by declaration in its own  sharemodule and export it and call it , means import in  app module by calling shared module 
@@ -31,7 +32,8 @@ import { UserModule } from './features/user/user.module';
     StockModule,
     AssignstockModule,
     RoleModule,
-    UserModule
+    UserModule,
+    AssignStockGetUseridModule
    
     
     
