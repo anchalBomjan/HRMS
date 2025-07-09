@@ -9,6 +9,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ChipModule } from 'primeng/chip';
+
 
 
 
@@ -20,6 +22,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     TableModule,
    
     MultiSelectModule,
+    ChipModule,
     InputTextModule,
     DropdownModule,
     ToolbarModule,

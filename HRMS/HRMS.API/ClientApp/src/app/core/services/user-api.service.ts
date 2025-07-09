@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { UserDetailsResponseDTO } from '../models/user-details-response.dto';
 import { AssignUserRole } from '../models/assign-user-role';
 import { IUserDTO } from '../models/user-response-Dto';
+import { IUserEditDTO } from '../models/usereditDto';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,22 @@ export class UserApiService {
     return this.http.get<UserDetailsResponseDTO[]>(`${this.baseUrl}/GetAllUserDetails`)
   }
 
-  deleteUser(id:string):Observable<number>{
-    return this.http.delete<number>(`$t{htis.baseUrl}/Delete/${id}`);
+ 
+  deleteUser(id: string): Observable<number> {
+    return this.http.delete<number>(`${this.baseUrl}/Delete/${id}`);
   }
+ 
+  // assignRoles(data:AssignUserRole): Observable<number> {
+  //   return this.http.post<number>(`${this.baseUrl}/AssignRoles`, data);
+  // }
 
-  assignRoles(data:AssignUserRole): Observable<number> {
-    return this.http.post<number>(`${this.baseUrl}/AssignRoles`, data);
+
+  assignRoles(data: AssignUserRole): Observable<any> {
+    return this.http.post('https://localhost:44372/api/User/AssignRoles', data);
+  }
+  
+  editUserProfile(id: string, data:IUserEditDTO ): Observable<number> {
+    return this.http.put<number>(`${this.baseUrl}/EditUserProfile/${id}`, data);
   }
 
 

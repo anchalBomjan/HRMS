@@ -3,9 +3,9 @@ import { MessageService } from 'primeng/api';
 import { AssignUserRole } from 'src/app/core/models/assign-user-role';
 import { RoleDTO } from 'src/app/core/models/role';
 import { IUserDTO } from 'src/app/core/models/user-response-Dto';
+import { IUserEditDTO } from 'src/app/core/models/usereditDto';
 import { RoleApiService } from 'src/app/core/services/role-api.service';
 import { UserApiService } from 'src/app/core/services/user-api.service';
-
 
 @Component({
   selector: 'app-user-list',
@@ -13,13 +13,16 @@ import { UserApiService } from 'src/app/core/services/user-api.service';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
-  users: IUserDTO[] = [];
+  users: IUserEditDTO[] = [];  // roles: string[]
   selectedUser: IUserDTO | null = null;
 
-  availableRoles: RoleDTO[] = [];
-  selectedRoles: string[] = [];
+  availableRoles: RoleDTO[] = [];  // full roles from backend
+  selectedRoles: string[] = [];  // role names for assign dialog
 
   displayAssignDialog: boolean = false;
+
+  displayEditDialog: boolean = false;
+  editUserData: IUserEditDTO | null = null;
 
   constructor(
     private userApi: UserApiService,
@@ -31,21 +34,28 @@ export class UserListComponent {
   }
 
   loadUsers(): void {
-    this.userApi.getAllUsers().subscribe({
+    this.userApi.getAllUserDetails().subscribe({
       next: (data) => {
-        console.log('Fetched Users:', data);
         this.users = data;
+        console.log('Loaded users:', this.users);
       },
-      error: (err) => console.error('Error loading users:', err)
+      error: (err) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load users' });
+        console.error('Load users error:', err);
+      }
     });
   }
+
   loadRoles(): void {
     this.roleApi.getAllRoles().subscribe({
       next: (data) => {
-        console.log('Fetched Roles:', data); 
         this.availableRoles = data;
+        console.log('Loaded roles:', this.availableRoles);
       },
-      error: (err) => console.error('Error loading roles:', err)
+      error: (err) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load roles' });
+        console.error('Load roles error:', err);
+      }
     });
   }
 
@@ -57,62 +67,75 @@ export class UserListComponent {
 
   onAssignRoles(): void {
     if (!this.selectedUser || this.selectedRoles.length === 0) {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Validation',
-        detail: 'Select user and at least one role.'
-      });
+      this.messageService.add({ severity: 'warn', summary: 'Validation', detail: 'Select user and at least one role.' });
       return;
     }
 
     const data: AssignUserRole = {
-      userName: this.selectedUser.userName, // correct!
-      roles: this.selectedRoles
+      userName: this.selectedUser.userName,
+      roles: this.selectedRoles,  // only role names, as backend expects
     };
+
+    console.log('AssignUserRole payload:', data);
 
     this.userApi.assignRoles(data).subscribe({
       next: () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Roles assigned successfully.'
-        });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Roles assigned successfully.' });
         this.displayAssignDialog = false;
         this.loadUsers();
       },
       error: (err) => {
-        console.error(err);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to assign roles.'
-        });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to assign roles.' });
+        console.error('Assign roles error:', err);
       }
     });
   }
 
   onDeleteUser(id: string): void {
-    if (confirm("Are you sure you want to delete this user?")) {
-      this.userApi.deleteUser(id).subscribe({
-        next: () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Deleted',
-            detail: 'User deleted successfully.'
-          });
-          this.loadUsers();
-        },
-        error: (err) => {
-          console.error(err);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to delete user.'
-          });
-        }
-      });
-    }
+    if (!confirm('Are you sure you want to delete this user?')) return;
+
+    this.userApi.deleteUser(id).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Deleted', detail: 'User deleted successfully.' });
+        this.loadUsers();
+      },
+      error: (err) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete user.' });
+        console.error('Delete user error:', err);
+      }
+    });
   }
-  
-  
+
+  openEditUser(user: IUserEditDTO): void {
+    // Since user.roles is string[], just copy it
+    this.editUserData = { ...user };
+    // Set selectedRoles for the multiSelect in the edit dialog
+    this.selectedRoles = [...user.roles];
+    this.displayEditDialog = true;
+  }
+
+  saveUserEdit(): void {
+    if (!this.editUserData) return;
+
+    // Save edited user roles as string[] from selectedRoles
+    this.editUserData.roles = [...this.selectedRoles];
+
+    this.userApi.editUserProfile(this.editUserData.id, this.editUserData).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated successfully.' });
+        this.displayEditDialog = false;
+        this.editUserData = null;
+        this.loadUsers();
+      },
+      error: (err) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update user.' });
+        console.error('Edit user error:', err);
+      }
+    });
+  }
+
+  cancelEdit(): void {
+    this.displayEditDialog = false;
+    this.editUserData = null;
+  }
 }
