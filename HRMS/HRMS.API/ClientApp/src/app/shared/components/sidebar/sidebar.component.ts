@@ -39,7 +39,7 @@ export class SidebarComponent {
           { label: 'My Profile', route: '/user/profile' },
           { label: 'My Requests', route: '/user/requests' },
           
-          { label: 'Reports', route: '/admin/reports' }
+          { label: 'StockAssign', route: '/home/app-dashboard/app-assignstockgetbyuseridlist' }
         ];
         break;
 

@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<!-- <div class="container mt-4">
     <h4 class="mb-3">My Assigned Stocks</h4>
   
     <p-table [value]="stockAssignments" [paginator]="true" [rows]="5" responsiveLayout="scroll">
@@ -17,5 +17,42 @@
         </tr>
       </ng-template>
     </p-table>
-  </div>
+  </div> -->
   
+
+  <div class="container mt-5">
+    <h4 class="mb-4">Get Assigned Stocks by Employee ID</h4>
+  
+    <!-- Input Form -->
+    <form (ngSubmit)="fetchAssignedStocks()" class="row g-3 align-items-center mb-4">
+      <div class="col-auto">
+        <input type="number" class="form-control" [(ngModel)]="employeeId" name="employeeId" placeholder="Enter Employee ID" required />
+      </div>
+      <div class="col-auto">
+        <button pButton type="submit" label="Search" icon="pi pi-search" class="p-button-primary"></button>
+      </div>
+    </form>
+  
+    <!-- Result Table -->
+    <p-table *ngIf="assignedStocks.length > 0" [value]="assignedStocks" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Stock ID</th>
+          <th>Stock Name</th>
+          <th>Assigned Quantity</th>
+          <th>Assignment Date</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-stock>
+        <tr>
+          <td>{{ stock.stockId }}</td>
+          <td>{{ stock.stockName }}</td>
+          <td>{{ stock.assignedQuantity }}</td>
+          <td>{{ stock.assignmentDate | date: 'short' }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  
+<!-- Message -->
+  </div>
+ 
