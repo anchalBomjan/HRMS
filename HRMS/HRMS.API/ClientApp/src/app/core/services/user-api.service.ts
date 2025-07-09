@@ -38,10 +38,14 @@ export class UserApiService {
   assignRoles(data: AssignUserRole): Observable<any> {
     return this.http.post('https://localhost:44372/api/User/AssignRoles', data);
   }
-  
+  // this will use by user only to update  fullname and email
   editUserProfile(id: string, data:IUserEditDTO ): Observable<number> {
     return this.http.put<number>(`${this.baseUrl}/EditUserProfile/${id}`, data);
   }
-
+ 
+  updateUserRole(data: AssignUserRole): Observable<number> {
+    return this.http.put<number>(`${this.baseUrl}/EditUserRole`, data);
+  }
+  
 
 }

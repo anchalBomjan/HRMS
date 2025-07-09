@@ -6,23 +6,30 @@ import { IUserDTO } from 'src/app/core/models/user-response-Dto';
 import { IUserEditDTO } from 'src/app/core/models/usereditDto';
 import { RoleApiService } from 'src/app/core/services/role-api.service';
 import { UserApiService } from 'src/app/core/services/user-api.service';
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
-  users: IUserEditDTO[] = [];  // roles: string[]
+ 
+  users: IUserEditDTO[] = [];  // includes roles as full objects
   selectedUser: IUserDTO | null = null;
 
-  availableRoles: RoleDTO[] = [];  // full roles from backend
-  selectedRoles: string[] = [];  // role names for assign dialog
+  availableRoles: RoleDTO[] = [];  // roles from backend with id + roleName
+  selectedRoles: string[] = [];    // role names only
 
   displayAssignDialog: boolean = false;
-
   displayEditDialog: boolean = false;
+
+  // Used for editing user - roles are represented as string[] here
   editUserData: IUserEditDTO | null = null;
+
+
+
+  /// for editUserRole
+ 
+
 
   constructor(
     private userApi: UserApiService,
@@ -37,7 +44,7 @@ export class UserListComponent {
     this.userApi.getAllUserDetails().subscribe({
       next: (data) => {
         this.users = data;
-        console.log('Loaded users:', this.users);
+        console.log('Users loaded:', this.users);
       },
       error: (err) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load users' });
@@ -50,7 +57,7 @@ export class UserListComponent {
     this.roleApi.getAllRoles().subscribe({
       next: (data) => {
         this.availableRoles = data;
-        console.log('Loaded roles:', this.availableRoles);
+        console.log('Roles loaded:', this.availableRoles);
       },
       error: (err) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load roles' });
@@ -73,13 +80,15 @@ export class UserListComponent {
 
     const data: AssignUserRole = {
       userName: this.selectedUser.userName,
-      roles: this.selectedRoles,  // only role names, as backend expects
+      roles: this.selectedRoles  // string[] of role names
+  
+
     };
 
     console.log('AssignUserRole payload:', data);
 
     this.userApi.assignRoles(data).subscribe({
-      next: () => {
+      next: (resp) => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Roles assigned successfully.' });
         this.displayAssignDialog = false;
         this.loadUsers();
@@ -107,24 +116,30 @@ export class UserListComponent {
   }
 
   openEditUser(user: IUserEditDTO): void {
-    // Since user.roles is string[], just copy it
     this.editUserData = { ...user };
-    // Set selectedRoles for the multiSelect in the edit dialog
-    this.selectedRoles = [...user.roles];
+
+  
+
     this.displayEditDialog = true;
   }
 
   saveUserEdit(): void {
     if (!this.editUserData) return;
 
-    // Save edited user roles as string[] from selectedRoles
-    this.editUserData.roles = [...this.selectedRoles];
+    // Attach selectedRoles as roleName string array before sending to backend
+    const updatedUser = {
+      ...this.editUserData,
+      roles: this.selectedRoles  // string[]
+    };
 
-    this.userApi.editUserProfile(this.editUserData.id, this.editUserData).subscribe({
+    console.log('Edit User payload:', updatedUser);
+
+    this.userApi.editUserProfile(this.editUserData.id, updatedUser).subscribe({
       next: () => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated successfully.' });
         this.displayEditDialog = false;
         this.editUserData = null;
+        this.selectedRoles = [];
         this.loadUsers();
       },
       error: (err) => {
@@ -137,5 +152,12 @@ export class UserListComponent {
   cancelEdit(): void {
     this.displayEditDialog = false;
     this.editUserData = null;
+    this.selectedRoles = [];
   }
+
+
+
+
 }
+
+

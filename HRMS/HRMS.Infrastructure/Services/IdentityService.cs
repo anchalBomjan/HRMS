@@ -331,7 +331,7 @@ namespace HRMS.Infrastructure.Services
             return (user.Id, user.FullName, user.UserName, user.Email, roles);
         }
 
-
+        // this is  handle by only user for profile edit 
         public async Task<bool> UpdateUserProfile(string id, string fullName, string email, IList<string> roles)
         {
 
@@ -344,6 +344,7 @@ namespace HRMS.Infrastructure.Services
 
             user.FullName = fullName;
             user.Email = email;
+            
             var result = await _userManager.UpdateAsync(user);
             return result.Succeeded;
 
