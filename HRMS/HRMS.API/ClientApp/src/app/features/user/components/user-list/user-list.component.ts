@@ -158,6 +158,49 @@ export class UserListComponent {
 
 
 
+  displayEditUserRolesDialog: boolean = false;
+
+  assignUserRoleForm: AssignUserRole = {
+    userName: '',
+    roles: []
+  };
+  
+  inputRoleText: string = ''; // To bind comma-separated roles from input
+  
+openEditUserRolesDialog(): void {
+  this.assignUserRoleForm = {
+    userName: '',
+    roles: []
+  };
+  this.inputRoleText = '';
+  this.displayEditUserRolesDialog = true;
+}
+submitUserRoleEdit(): void {
+  const roleArray = this.inputRoleText
+    .split(',')
+    .map(r => r.trim())
+    .filter(r => r);
+
+  const payload: AssignUserRole = {
+    userName: this.assignUserRoleForm.userName,
+    roles: roleArray
+  };
+
+  this.userApi.updateUserRole(payload).subscribe({
+    next: () => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Roles updated successfully' });
+      this.displayEditUserRolesDialog = false;
+      this.loadUsers();
+    },
+    error: (err) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update roles' });
+      console.error('Update roles failed:', err);
+    }
+  });
+}
+
+
+
 }
 
 

@@ -2,6 +2,8 @@
   <h4>User Management</h4>
 
   <button pButton label="Assign Roles" icon="pi pi-user-edit" class="mb-3" (click)="openAssignDialog()"></button>
+  <button pButton label="Edit User Roles" icon="pi pi-user-edit" class="ml-2"
+  (click)="openEditUserRolesDialog()"></button>
 
   <p-table [value]="users" [paginator]="true" [rows]="5" responsiveLayout="scroll">
     <ng-template pTemplate="header">
@@ -73,7 +75,25 @@
       </div>
     </div>
   </p-dialog>
-
+  <p-dialog [(visible)]="displayEditUserRolesDialog" header="Edit User Roles" [modal]="true" [style]="{ width: '500px' }">
+    <div class="p-fluid">
+      <div class="field">
+        <label for="userName">User Name</label>
+        <input id="userName" type="text" pInputText [(ngModel)]="assignUserRoleForm.userName" placeholder="Enter username" />
+      </div>
+  
+      <div class="field mt-3">
+        <label for="roles">Roles (comma-separated)</label>
+        <input id="roles" type="text" pInputText [(ngModel)]="inputRoleText" placeholder="e.g. Admin,HR,User" />
+      </div>
+  
+      <div class="mt-4">
+        <button pButton label="Save" icon="pi pi-save" (click)="submitUserRoleEdit()"></button>
+        <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary ml-2" (click)="displayEditUserRolesDialog = false"></button>
+      </div>
+    </div>
+  </p-dialog>
+  
   <p-dialog [(visible)]="displayEditDialog" header="Edit User" [modal]="true" [style]="{ width: '500px' }">
     <div class="p-fluid" *ngIf="editUserData">
       <div class="field">
