@@ -158,7 +158,7 @@ export class UserListComponent {
 
 
 
-  displayEditUserRolesDialog: boolean = false;
+  displayEditUpdateUserRolesDialog: boolean = false;
 
   assignUserRoleForm: AssignUserRole = {
     userName: '',
@@ -167,15 +167,15 @@ export class UserListComponent {
   
   inputRoleText: string = ''; // To bind comma-separated roles from input
   
-openEditUserRolesDialog(): void {
+openEditUpdateUserRolesDialog(): void {
   this.assignUserRoleForm = {
     userName: '',
     roles: []
   };
   this.inputRoleText = '';
-  this.displayEditUserRolesDialog = true;
+  this.displayEditUpdateUserRolesDialog = true;
 }
-submitUserRoleEdit(): void {
+submitUserRoleEditUpdate(): void {
   const roleArray = this.inputRoleText
     .split(',')
     .map(r => r.trim())
@@ -189,7 +189,7 @@ submitUserRoleEdit(): void {
   this.userApi.updateUserRole(payload).subscribe({
     next: () => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Roles updated successfully' });
-      this.displayEditUserRolesDialog = false;
+      this.displayEditUpdateUserRolesDialog = false;
       this.loadUsers();
     },
     error: (err) => {

@@ -11,4 +11,10 @@
       width: 100%;
     }
   }
+  .button-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* adjust spacing as needed */
+    margin-bottom: 1rem;
+  }
   
