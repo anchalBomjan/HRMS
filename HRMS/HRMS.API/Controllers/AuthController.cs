@@ -27,7 +27,11 @@ namespace HRMS.API.Controllers
         public async Task<ActionResult> CreatUser(CreateUserCommand command)
         {
             return Ok(await _mediator.Send(command));
-        }
+        }  
+
+
+
+
         [HttpPost("Login")]
         [AllowAnonymous]
         public async Task<ActionResult> Login([FromBody] AuthCommand command)

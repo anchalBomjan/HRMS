@@ -7,7 +7,6 @@ import { AuthRequest } from '../models/AuthRequest';
 import { AuthResponse } from '../models/AuthResponse';
 import { jwtDecode } from 'jwt-decode';
 import { CreateUser } from '../models/create-user';
-
 @Injectable({
   providedIn: 'root',
 })

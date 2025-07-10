@@ -46,6 +46,7 @@ export class RegisterComponent {
       next: (res) => {
         if (res === 1) {
           this.openDialog('Success', 'Registration successful!');
+          this.registerForm.reset();
           setTimeout(() => this.router.navigate(['/auth/login']), 2000);
         } else {
           this.openDialog('Failed', 'Registration failed!');
