@@ -6,12 +6,13 @@ import { TokenStorageService } from './token-storage.service';
 import { AuthRequest } from '../models/AuthRequest';
 import { AuthResponse } from '../models/AuthResponse';
 import { jwtDecode } from 'jwt-decode';
+import { CreateUser } from '../models/create-user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:44372/api/Auth/Login';
+  private apiUrl = 'https://localhost:44372/api/Auth';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
@@ -22,14 +23,15 @@ export class AuthService {
   ) {}
 
   login(data: AuthRequest) {
-    return this.http.post<AuthResponse>(this.apiUrl, data).pipe(
+    return this.http.post<AuthResponse>(`${this.apiUrl}/Login`, data)
+   .pipe(
       tap((response) => {
         const token = response.token;
         const decoded: any = jwtDecode(token);
         const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
         const userName = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
 
-        const userId = decoded['userId']; // 👈 Extract userId
+        const userId = decoded['userId']; // 
 
         this.tokenService.saveToken(token);
         this.tokenService.saveUser({ userName, role ,userId});
@@ -54,6 +56,11 @@ export class AuthService {
     } else {
       this.router.navigate(['/access-denied']);
     }
+  }
+
+
+  register(user: CreateUser) {
+    return this.http.post<number>(`${this.apiUrl}/Create`, user);
   }
 }
 

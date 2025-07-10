@@ -10,6 +10,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ChipModule } from 'primeng/chip';
+import { PasswordModule } from 'primeng/password';
+
 
 
 
@@ -22,6 +24,7 @@ import { ChipModule } from 'primeng/chip';
     TableModule,
    
     MultiSelectModule,
+    PasswordModule,
     ChipModule,
     InputTextModule,
     DropdownModule,
@@ -34,6 +37,7 @@ import { ChipModule } from 'primeng/chip';
     ButtonModule,
     TableModule,
     MultiSelectModule,
+    PasswordModule,
     InputTextModule,
     DropdownModule,
     ToolbarModule,

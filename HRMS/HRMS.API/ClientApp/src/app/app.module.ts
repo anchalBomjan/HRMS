@@ -12,6 +12,7 @@ import { AssignstockModule } from './features/assignstock/assignstock.module';
 import { RoleModule } from './features/role/role.module';
 import { UserModule } from './features/user/user.module';
 import { AssignStockGetUseridModule } from './features/assign-stock-get-userid/assign-stock-get-userid.module';
+import { AuthModule } from './features/auth/auth.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AssignStockGetUseridModule } from './features/assign-stock-get-userid/a
     AppRoutingModule,
     SharedModule,
     CoreModule,
+    AuthModule,
     EmployeeModule,  // we have to  import to  able to use of primengmodule
     StockModule,
     AssignstockModule,

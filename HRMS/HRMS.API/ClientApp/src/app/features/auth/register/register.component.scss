@@ -1,0 +1,76 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e9f5ec, #d4ede3);
+    padding-top: 40px;
+  }
+  
+  .card {
+    border-radius: 1.5rem !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    background-color: #fff;
+  }
+  
+  h3 {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  input.form-control,
+  .p-inputtext {
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease-in-out;
+  
+    &:focus {
+      border-color: #20c997;
+      box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
+    }
+  }
+  
+  .p-password-input {
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+  
+  .p-password {
+    width: 100%;
+  }
+  
+  button {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+  
+    &:hover {
+      background-color: #198754 !important;
+      border-color: #198754 !important;
+    }
+  }
+  
+  /* PrimeNG Dialog */
+  ::ng-deep .p-dialog .p-dialog-header {
+    background-color: #20c997;
+    color: white;
+    font-weight: 600;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+  }
+  
+  ::ng-deep .p-dialog .p-dialog-content {
+    font-size: 1rem;
+    color: #333;
+    padding: 1.5rem;
+  }
+  
