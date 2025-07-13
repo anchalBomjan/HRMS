@@ -24,6 +24,7 @@ export class UserListComponent {
 
   // Used for editing user - roles are represented as string[] here
   editUserData: IUserEditDTO | null = null;
+  isRoleReadOnly: boolean = true; // or set to false if you want it editable
 
 
 

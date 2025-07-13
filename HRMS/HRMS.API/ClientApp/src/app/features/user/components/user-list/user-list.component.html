@@ -118,6 +118,9 @@
           display="chip"
           placeholder="Select roles"
           [filter]="true"
+          [disabled]="isRoleReadOnly"  
+
+          
           [scrollHeight]="'200px'">
         </p-multiSelect>
       </div>

@@ -1,29 +1,29 @@
 <p-toast></p-toast>
 
 <div class="container mt-3">
-  <button pButton type="button" label=" Add Role" icon="pi pi-plus" (click)="openCreateDialog()" class="mb-3"></button>
+  <!-- <button pButton type="button" label=" Add Role" icon="pi pi-plus" (click)="openCreateDialog()" class="mb-3"></button> -->
 
   <p-table [value]="roles">
     <ng-template pTemplate="header">
       <tr>
         <th>Role Name</th>
-        <th>Actions</th>
+        <!-- <th>Actions</th> -->
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-role>
       <tr>
         <td>{{ role.roleName }}</td>
-        <td>
+        <!-- <td>
           <button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="openEditDialog(role)"></button>
           <button pButton icon="pi pi-trash" class="p-button-text p-button-sm p-button-danger" (click)="confirmDelete(role)"></button>
-        </td>
+        </td> -->
       </tr>
     </ng-template>
   </p-table>
 </div>
 
 <!-- Dialog -->
-<p-dialog header="{{ isEditMode ? 'Edit Role' : 'Create Role' }}" [(visible)]="displayDialog" [modal]="true" [closable]="false" [style]="{ width: '400px' }">
+<!-- <p-dialog header="{{ isEditMode ? 'Edit Role' : 'Create Role' }}" [(visible)]="displayDialog" [modal]="true" [closable]="false" [style]="{ width: '400px' }">
   <form (ngSubmit)="saveRole()" #roleFormRef="ngForm">
     <div class="p-fluid">
       <div class="field">
@@ -36,5 +36,5 @@
       <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="displayDialog = false"></button>
     </div>
   </form>
-</p-dialog>
+</p-dialog> -->
 
