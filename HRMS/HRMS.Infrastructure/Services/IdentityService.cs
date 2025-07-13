@@ -418,18 +418,5 @@ namespace HRMS.Infrastructure.Services
             return await _userManager.IsInRoleAsync(user, role);
         }
 
-
-
-
-
-
-
-                                                                                                                                                                                      
-
-
-
-      
-
-     
     }
 }
