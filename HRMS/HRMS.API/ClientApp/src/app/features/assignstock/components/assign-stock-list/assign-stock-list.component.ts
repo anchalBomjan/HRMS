@@ -70,32 +70,69 @@ export class AssignStockListComponent {
     this.dialogVisible = true;
   }
 
+  // submit(): void {
+  //   if (this.isEditMode && this.selectedAssignmentId !== null) {
+  //     const updatePayload = {
+  //       id: this.selectedAssignmentId,
+  //       assignedQuantity: this.assignForm.get('assignedQuantity')?.value
+  //     };
+
+  //     this.assignService.updateStockAssignment(this.selectedAssignmentId, updatePayload).subscribe(() => {
+  //       this.messageService.add({ severity: 'success', summary: 'Updated successfully' });
+  //       this.dialogVisible = false;
+  //       this.loadAll();
+  //     });
+  //   } else {
+  //     this.assignForm.get('employeeId')?.enable();
+  //     this.assignForm.get('stockId')?.enable();
+
+  //     const createPayload = this.assignForm.value;
+
+  //     this.assignService.assignStock(createPayload).subscribe(() => {
+  //       this.messageService.add({ severity: 'success', summary: 'Created successfully' });
+  //       this.dialogVisible = false;
+  //       this.loadAll();
+  //     });
+  //   }
+  // }
   submit(): void {
     if (this.isEditMode && this.selectedAssignmentId !== null) {
       const updatePayload = {
         id: this.selectedAssignmentId,
         assignedQuantity: this.assignForm.get('assignedQuantity')?.value
       };
-
-      this.assignService.updateStockAssignment(this.selectedAssignmentId, updatePayload).subscribe(() => {
-        this.messageService.add({ severity: 'success', summary: 'Updated successfully' });
-        this.dialogVisible = false;
-        this.loadAll();
+  
+      this.assignService.updateStockAssignment(this.selectedAssignmentId, updatePayload).subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Updated successfully' });
+          this.dialogVisible = false;
+          this.loadAll();
+        },
+        error: (err) => {
+          const errorMsg = err?.error?.details || 'Failed to update assignment.';
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: errorMsg });
+        }
       });
     } else {
       this.assignForm.get('employeeId')?.enable();
       this.assignForm.get('stockId')?.enable();
-
+  
       const createPayload = this.assignForm.value;
-
-      this.assignService.assignStock(createPayload).subscribe(() => {
-        this.messageService.add({ severity: 'success', summary: 'Created successfully' });
-        this.dialogVisible = false;
-        this.loadAll();
+  
+      this.assignService.assignStock(createPayload).subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Created successfully' });
+          this.dialogVisible = false;
+          this.loadAll();
+        },
+        error: (err) => {
+          const errorMsg = err?.error?.details || 'Failed to create assignment.';
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: errorMsg });
+        }
       });
     }
   }
-
+  
   deleteAssignment(userId: number): void {
     if (confirm('Are you sure you want to delete this assignment?')) {
       this.assignService.deleteStockAssignment(userId).subscribe(() => {
