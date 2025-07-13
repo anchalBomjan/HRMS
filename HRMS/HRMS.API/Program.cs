@@ -36,6 +36,8 @@ namespace HRMS.API
                });
 
             // MediatR Configuration
+
+            // by default handler and validators assign transient by default
             builder.Services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
@@ -44,14 +46,14 @@ namespace HRMS.API
             });
 
             // for enum value
-            builder.Services.AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            //builder.Services.AddControllers()
+            //    .AddJsonOptions(options =>
+            //    {
+            //        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 
 
 
-                });
+            //    });
 
            // CORS Configuration
             builder.Services.AddCors(c =>
