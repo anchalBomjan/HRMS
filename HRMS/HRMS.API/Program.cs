@@ -112,6 +112,8 @@ namespace HRMS.API
 
             app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
+            app.UseMiddleware<HRMS.API.MiddleWare.ExceptionHandlingMiddleware>();
+
             app.UseAuthentication();
 
             app.UseAuthorization();

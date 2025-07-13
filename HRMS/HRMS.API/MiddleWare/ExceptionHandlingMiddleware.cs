@@ -181,6 +181,12 @@ namespace HRMS.API.MiddleWare
                     title = "Server Error";
                     details = "An unexpected error occurred.";
                     break;
+
+                case InsufficientStockException:
+                    statusCode = HttpStatusCode.BadRequest;
+                    title = "Insufficient Stock";
+                    details = exception.Message;
+                    break;
             }
 
             context.Response.ContentType = "application/json";

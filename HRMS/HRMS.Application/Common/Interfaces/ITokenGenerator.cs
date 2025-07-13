@@ -10,5 +10,6 @@ namespace HRMS.Application.Common.Interfaces
     {
 
         public string GenerateJWTToken((string userId, string userName, IList<string> roles) userDetails);
+
     }
 }

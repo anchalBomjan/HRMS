@@ -54,25 +54,79 @@ export class AssignStockCreateComponent {
     });
   }
 
+  // submitAssignment(): void {
+  //   if (this.assignForm.invalid) {
+  //     this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Please fill required fields' });
+  //     return;
+  //   }
+
+  //   const payload: ICreateStockAssignment = this.assignForm.value;
+
+  //   this.assignStockApi.assignStock(payload).subscribe({
+  //     next: () => {
+  //       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Stock assigned successfully' });
+  //       this.assignForm.reset();
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to assign stock' });
+  //     }
+  //   });
+  // }
+  
+
+
   submitAssignment(): void {
     if (this.assignForm.invalid) {
-      this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Please fill required fields' });
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Validation',
+        detail: 'Please fill required fields'
+      });
       return;
     }
-
-    const payload: ICreateStockAssignment = this.assignForm.value;
-
+  
+    const payload = this.assignForm.value;
+  
     this.assignStockApi.assignStock(payload).subscribe({
       next: () => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Stock assigned successfully' });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Stock assigned successfully'
+        });
         this.assignForm.reset();
       },
       error: (err) => {
-        console.error(err);
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to assign stock' });
+        let title = 'Error';
+        let detail = 'An unexpected error occurred';
+  
+        // Backend sends JSON error in err.error
+        if (err.error) {
+          if (typeof err.error === 'string') {
+            try {
+              const json = JSON.parse(err.error);
+              title = json.title || title;
+              detail = json.details || detail;
+            } catch {
+              detail = err.error;
+            }
+          } else {
+            title = err.error.title || title;
+            detail = err.error.details || detail;
+          }
+        }
+  
+        this.messageService.add({
+          severity: 'error',
+          summary: title,
+          detail: detail,
+          life: 5000 // Toast visible for 5 seconds (optional)
+        });
       }
     });
   }
- 
+  
+
 
 }

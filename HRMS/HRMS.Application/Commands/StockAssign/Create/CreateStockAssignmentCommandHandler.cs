@@ -1,4 +1,5 @@
-﻿using HRMS.Application.Common.Exceptions;
+﻿using FluentValidation;
+using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Domain.Entities;
 using MediatR;
@@ -44,9 +45,17 @@ namespace HRMS.Application.Commands.StockAssign.Create
                 throw new NotFoundException("Stock", request.StockId);
 
             // Check sufficient quantity
+            //if (stock.Quantity < request.AssignedQuantity)
+            //    throw new BadRequestException(
+            //        $"Insufficient stock. Available: {stock.Quantity}, Requested: {request.AssignedQuantity}");
+
+            //if (stock.Quantity < request.AssignedQuantity)
+            //    throw new ValidationException("Insufficient stock to assign");
             if (stock.Quantity < request.AssignedQuantity)
-                throw new BadRequestException(
-                    $"Insufficient stock. Available: {stock.Quantity}, Requested: {request.AssignedQuantity}");
+                throw new InsufficientStockException("Insufficient stock to assign");
+
+
+
 
             // Create assignment
             var assignment = new StockAssignment

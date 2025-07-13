@@ -11,10 +11,10 @@ namespace HRMS.Application.DTOs
     {
         public int Id { get; set; }
        
-        public string EmployeeName { get; set; }
+        public string ?EmployeeName { get; set; }
        
-        public string StockName { get; set; }
-        public StockType StockType { get; set; } // Critical for UI differentiation
+        public string ?StockName { get; set; }
+        public StockType? StockType { get; set; } // Critical for UI differentiation
         public DateTime? AssignmentDate { get; set; }
         public decimal AssignedQuantity { get; set; }
     }

@@ -22,21 +22,42 @@ namespace HRMS.Application.Queries.StockAssign.GetAllStockAssignmentsQuery
             GetAllStockAssignmentsQuery request,
             CancellationToken cancellationToken)
         {
-            return await _context.StockAssignments
-                .AsNoTracking()
-                .Include(a => a.Employee)
-                .Include(a => a.Stock)
-                .OrderByDescending(a => a.AssigmentDate)
-                .Select(a => new StockAssignmentDTO
-                {
-                    Id = a.Id,
-                    EmployeeName = a.Employee.Name,
-                    StockName = a.Stock.Name,
-                    StockType = a.Stock.Type, // Include stock type
-                    AssignmentDate = a.AssigmentDate,
-                    AssignedQuantity = a.AsssignedQuantity
-                })
-                .ToListAsync(cancellationToken);
+            //return await _context.StockAssignments
+            //    .AsNoTracking()
+            //    .Include(a => a.Employee)
+            //    .Include(a => a.Stock)
+            //    .OrderByDescending(a => a.AssigmentDate)
+            //    .Select(a => new StockAssignmentDTO
+            //    {
+            //        Id = a.Id,
+            //        EmployeeName = a.Employee.Name,
+            //        StockName = a.Stock.Name,
+
+
+            //        StockType = a.Stock.Type, // Include stock type
+            //        AssignmentDate = a.AssigmentDate,
+            //        AssignedQuantity = a.AsssignedQuantity
+            //    })
+            //    .ToListAsync(cancellationToken);
+
+            var assignments = await _context.StockAssignments
+             .AsNoTracking()
+             .Include(a => a.Employee)
+             .Include(a => a.Stock)
+             .OrderByDescending(a => a.AssigmentDate)
+             .ToListAsync(cancellationToken); // Execute query first
+
+            // Now project in memory using LINQ to Objects
+            return assignments.Select(a => new StockAssignmentDTO
+            {
+                Id = a.Id,
+                EmployeeName = a.Employee != null ? a.Employee.Name : "Unknown",
+                StockName = a.Stock != null ? a.Stock.Name : "Deleted",
+                StockType = a.Stock?.Type,
+                AssignmentDate = a.AssigmentDate,
+                AssignedQuantity = a.AsssignedQuantity
+            }).ToList();
+
         }
     }
 }

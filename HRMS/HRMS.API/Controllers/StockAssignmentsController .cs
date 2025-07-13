@@ -29,7 +29,10 @@ namespace HRMS.API.Controllers
         [HttpPost]
         public async Task<ActionResult<int>> AssignStock(CreateStockAssignmentCommand command)
         {
-            return  Ok(await _mediator .Send(command));
+            // return  Ok(await _mediator .Send(command));
+
+            await _mediator.Send(command);
+            return Ok(new { message = "Stock assigned successfully" });
         }
 
         [HttpPut("{id}")]
