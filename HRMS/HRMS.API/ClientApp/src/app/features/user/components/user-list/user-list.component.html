@@ -51,8 +51,8 @@
           optionLabel="fullName"
           placeholder="Select user"
           inputId="user"
-          [filter]="true"
-          [virtualScroll]="true"
+        
+        
           [scrollHeight]="'200px'">
         </p-dropdown>
       </div>
@@ -60,16 +60,17 @@
       <div class="field mt-3">
         <label for="roles">Roles</label>
         <p-multiSelect
-          [options]="availableRoles"
-          [(ngModel)]="selectedRoles"
-          optionLabel="roleName"
-          optionValue="roleName"    
-          display="chip"
-          placeholder="Select roles"
-          inputId="roles"
-          [filter]="true"
-          [scrollHeight]="'200px'">
-        </p-multiSelect>
+        [options]="availableRoles"
+        [(ngModel)]="selectedRoles"
+        optionLabel="roleName"
+        optionValue="roleName"    
+        display="chip"
+        placeholder="Select roles"
+        inputId="roles"
+        [filter]="true"
+         appendTo="body"
+        [scrollHeight]="'200px'">
+      </p-multiSelect>
       </div>
 
       <div class="field mt-4">
@@ -134,3 +135,5 @@
 
   <p-toast></p-toast>
 </div>
+
+

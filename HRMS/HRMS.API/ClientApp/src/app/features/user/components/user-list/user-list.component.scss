@@ -1,7 +1,7 @@
 @media (max-width: 768px) {
-    p-dropdown, p-multiSelect {
-      width: 100% !important;
-    }
+    // p-dropdown, p-multiSelect {
+    //   width: 100% !important;
+    // }
   
     .p-dialog .p-dialog-content {
       padding: 1rem !important;
@@ -16,5 +16,9 @@
     align-items: center;
     gap: 10px; /* adjust spacing as needed */
     margin-bottom: 1rem;
+  }
+  ::ng-deep .p-multiselect-token {
+    max-height: 100px;
+    overflow-y: auto;
   }
   

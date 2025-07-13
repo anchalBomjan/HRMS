@@ -96,9 +96,9 @@ export class AssignStockListComponent {
     }
   }
 
-  deleteAssignment(id: number): void {
+  deleteAssignment(userId: number): void {
     if (confirm('Are you sure you want to delete this assignment?')) {
-      this.assignService.deleteStockAssignment(id).subscribe(() => {
+      this.assignService.deleteStockAssignment(userId).subscribe(() => {
         this.messageService.add({ severity: 'success', summary: 'Deleted successfully' });
         this.loadAll();
       });

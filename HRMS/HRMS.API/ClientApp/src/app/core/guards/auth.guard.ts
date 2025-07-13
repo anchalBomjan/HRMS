@@ -2,7 +2,6 @@ import { inject } from "@angular/core";
 import { TokenStorageService } from "../services/token-storage.service";
 import { CanActivateFn, Router } from "@angular/router";
 import { jwtDecode } from "jwt-decode";
-
 export const authGuard: CanActivateFn = () => {
   const token = inject(TokenStorageService).getToken();
   const router = inject(Router);

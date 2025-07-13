@@ -3,4 +3,5 @@ export interface IUserDTO {
     fullName: string;
     userName: string;
     email: string;
+    
   }

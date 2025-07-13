@@ -40,12 +40,14 @@ namespace HRMS.API.Controllers
             return Ok(await _mediator.Send(new GetUserQuery()));
         }
 
+       // [HttpDelete("Delete/{id}")]
         [HttpDelete("Delete/{id}")]
 
+
         [ProducesDefaultResponseType(typeof(int))]
-        public async Task<IActionResult>DeleteUser(string userId)
+        public async Task<ActionResult>DeleteUser(string id)
         {
-            var result= await _mediator.Send(new DeleteUserCommand() { Id= userId });
+            var result= await _mediator.Send(new DeleteUserCommand() { Id=id });
             return Ok(result);
         }
 
