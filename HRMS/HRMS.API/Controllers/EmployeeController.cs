@@ -1,9 +1,12 @@
 ﻿using HRMS.Application.Commands.employee.Create;
 using HRMS.Application.Commands.employee.Delete;
 using HRMS.Application.Commands.employee.Update;
+using HRMS.Application.DTOs;
 using HRMS.Application.Queries.employee.GetAllEmployeesQuery;
 using HRMS.Application.Queries.employee.GetEmployeeByIdQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.Pkcs;
@@ -12,6 +15,8 @@ namespace HRMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User,HR")]
+
     public class EmployeeController : ControllerBase
     {
 
@@ -22,19 +27,20 @@ namespace HRMS.API.Controllers
             
         }
         [HttpPost("Create Employee")]
-        public async Task<IActionResult> CreateEmployee(CreateEmployeeCommand command)
+        public async Task<ActionResult<int>> CreateEmployee(CreateEmployeeCommand command)
         {
               return Ok(await _mediator.Send(command));
 
         }
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAllEmployees()
+        public async Task<ActionResult<List<EmployeeDTO>>> GetAllEmployees()
+
         {
             return Ok(await _mediator.Send(new GetAllEmployeesQuery()));
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult>GetEmployee(int id)
+        public async Task<ActionResult<EmployeeDTO>>GetEmployee(int id)
         {
             // return Ok(await _mediator.Send(new GetEmployeeByIdQuery(id)));    //if this the you have create constructor
 

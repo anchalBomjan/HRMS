@@ -12,6 +12,6 @@ namespace HRMS.Application.Queries.employee.GetAllEmployeesQuery
     {
   
 
-        public int Id { get; }
+      
     }
 }

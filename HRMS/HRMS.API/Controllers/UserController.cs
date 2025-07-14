@@ -34,7 +34,7 @@ namespace HRMS.API.Controllers
 
         [HttpGet("GetAll")]
         [ProducesDefaultResponseType(typeof(List<UserResponseDTO>))]
-        public async Task<IActionResult> GetAllUserAsync()
+        public async Task<ActionResult<UserResponseDTO>> GetAllUserAsync()
         {
 
             return Ok(await _mediator.Send(new GetUserQuery()));
@@ -45,7 +45,7 @@ namespace HRMS.API.Controllers
 
 
         [ProducesDefaultResponseType(typeof(int))]
-        public async Task<ActionResult>DeleteUser(string id)
+        public async Task<ActionResult<int>>DeleteUser(string id)
         {
             var result= await _mediator.Send(new DeleteUserCommand() { Id=id });
             return Ok(result);
@@ -84,7 +84,7 @@ namespace HRMS.API.Controllers
         [HttpPost("AssignRoles")]
         [ProducesDefaultResponseType(typeof(int))]
 
-        public async Task<IActionResult> AssignRoles(AssignUserRoleCommand command)
+        public async Task<ActionResult<int>> AssignRoles(AssignUserRoleCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
@@ -102,7 +102,7 @@ namespace HRMS.API.Controllers
 
         [HttpGet("GetAllUserDetails")]
         [ProducesDefaultResponseType(typeof(UserDetailsResponseDTO))]
-        public async Task<IActionResult> GetAllUserDetails()
+        public async Task<ActionResult<UserDetailsResponseDTO>> GetAllUserDetails()
         {
             var result = await _mediator.Send(new GetAllUsersDetailsQuery());
             return Ok(result);

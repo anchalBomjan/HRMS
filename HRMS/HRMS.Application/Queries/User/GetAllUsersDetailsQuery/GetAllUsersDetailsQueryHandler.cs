@@ -20,6 +20,8 @@ namespace HRMS.Application.Queries.User.GetAllUsersDetailsQuery
         public async Task<List<UserDetailsResponseDTO>> Handle(GetAllUsersDetailsQuery request,CancellationToken ct)
         {
             var users = await _identityService.GetAllUsersDetailsAsync();
+
+            //fetch raw data from source and map to dto to store
             var userDetails=users.Select(x => new UserDetailsResponseDTO()
             {
                 Id=x.id,

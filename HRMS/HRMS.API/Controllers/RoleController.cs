@@ -14,8 +14,11 @@ namespace HRMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
-    [Authorize(Roles ="User,HR")]
+    //[Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(Roles ="User,HR")]
+
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User,HR")]
+
     public class RoleController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -28,21 +31,21 @@ namespace HRMS.API.Controllers
         [HttpPost("Create")]
         [ProducesDefaultResponseType(typeof(int))]
 
-        public async Task<IActionResult> CreateRoleAsync(RoleCreateCommand command)
+        public async Task<ActionResult<int>> CreateRoleAsync(RoleCreateCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
 
         [HttpGet("GetAll")]
         [ProducesDefaultResponseType(typeof(List<RoleResponseDTO>))]
-        public async Task<IActionResult> GetRoleAsync()
+        public async Task<ActionResult<RoleResponseDTO>> GetRoleAsync()
         {
              return Ok(await _mediator.Send(new GetRoleQuery()));
 
         }
         [HttpGet("{id}")]
         [ProducesDefaultResponseType(typeof(List<RoleResponseDTO>))]
-        public async Task<IActionResult> GetRoleByIdAsync(string id)
+        public async Task<ActionResult<RoleResponseDTO>> GetRoleByIdAsync(string id)
         {
             return Ok(await _mediator.Send(new GetRoleByIdQuery() { RoleId=id }));
 
@@ -51,7 +54,7 @@ namespace HRMS.API.Controllers
         [HttpDelete("Delete/{id}")]
         [ProducesDefaultResponseType(typeof(int))]
 
-        public async Task<IActionResult> DeleteRoleAsync(string id)
+        public async Task<ActionResult<int>> DeleteRoleAsync(string id)
         {
             return Ok(await _mediator.Send(new DeleteRoleCommand() 
             {
@@ -62,7 +65,7 @@ namespace HRMS.API.Controllers
         [HttpPut("Edit/{id}")]
         [ProducesDefaultResponseType(typeof(int))]
 
-        public async Task<IActionResult> EditRole(string id, [FromBody] UpdateRoleCommand command)
+        public async Task<ActionResult<int>> EditRole(string id, [FromBody] UpdateRoleCommand command)
         {
             if(id==command.Id)
             {

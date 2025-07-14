@@ -21,7 +21,9 @@ namespace HRMS.Application.Commands.employee.Delete
         public async Task<string> Handle(DeleteEmployeeCommand request, CancellationToken tc)
         {
             // Try to find the employee by Id
-            var employee = await _context.Employees.FindAsync(new object[] { request.Id }, tc);
+            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Id == request.Id, tc);
+
+
 
             if (employee == null)
             {

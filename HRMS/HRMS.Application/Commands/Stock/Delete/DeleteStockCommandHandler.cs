@@ -19,6 +19,7 @@ namespace HRMS.Application.Commands.stock.Delete
             
         }
 
+
         public async Task<string> Handle(DeleteStockCommand request, CancellationToken ct)
         {
             using var transaction = await _context.Database.BeginTransactionAsync(ct);

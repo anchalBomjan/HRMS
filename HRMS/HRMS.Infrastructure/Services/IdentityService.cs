@@ -68,6 +68,8 @@ namespace HRMS.Infrastructure.Services
 
         public async Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName)
         {
+
+
             var user = new ApplicationUser
             {
                 FullName = fullName,
@@ -109,6 +111,10 @@ namespace HRMS.Infrastructure.Services
         {
             var result = await _signInManager.PasswordSignInAsync(userName, password, true, false);
             return result.Succeeded;
+
+
+            // true for presistence Creates a persistent cookie → user stays logged in across browser sessions
+            // false lockoutfailure :Disable
         }
 
         public async Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync()
@@ -303,6 +309,7 @@ namespace HRMS.Infrastructure.Services
                 return result.Succeeded;
             }
             return false;
+
         }
 
         public async Task<List<(string id, string userName, string fullName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()

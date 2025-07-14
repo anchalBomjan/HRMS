@@ -7,6 +7,8 @@ using HRMS.Application.Queries.stock.GetStockByIdQuery;
 using HRMS.Application.Queries.stock.GetStockQuery;
 using HRMS.Domain.Entities.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +16,8 @@ namespace HRMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User,HR")]
+
     public class StockController : ControllerBase
     {
 

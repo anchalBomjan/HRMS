@@ -84,7 +84,7 @@ namespace HRMS.API
                     Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\""
                 });
 
-                        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                         {
                          {
 
@@ -100,6 +100,8 @@ namespace HRMS.API
                          }
                         });
             });
+
+
 
             var app = builder.Build();
 
