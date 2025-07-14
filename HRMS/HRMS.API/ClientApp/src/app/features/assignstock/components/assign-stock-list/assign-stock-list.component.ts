@@ -69,32 +69,7 @@ export class AssignStockListComponent {
     this.isEditMode = true;
     this.dialogVisible = true;
   }
-
-  // submit(): void {
-  //   if (this.isEditMode && this.selectedAssignmentId !== null) {
-  //     const updatePayload = {
-  //       id: this.selectedAssignmentId,
-  //       assignedQuantity: this.assignForm.get('assignedQuantity')?.value
-  //     };
-
-  //     this.assignService.updateStockAssignment(this.selectedAssignmentId, updatePayload).subscribe(() => {
-  //       this.messageService.add({ severity: 'success', summary: 'Updated successfully' });
-  //       this.dialogVisible = false;
-  //       this.loadAll();
-  //     });
-  //   } else {
-  //     this.assignForm.get('employeeId')?.enable();
-  //     this.assignForm.get('stockId')?.enable();
-
-  //     const createPayload = this.assignForm.value;
-
-  //     this.assignService.assignStock(createPayload).subscribe(() => {
-  //       this.messageService.add({ severity: 'success', summary: 'Created successfully' });
-  //       this.dialogVisible = false;
-  //       this.loadAll();
-  //     });
-  //   }
-  // }
+ 
   submit(): void {
     if (this.isEditMode && this.selectedAssignmentId !== null) {
       const updatePayload = {

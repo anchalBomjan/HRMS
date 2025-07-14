@@ -57,17 +57,7 @@ namespace HRMS.API.Controllers
         }
 
 
-        //[HttpPut("{id}")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //public async Task<ActionResult<string>> Update(int id, UpdateStockCommand command)
-        //{
-        //    if (id != command.Id)
-        //        return BadRequest("ID mismatch");
-
-        //    return Ok(await _mediator.Send(command));
-        //}
+       
         [HttpPut("{id}")]
         public async Task<ActionResult<string>> Update(int id, UpdateStockCommand command)
         {

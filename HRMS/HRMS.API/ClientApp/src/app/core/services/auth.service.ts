@@ -14,7 +14,6 @@ export class AuthService {
   private apiUrl = 'https://localhost:44372/api/Auth';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
-
   constructor(
     private http: HttpClient,
     private tokenService: TokenStorageService,

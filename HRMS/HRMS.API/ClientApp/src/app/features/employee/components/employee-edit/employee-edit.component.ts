@@ -41,7 +41,6 @@ export class EmployeeEditComponent {
 
   onSubmit() {
     if (this.employeeForm.valid) {
-      // ✅ Important: include `id` in the payload (because backend checks for id match)
       const payload = {
         id: this.employeeId,
         ...this.employeeForm.value

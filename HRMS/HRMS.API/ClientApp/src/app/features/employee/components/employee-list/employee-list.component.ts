@@ -61,7 +61,7 @@ export class EmployeeListComponent {
           this.messageservice.add({
             severity:'serror',
             summary:'Error',
-            detail:err.error?.message ||'Failed to delte employee.'
+            detail:err.error?.message ||'Failed to delete employee.'
           })
         }
       })

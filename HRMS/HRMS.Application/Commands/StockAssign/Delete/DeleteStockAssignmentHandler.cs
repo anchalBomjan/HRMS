@@ -24,26 +24,23 @@ namespace HRMS.Application.Commands.StockAssign.Delete
             DeleteStockAssignmentCommand request,
             CancellationToken cancellationToken)
         {
-            //  Retrieve assignment with related stock and its type
+
+            //Retrieve assignment with related stock and its type
             var assignment = await _context.StockAssignments
-                .Include(a => a.Stock)  // Include stock details
-                .FirstOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
+           .Include(a => a.Stock)
+            .FirstOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
+
 
             if (assignment == null)
                 throw new NotFoundException("StockAssignment", request.Id);
 
-            //  Conditionally restore quantity based on stock type
-            if (assignment.Stock.Type == StockType.Asset)
+            if (assignment.Stock != null && assignment.Stock.Type == StockType.Asset)
             {
-                // Return quantity to stock for Assets
                 assignment.Stock.Quantity += assignment.AsssignedQuantity;
             }
-            // For Consumable, we don't restore quantity (it's consumed)
 
-           
             _context.StockAssignments.Remove(assignment);
 
-            
             await _context.SaveChangesAsync(cancellationToken);
 
             return request.Id;

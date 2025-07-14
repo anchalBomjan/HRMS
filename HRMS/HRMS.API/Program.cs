@@ -1,9 +1,12 @@
 
+using FluentValidation;
 using HRMS.Application.Commands.Role.Create;
 using HRMS.Application.Commands.User.Create;
+using HRMS.Application.Common.Behaviors;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Infrastructure;
 using HRMS.Infrastructure.Services;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
@@ -36,6 +39,8 @@ namespace HRMS.API
                });
 
             // MediatR Configuration
+            builder.Services.AddValidatorsFromAssembly(typeof(CreateUserCommandValidator).Assembly);
+
 
             // by default handler and validators assign transient by default
             builder.Services.AddMediatR(cfg =>
@@ -44,18 +49,11 @@ namespace HRMS.API
                 cfg.RegisterServicesFromAssembly(typeof(CreateRoleCommandHandler).Assembly);
 
             });
-
-            // for enum value
-            //builder.Services.AddControllers()
-            //    .AddJsonOptions(options =>
-            //    {
-            //        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 
 
-            //    });
-
-           // CORS Configuration
+            // CORS Configuration
             builder.Services.AddCors(c =>
                 c.AddPolicy("CorsPolicy", options =>
                     options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
