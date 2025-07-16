@@ -17,4 +17,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
     
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+
+  constructor() {
+    console.log('[DEBUG] HomeModule Loaded (Lazy or Eager)');
+  }
+
+
+ }

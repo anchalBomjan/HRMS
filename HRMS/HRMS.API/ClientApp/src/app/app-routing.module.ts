@@ -37,7 +37,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  //imports: [RouterModule.forRoot(routes)],
+     imports:  [
+    RouterModule.forRoot(routes, {
+      enableTracing: true //  This will log all router events to the console
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
