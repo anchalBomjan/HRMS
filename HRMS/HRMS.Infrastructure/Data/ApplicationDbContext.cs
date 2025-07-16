@@ -115,8 +115,8 @@ namespace HRMS.Infrastructure.Data
                       .OnDelete(DeleteBehavior.SetNull);  // Critical for safe deletion
 
                 // Configure indexes
-                entity.HasIndex(a => a.EmployeeId);
-                entity.HasIndex(a => new { a.StockId, a.EmployeeId });  // Composite index
+               // entity.HasIndex(a => a.EmployeeId);
+                //entity.HasIndex(a => new { a.StockId, a.EmployeeId });  // Composite index
             });
 
         }

@@ -73,16 +73,27 @@ export class AssignStockCreateComponent {
         }
       });
     } else {
+
+      console.log('payload of assignStock:',payload);
       this.assignService.assignStock(payload).subscribe({
-        next: () => {
+        next: (res) => {
+          console.log('payload response in assignstock create:',res);
           this.messageService.add({ severity: 'success', summary: 'Stock Assigned' });
           this.assignForm.reset();
           this.formSaved.emit();
         },
-        error: () => {
-          this.messageService.add({ severity: 'error', summary: 'Creation Failed' });
+        error: (err) => {
+          // Extract message from backend
+          const errorMessage = err?.error?.details || err?.error?.title || 'Creation Failed';
+      
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: errorMessage
+          });
         }
       });
+      
     }
   }
 

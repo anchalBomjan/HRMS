@@ -36,9 +36,7 @@ export class SidebarComponent {
       case 'User':
         this.navItems = [
           { label: 'Dashboard', route: '/admin/dashboard' },
-          { label: 'My Profile', route: '/user/profile' },
-          { label: 'My Requests', route: '/user/requests' },
-          
+       
           { label: 'StockAssign', route: '/home/app-dashboard/app-assignstockgetbyuseridlist' }
         ];
         break;
@@ -54,11 +52,11 @@ export class SidebarComponent {
             expanded: false,
             children: [
               { label: 'Manage Users', route: '/home/app-dashboard/app-user-list' },
-              { label: 'Roles', route: '/home/app-dashboard/app-role-list' },
-              { label: 'Permissions', route: '/admin/permissions' }
+              { label: 'Roles', route: '/home/app-dashboard/app-role-list' }
+              //{ label: 'Permissions', route: '/admin/permissions' }
             ]
-          },
-          { label: 'Leaves', route: '/hr/leaves' }
+          }
+         // { label: 'Leaves', route: '/hr/leaves' }
         ];
         break;
 
