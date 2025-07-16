@@ -1,57 +1,52 @@
-<!-- <div class="container mt-4">
-    <div class="card shadow p-4 rounded">
-      <h4 class="mb-4 text-success">Assign Stock to Employee</h4>
+
+
+   <p-dialog
+  [header]="mode === 'edit' ? 'Edit Assignment' : 'New Assignment'"
+  [(visible)]="visible"
+  [modal]="true"
+  [closable]="false"
+  [style]="{ width: '400px' }"
   
-      <form [formGroup]="assignForm" (ngSubmit)="submitAssignment()" class="row g-3">
-  
-        <div class="col-md-6">
-          <label for="employee" class="form-label fw-semibold">Employee</label>
-          <p-dropdown
-            [options]="employees"
-            optionLabel="name"
-            optionValue="id"
-            formControlName="employeeId"
-            placeholder="Select Employee"
-            [showClear]="true"
-            class="w-100">
-          </p-dropdown>
-        </div>
-  
-        <div class="col-md-6">
-          <label for="stock" class="form-label fw-semibold">Stock</label>
-          <p-dropdown
-            [options]="stocks"
-            optionLabel="name"
-            optionValue="id"
-            formControlName="stockId"
-            placeholder="Select Stock"
-            [showClear]="true"
-            class="w-100">
-          </p-dropdown>
-        </div>
-  
-        <div class="col-md-6">
-          <label for="quantity" class="form-label fw-semibold">Quantity</label>
-          <input
-            pInputText
-            type="number"
-            formControlName="assignedQuantity"
-            class="form-control"
-            placeholder="Enter quantity" />
-        </div>
-  
-        <div class="col-12 d-flex justify-content-end mt-3">
-          <button
-            pButton
-            type="submit"
-            label="Assign Stock"
-            class="p-button-success"
-            [disabled]="assignForm.invalid">
-          </button>
-        </div>
-      </form>
+>
+  <form [formGroup]="assignForm" (ngSubmit)="submit()">
+    <div class="p-fluid">
+      <div class="field">
+        <label>Employee</label>
+        <p-dropdown
+          [options]="employees"
+          optionLabel="name"
+          optionValue="id"
+          formControlName="employeeId"
+          placeholder="Select Employee"
+          [disabled]="mode === 'edit'">
+        </p-dropdown>
+      </div>
+
+      <div class="field">
+        <label>Stock</label>
+        <p-dropdown
+          [options]="stocks"
+          optionLabel="name"
+          optionValue="id"
+          formControlName="stockId"
+          placeholder="Select Stock"
+          [disabled]="mode === 'edit'">
+        </p-dropdown>
+      </div>
+
+      <div class="field">
+        <label>Quantity</label>
+        <input pInputText type="number" formControlName="assignedQuantity" />
+      </div>
+
+      <div class="mt-3 text-end">
+        <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="onCancel()"></button>
+
+        <button pButton type="submit"
+                label="{{ mode === 'edit' ? 'Update' : 'Create' }}"
+                class="p-button-success"
+                [disabled]="assignForm.invalid"></button>
+      </div>
     </div>
-  
-    <p-toast></p-toast>
-  </div>
-   -->
+  </form>
+</p-dialog>

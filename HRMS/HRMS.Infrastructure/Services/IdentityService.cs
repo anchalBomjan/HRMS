@@ -26,8 +26,6 @@ namespace HRMS.Infrastructure.Services
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
-
-
         }
 
         /// <summary>

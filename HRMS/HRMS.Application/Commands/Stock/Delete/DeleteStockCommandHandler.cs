@@ -22,6 +22,11 @@ namespace HRMS.Application.Commands.stock.Delete
 
         public async Task<string> Handle(DeleteStockCommand request, CancellationToken ct)
         {
+
+
+            //When you perform multiple related operations, you want them to be treated as one atomic unit. Either all changes go through, or none do
+            // You want full control over commit/ rollback behavior
+            //Protection against partial updates
             using var transaction = await _context.Database.BeginTransactionAsync(ct);
 
             try

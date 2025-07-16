@@ -8,9 +8,6 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class EmployeeApiServiceService {
-
-
-
   private baseUrl = `${environment.apiUrl}/Employee`;
 
   constructor(private http:HttpClient){}
@@ -40,18 +37,7 @@ export class EmployeeApiServiceService {
     return this.http.put(`${this.baseUrl}/${id}`, employeeData, { responseType: 'text' });
   }
   
-  
-
   deleteEmployee(id:number):Observable<{message:string}>{
     return  this.http.delete<{message:string}>(`${this.baseUrl}/${id}`);
-
-
   }
-  
-  
-
-
-
-
-
 }

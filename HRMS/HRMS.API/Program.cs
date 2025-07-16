@@ -20,11 +20,7 @@ namespace HRMS.API
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
-
-            
-
-           
+            var builder = WebApplication.CreateBuilder(args);   
             //For authentication
             
             //Consolidation infrastructure and JWT configuration

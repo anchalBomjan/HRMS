@@ -12,12 +12,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./stock-list.component.scss'],
 })
 export class StockListComponent {
+
   stocks: Stock[] = [];
   stockForm: FormGroup;
   selectedStockId?: number;
 
   createDialogVisible = false;
   editDialogVisible = false;
+  deleteDialogVisible = false;
+  stockToDeleteId?: number;
 
   stockTypes = [
     { label: 'Unknown', value: StockType.UnKnown },
@@ -39,9 +42,7 @@ export class StockListComponent {
     this.stockForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
-      //stockType: [null, Validators.required],
       stockType: [StockType.UnKnown, Validators.required],
-
       quantity: [0, [Validators.required, Validators.min(0)]],
       isDozen: [false],
       isAdditive: [true]
@@ -50,10 +51,12 @@ export class StockListComponent {
     this.loadStocks();
   }
 
-
-    loadStocks() {
+  loadStocks() {
     this.stockService.getAllStocks().subscribe({
       next: (data) => {
+
+
+        console.log('fetch Stock Data:',data);
         this.stocks = data.map(stock => ({
           ...stock,
           stockType: this.mapStockType(stock.stockType)
@@ -63,16 +66,7 @@ export class StockListComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load stocks' })
     });
   }
-  // mapStockType(type: any): StockType {
-  //   if (typeof type === 'string') {
-  //     switch (type.toLowerCase()) {
-  //       case 'asset': return StockType.Asset;
-  //       case 'consumable': return StockType.Consumable;
-  //       default: return StockType.UnKnown;
-  //     }
-  //   }
-  //   return type; // already numeric
-  // }
+
   mapStockType(type: any): StockType {
     if (typeof type === 'string') {
       switch (type.toLowerCase()) {
@@ -81,13 +75,12 @@ export class StockListComponent {
         default: return StockType.UnKnown;
       }
     }
-    return type; // if number, return as is
+    return type;
   }
-  
+
   getStockTypeLabel(type: StockType): string {
     return this.stockTypes.find(t => t.value === type)?.label ?? 'Unknown';
   }
- 
 
   showCreateDialog() {
     this.createDialogVisible = true;
@@ -102,26 +95,18 @@ export class StockListComponent {
     this.createDialogVisible = false;
   }
 
-  // EDIT
- 
   showEditDialog(stock: Stock) {
     this.selectedStockId = stock.id;
-    
-    // REMOVE null conversion logic
     this.stockForm.patchValue({
       name: stock.name,
       description: stock.description,
-      stockType: this.mapStockType(stock.stockType), // Direct assignment
+      stockType: this.mapStockType(stock.stockType),
       quantity: stock.quantity,
       isDozen: stock.isDozen,
       isAdditive: stock.isAdditive
     });
-    
     this.editDialogVisible = true;
   }
-  
-
- 
 
   hideEditDialog() {
     this.editDialogVisible = false;
@@ -133,19 +118,18 @@ export class StockListComponent {
       this.stockForm.markAllAsTouched();
       return;
     }
-  
+
     const formValue = this.stockForm.value;
-  
     const payload: Stock = {
       id: this.selectedStockId,
       name: formValue.name,
       description: formValue.description,
-      stockType: formValue.stockType,   // This should be a number (enum)
+      stockType: formValue.stockType,
       quantity: formValue.quantity,
       isDozen: formValue.isDozen,
       isAdditive: formValue.isAdditive
     };
-    console.log('Payload sent to backend:', payload);
+     console.log('Payload sent to backend:', payload);
 
     if (this.selectedStockId) {
       this.stockService.updateStock(this.selectedStockId, payload).subscribe({
@@ -158,23 +142,29 @@ export class StockListComponent {
       });
     }
   }
-  
 
-  // DELETE
-
-  confirmDelete(stockId: number) {
-    if (confirm('Are you sure you want to delete this stock?')) {
-      this.stockService.deleteStock(stockId).subscribe({
-        next: () => {
-          this.showSuccess('Stock deleted successfully');
-          this.stocks = this.stocks.filter(s => s.id !== stockId);
-        },
-        error: () => this.showError('Failed to delete stock')
-      });
-    }
+  openDeleteDialog(stockId: number) {
+    this.stockToDeleteId = stockId;
+    this.deleteDialogVisible = true;
   }
 
-  // TOAST helpers
+  confirmDelete() {
+    if (!this.stockToDeleteId) return;
+
+    this.stockService.deleteStock(this.stockToDeleteId).subscribe({
+      next: () => {
+        this.showSuccess('Stock deleted successfully');
+        this.stocks = this.stocks.filter(s => s.id !== this.stockToDeleteId);
+        this.deleteDialogVisible = false;
+      },
+      error: () => this.showError('Failed to delete stock')
+    });
+  }
+
+  cancelDelete() {
+    this.deleteDialogVisible = false;
+    this.stockToDeleteId = undefined;
+  }
 
   private showSuccess(message: string) {
     this.messageService.add({
@@ -191,4 +181,7 @@ export class StockListComponent {
       detail: message
     });
   }
+
+
+
 }

@@ -130,7 +130,7 @@ export class UserListComponent {
     // Attach selectedRoles as roleName string array before sending to backend
     const updatedUser = {
       ...this.editUserData,
-      roles: this.selectedRoles  // string[]
+     // roles: this.selectedRoles  // string[]
     };
 
     console.log('Edit User payload:', updatedUser);
@@ -140,7 +140,7 @@ export class UserListComponent {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated successfully.' });
         this.displayEditDialog = false;
         this.editUserData = null;
-        this.selectedRoles = [];
+        
         this.loadUsers();
       },
       error: (err) => {
@@ -155,9 +155,6 @@ export class UserListComponent {
     this.editUserData = null;
     this.selectedRoles = [];
   }
-
-
-
 
   displayEditUpdateUserRolesDialog: boolean = false;
 

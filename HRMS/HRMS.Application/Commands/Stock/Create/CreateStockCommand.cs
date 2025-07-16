@@ -17,6 +17,10 @@ namespace HRMS.Application.Commands.stock.Create
 
         [JsonPropertyName("stockType")]
 
+        ///Maps the C# property Type to/from the JSON property "stockType" during serialization/deserialization
+
+
+
         public StockType Type { get; set; }
         public decimal Quantity { get; set; }
         public bool IsDozen { get; set; }

@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Employee } from 'src/app/core/models/Employee';
-import { ICreateStockAssignment } from 'src/app/core/models/createstockassignment';
 import { Stock } from 'src/app/core/models/stock';
+import { IStockAssignmentDTO } from 'src/app/core/models/stock-assignment-dto.model';
 import { AssignstockapiService } from 'src/app/core/services/assignstockapi.service';
-import { EmployeeApiServiceService } from 'src/app/core/services/employee-api-service.service';
-import { StockApiService } from 'src/app/core/services/stock-api.service';
 
 @Component({
   selector: 'app-assign-stock-create',
@@ -15,118 +13,81 @@ import { StockApiService } from 'src/app/core/services/stock-api.service';
 })
 export class AssignStockCreateComponent {
 
-
+  @Input() visible = false;
+  @Input() mode: 'create' | 'edit' = 'create';
+  @Input() assignment: IStockAssignmentDTO | null = null;
+  @Input() employees: Employee[] = [];
+  @Input() stocks: Stock[] = [];
+  @Output() formSaved = new EventEmitter<void>();
+  @Output() dialogClosed = new EventEmitter<void>();
 
   assignForm: FormGroup;
-  employees: Employee[] = [];
-  stocks: Stock[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private messageService: MessageService,
-    private assignStockApi: AssignstockapiService,
-    private employeeApiService: EmployeeApiServiceService,
-    private stockApiService: StockApiService
+    private assignService: AssignstockapiService,
+    private messageService: MessageService
   ) {
     this.assignForm = this.fb.group({
       employeeId: [null, Validators.required],
       stockId: [null, Validators.required],
-      assignedQuantity: [null, [Validators.required, Validators.min(1)]]
-    });
-
-    this.loadEmployees();
-    this.loadStocks();
-  }
-
-  loadEmployees(): void {
-    this.employeeApiService.GetAllEmployee().subscribe({
-      next: (res) => (this.employees = res),
-      error: () =>
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load employees' })
+      assignedQuantity: [1, [Validators.required, Validators.min(1)]],
     });
   }
 
-  loadStocks(): void {
-    this.stockApiService.getAllStocks().subscribe({
-      next: (res) => (this.stocks = res),
-      error: () =>
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load stocks' })
-    });
-  }
-
-  // submitAssignment(): void {
-  //   if (this.assignForm.invalid) {
-  //     this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Please fill required fields' });
-  //     return;
-  //   }
-
-  //   const payload: ICreateStockAssignment = this.assignForm.value;
-
-  //   this.assignStockApi.assignStock(payload).subscribe({
-  //     next: () => {
-  //       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Stock assigned successfully' });
-  //       this.assignForm.reset();
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-  //       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to assign stock' });
-  //     }
-  //   });
-  // }
-  
-
-
-  submitAssignment(): void {
-    if (this.assignForm.invalid) {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Validation',
-        detail: 'Please fill required fields'
+  ngOnChanges() {
+    if (this.assignment && this.mode === 'edit') {
+      this.assignForm.patchValue({
+        assignedQuantity: this.assignment.assignedQuantity,
+        employeeId: this.assignment.id,
+        stockId: this.assignment.id,
       });
-      return;
+      this.assignForm.get('employeeId')?.disable();
+      this.assignForm.get('stockId')?.disable();
+    } else {
+      this.assignForm.reset();
+      this.assignForm.get('employeeId')?.enable();
+      this.assignForm.get('stockId')?.enable();
     }
-  
-    const payload = this.assignForm.value;
-  
-    this.assignStockApi.assignStock(payload).subscribe({
-      next: () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Stock assigned successfully'
-        });
-        this.assignForm.reset();
-      },
-      error: (err) => {
-        let title = 'Error';
-        let detail = 'An unexpected error occurred';
-  
-        // Backend sends JSON error in err.error
-        if (err.error) {
-          if (typeof err.error === 'string') {
-            try {
-              const json = JSON.parse(err.error);
-              title = json.title || title;
-              detail = json.details || detail;
-            } catch {
-              detail = err.error;
-            }
-          } else {
-            title = err.error.title || title;
-            detail = err.error.details || detail;
-          }
-        }
-  
-        this.messageService.add({
-          severity: 'error',
-          summary: title,
-          detail: detail,
-          life: 5000 // Toast visible for 5 seconds (optional)
-        });
-      }
-    });
   }
-  
 
+  submit() {
+    if (this.assignForm.invalid) return;
+       // Before sending to backend in your submit method, convert to numbers explicitly:    
+      // [optionValue]="employee.id" <!-- explicitly ensure number type --> same like for stockId
+               
 
+    const payload = this.assignForm.getRawValue();
+
+    if (this.mode === 'edit' && this.assignment?.id) {
+      this.assignService.updateStockAssignment(this.assignment.id, {
+        id: this.assignment.id,
+        assignedQuantity: payload.assignedQuantity
+      }).subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Updated successfully' });
+          this.formSaved.emit();
+        },
+        error: () => {
+          this.messageService.add({ severity: 'error', summary: 'Update Failed' });
+        }
+      });
+    } else {
+      this.assignService.assignStock(payload).subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Stock Assigned' });
+          this.assignForm.reset();
+          this.formSaved.emit();
+        },
+        error: () => {
+          this.messageService.add({ severity: 'error', summary: 'Creation Failed' });
+        }
+      });
+    }
+  }
+
+  onCancel(): void {
+    this.assignForm.reset();
+    this.dialogClosed.emit();
+  } 
 }

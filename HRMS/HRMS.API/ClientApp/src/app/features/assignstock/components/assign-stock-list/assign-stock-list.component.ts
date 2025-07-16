@@ -19,24 +19,19 @@ export class AssignStockListComponent {
   employees: Employee[] = [];
   stocks: Stock[] = [];
 
-  assignForm: FormGroup;
   dialogVisible = false;
+  deleteDialogVisible = false;
   isEditMode = false;
+
+  currentAssignment: IStockAssignmentDTO | null = null;
   selectedAssignmentId: number | null = null;
 
   constructor(
     private assignService: AssignstockapiService,
     private stockApiService: StockApiService,
     private employeeApiService: EmployeeApiServiceService,
-    private fb: FormBuilder,
     private messageService: MessageService
   ) {
-    this.assignForm = this.fb.group({
-      employeeId: [null, Validators.required],
-      stockId: [null, Validators.required],
-      assignedQuantity: [1, [Validators.required, Validators.min(1)]],
-    });
-
     this.loadAll();
   }
 
@@ -46,75 +41,44 @@ export class AssignStockListComponent {
     this.stockApiService.getAllStocks().subscribe(data => this.stocks = data);
   }
 
-  openCreateDialog(): void {
-    this.assignForm.reset();
-    this.assignForm.get('employeeId')?.enable();
-    this.assignForm.get('stockId')?.enable();
-
+  openCreateDialog() {
+    this.currentAssignment = null;
     this.isEditMode = false;
-    this.selectedAssignmentId = null;
     this.dialogVisible = true;
   }
 
-  openEditDialog(assignment: IStockAssignmentDTO): void {
-    this.assignForm.patchValue({
-      assignedQuantity: assignment.assignedQuantity
-    });
-
-    // Disable employeeId and stockId fields (not editable)
-    this.assignForm.get('employeeId')?.disable();
-    this.assignForm.get('stockId')?.disable();
-
-    this.selectedAssignmentId = assignment.id;
+  openEditDialog(assignment: IStockAssignmentDTO) {
+    this.currentAssignment = assignment;
     this.isEditMode = true;
     this.dialogVisible = true;
   }
- 
-  submit(): void {
-    if (this.isEditMode && this.selectedAssignmentId !== null) {
-      const updatePayload = {
-        id: this.selectedAssignmentId,
-        assignedQuantity: this.assignForm.get('assignedQuantity')?.value
-      };
-  
-      this.assignService.updateStockAssignment(this.selectedAssignmentId, updatePayload).subscribe({
-        next: () => {
-          this.messageService.add({ severity: 'success', summary: 'Updated successfully' });
-          this.dialogVisible = false;
-          this.loadAll();
-        },
-        error: (err) => {
-          const errorMsg = err?.error?.details || 'Failed to update assignment.';
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: errorMsg });
-        }
-      });
-    } else {
-      this.assignForm.get('employeeId')?.enable();
-      this.assignForm.get('stockId')?.enable();
-  
-      const createPayload = this.assignForm.value;
-  
-      this.assignService.assignStock(createPayload).subscribe({
-        next: () => {
-          this.messageService.add({ severity: 'success', summary: 'Created successfully' });
-          this.dialogVisible = false;
-          this.loadAll();
-        },
-        error: (err) => {
-          const errorMsg = err?.error?.details || 'Failed to create assignment.';
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: errorMsg });
-        }
-      });
-    }
+
+  openDeleteDialog(id: number) {
+    this.selectedAssignmentId = id;
+    this.deleteDialogVisible = true;
   }
-  
-  deleteAssignment(userId: number): void {
-    if (confirm('Are you sure you want to delete this assignment?')) {
-      this.assignService.deleteStockAssignment(userId).subscribe(() => {
+
+  cancelDelete() {
+    this.deleteDialogVisible = false;
+    this.selectedAssignmentId = null;
+  }
+
+  confirmDelete() {
+    if (this.selectedAssignmentId !== null) {
+      this.assignService.deleteStockAssignment(this.selectedAssignmentId).subscribe(() => {
         this.messageService.add({ severity: 'success', summary: 'Deleted successfully' });
+        this.deleteDialogVisible = false;
+        this.selectedAssignmentId = null;
         this.loadAll();
       });
     }
   }
+
+  onFormSaved() {
+    this.dialogVisible = false;
+    this.loadAll();
+  }
+
+
 
 }

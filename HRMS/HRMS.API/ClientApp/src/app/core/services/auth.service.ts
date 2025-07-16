@@ -12,6 +12,14 @@ import { CreateUser } from '../models/create-user';
 })
 export class AuthService {
   private apiUrl = 'https://localhost:44372/api/Auth';
+
+  //Userof subjectBehaviour
+  //if i want to store a current value.
+  //want new subscribers to get the last emitted value.
+  //want to reactively update UI or logic across components.
+
+  //  user of asObserable  --outside components for reading, but prevent them from modifying it.
+
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
   constructor(
@@ -29,8 +37,8 @@ export class AuthService {
         const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
         const userName = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
 
-       // const userId = decoded['userId']; // 
-
+       // const userId = decoded['UserId']; // 
+      //  console.log({ userId, userName, role }); 
         this.tokenService.saveToken(token);
         this.tokenService.saveUser({ userName, role });
         this.isLoggedInSubject.next(true);

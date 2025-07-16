@@ -23,6 +23,13 @@ namespace HRMS.Application.Queries.stock.GetStockQuery
            GetAllStocksQuery request,
            CancellationToken ct)
         {
+            //Case to use .AsNoTracking
+            //Disables change tracking	Improves performance
+            //Entity is read - only  Less memory usage
+            //Won’t be updated via SaveChanges()	Safer in read-only use cases
+
+
+
             return await _context.Stocks
                 .AsNoTracking()
                 .OrderBy(s => s.Name)

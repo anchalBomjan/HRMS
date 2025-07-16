@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace HRMS.Application.Commands.StockAssign.Create
 {
+
+  
     public class CreateStockAssignmentCommandHandler:IRequestHandler<CreateStockAssignmentCommand,int>
     {
         private readonly IApplicationDbContext _context;
@@ -70,6 +72,9 @@ namespace HRMS.Application.Commands.StockAssign.Create
             stock.Quantity -= request.AssignedQuantity;
 
             // Execute transaction
+            //Protects against data inconsistency if an error occurs mid-way.
+
+
             using var transaction = await _context.Database.BeginTransactionAsync(cancellationToken);
 
             try
