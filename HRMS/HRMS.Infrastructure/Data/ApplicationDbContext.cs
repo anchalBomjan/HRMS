@@ -33,7 +33,7 @@ namespace HRMS.Infrastructure.Data
 
 
         // This exposes Database via IApplicationDbContext
-        public DatabaseFacade Database => base.Database;
+     //   public DatabaseFacade Database => base.Database;
        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

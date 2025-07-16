@@ -18,6 +18,6 @@ namespace HRMS.Application.Common.Interfaces
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
-        DatabaseFacade Database { get; } // Required for transactions
+       // DatabaseFacade Database { get; } // Required for transactions 
     }
 }

@@ -21,56 +21,89 @@ namespace HRMS.Application.Commands.stock.Update
 
         public async Task<string> Handle(UpdateStockCommand request, CancellationToken ct)
         {
-            using var transaction = await _context.Database.BeginTransactionAsync(ct);
+            //using var transaction = await _context.Database.BeginTransactionAsync(ct);
 
-            try
+            //try
+            //{
+            //    // Lock stock record
+            //    var stock = await _context.Stocks
+            //        .FromSqlInterpolated($"SELECT * FROM Stocks WITH (UPDLOCK) WHERE Id = {request.Id}")
+            //        .FirstOrDefaultAsync(ct);
+
+            //    if (stock == null) return "Stock not found";
+
+            //    // Convert to base units
+            //    decimal quantityInUnits = request.IsDozen
+            //        ? request.Quantity * 12
+            //        : request.Quantity;
+
+            //    // Update properties
+            //    stock.Name = request.Name;
+            //    stock.Description = request.Description;
+            //    stock.Type = request.Type;
+
+            //    // MODIFIED: Additive or absolute quantity update
+            //    if (request.IsAdditive)
+            //    {
+            //        stock.Quantity += quantityInUnits;  // ADD to existing quantity
+            //    }
+            //    else
+            //    {
+            //        stock.Quantity = quantityInUnits;   // SET absolute quantity
+            //    }
+
+            //    await _context.SaveChangesAsync(ct);
+            //    await transaction.CommitAsync(ct);
+
+            //    return request.IsAdditive
+            //        ? $"Added {quantityInUnits} units. New quantity: {stock.Quantity}"
+            //        : "Stock updated successfully";
+            //}
+            //catch (DbUpdateConcurrencyException ex)
+            //{
+            //    await transaction.RollbackAsync(ct);
+            //    var entry = ex.Entries.Single();
+            //    await entry.ReloadAsync(ct);
+            //    return "Stock was modified by another user. Please refresh and try again.";
+            //}
+            //catch (Exception ex)
+            //{
+            //    await transaction.RollbackAsync(ct);
+            //    return $"Update failed: {ex.Message}";
+            //}
+            // Fetch the stock by Id
+            var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == request.Id, ct);
+
+            if (stock == null)
+                return "Stock not found";
+
+            // Convert to base units
+            decimal quantityInUnits = request.IsDozen ? request.Quantity * 12 : request.Quantity;
+
+            // Update properties
+            stock.Name = request.Name;
+            stock.Description = request.Description;
+            stock.Type = request.Type;
+
+            // Additive or absolute quantity update
+            if (request.IsAdditive)
             {
-                // Lock stock record
-                var stock = await _context.Stocks
-                    .FromSqlInterpolated($"SELECT * FROM Stocks WITH (UPDLOCK) WHERE Id = {request.Id}")
-                    .FirstOrDefaultAsync(ct);
-
-                if (stock == null) return "Stock not found";
-
-                // Convert to base units
-                decimal quantityInUnits = request.IsDozen
-                    ? request.Quantity * 12
-                    : request.Quantity;
-
-                // Update properties
-                stock.Name = request.Name;
-                stock.Description = request.Description;
-                stock.Type = request.Type;
-
-                // MODIFIED: Additive or absolute quantity update
-                if (request.IsAdditive)
-                {
-                    stock.Quantity += quantityInUnits;  // ADD to existing quantity
-                }
-                else
-                {
-                    stock.Quantity = quantityInUnits;   // SET absolute quantity
-                }
-
-                await _context.SaveChangesAsync(ct);
-                await transaction.CommitAsync(ct);
-
-                return request.IsAdditive
-                    ? $"Added {quantityInUnits} units. New quantity: {stock.Quantity}"
-                    : "Stock updated successfully";
+                stock.Quantity += quantityInUnits;
             }
-            catch (DbUpdateConcurrencyException ex)
+            else
             {
-                await transaction.RollbackAsync(ct);
-                var entry = ex.Entries.Single();
-                await entry.ReloadAsync(ct);
-                return "Stock was modified by another user. Please refresh and try again.";
+                stock.Quantity = quantityInUnits;
             }
-            catch (Exception ex)
-            {
-                await transaction.RollbackAsync(ct);
-                return $"Update failed: {ex.Message}";
-            }
+
+            // Save changes (EF Core handles transaction internally)
+            await _context.SaveChangesAsync(ct);
+
+            return request.IsAdditive
+                ? $"Added {quantityInUnits} units. New quantity: {stock.Quantity}"
+                : "Stock updated successfully";
+
+
+
         }
 
 
