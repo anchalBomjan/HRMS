@@ -35,7 +35,7 @@ export class SidebarComponent {
     switch (role) {
       case 'User':
         this.navItems = [
-          { label: 'Dashboard', route: '/admin/dashboard' },
+          { label: 'Dashboard', route: '/home/app-dashboard' },
        
           { label: 'StockAssign', route: '/home/app-dashboard/app-assignstockgetbyuseridlist' }
         ];

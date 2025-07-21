@@ -36,6 +36,23 @@ namespace HRMS.Application.Queries.employee.GetAllEmployeesQuery
                 throw new NotFoundException($"Employee  not found.");
             }
 
+           //#### this belows line of code shows that use List<T> when you
+           //need to modify the collection (Add, Remove, sort)
+           // you need to return the result only as alist and nothing else
+
+           employees.Add(new EmployeeDTO
+           {
+               Id = 0,
+               Name = "Test",
+               Email = "test@example.com",
+               PhoneNumber = "0000000000"
+           });
+            employees.RemoveAll(e => string.IsNullOrWhiteSpace(e.Email));
+            employees.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
+
+
+
+
             return employees;
         }
     }
