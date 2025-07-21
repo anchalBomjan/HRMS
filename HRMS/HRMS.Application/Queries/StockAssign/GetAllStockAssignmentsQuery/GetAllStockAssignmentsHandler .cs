@@ -22,23 +22,6 @@ namespace HRMS.Application.Queries.StockAssign.GetAllStockAssignmentsQuery
             GetAllStockAssignmentsQuery request,
             CancellationToken cancellationToken)
         {
-            //return await _context.StockAssignments
-            //    .AsNoTracking()
-            //    .Include(a => a.Employee)
-            //    .Include(a => a.Stock)
-            //    .OrderByDescending(a => a.AssigmentDate)
-            //    .Select(a => new StockAssignmentDTO
-            //    {
-            //        Id = a.Id,
-            //        EmployeeName = a.Employee.Name,
-            //        StockName = a.Stock.Name,
-
-
-            //        StockType = a.Stock.Type, // Include stock type
-            //        AssignmentDate = a.AssigmentDate,
-            //        AssignedQuantity = a.AsssignedQuantity
-            //    })
-            //    .ToListAsync(cancellationToken);
 
             var assignments = await _context.StockAssignments
              .AsNoTracking()

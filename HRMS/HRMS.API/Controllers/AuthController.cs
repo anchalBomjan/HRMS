@@ -23,7 +23,7 @@ namespace HRMS.API.Controllers
 
         [HttpPost("Create")]
         [ProducesDefaultResponseType(typeof(int))]
-        [AllowAnonymous]
+        
 
         public async Task<ActionResult> CreatUser(CreateUserCommand command)
         {
@@ -34,14 +34,14 @@ namespace HRMS.API.Controllers
 
 
         [HttpPost("Login")]
-        [AllowAnonymous]
+       
         public async Task<ActionResult<AuthResponseDTO>> Login([FromBody] AuthCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
 
         [HttpPost("forget-Password")]
-        [AllowAnonymous]
+        
 
         public async Task<ActionResult<string>> ForgotPasswords([FromBody] ForgotPasswordCommand request)
         {
@@ -57,7 +57,7 @@ namespace HRMS.API.Controllers
         }
 
         [HttpPost("reset-password")]
-        [AllowAnonymous]
+        
 
         public async Task<ActionResult> ResetPassword([FromBody] ResetPasswordCommand request)
         {

@@ -52,32 +52,32 @@ namespace HRMS.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<string>> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
         {
-            if (id != command.Id)
-                return BadRequest("ID Mismatch");
+           
+            command.Id = id;
+            await _mediator.Send(command);
+            return Ok(new { message = "Employee updated successfully." });
 
-            var result = await _mediator.Send(command);
 
-            if (result.Contains("not found", StringComparison.OrdinalIgnoreCase))
-                return NotFound(result); // sends "Employee not found"
 
-            return Ok(result); // sends "Employee updated successfully"
         }
 
 
 
 
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult> Delete(int id)
+        //{
+        //    var message = await _mediator.Send(new DeleteEmployeeCommand { Id = id });
+        //    return Ok(new { message   });
+
+
+        //}
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<string>> Delete(int id)
         {
-            var result = await _mediator.Send(new DeleteEmployeeCommand { Id = id });
-
-            if (result.Contains("not found", StringComparison.OrdinalIgnoreCase))
-            {
-                return NotFound(new { message = result });
-            }
-
-            return Ok(new { message = result });
+            return Ok(await _mediator.Send(new DeleteEmployeeCommand { Id = id }));
         }
+
 
 
     }

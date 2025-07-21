@@ -33,14 +33,13 @@ namespace HRMS.API.Controllers
         [HttpPost]
         public async Task<ActionResult<int>> AssignStock(CreateStockAssignmentCommand command)
         {
-            // return  Ok(await _mediator .Send(command));
+             return  Ok(await _mediator .Send(command));
 
-            await _mediator.Send(command);
-            return Ok(new { message = "Stock assigned successfully" });
+            //await _mediator.Send(command);
+            //return Ok(new { message = "Stock assigned successfully" });
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
        
         public async Task<ActionResult<int>> UpdateAssignment( int id, [FromBody] UpdateStockAssignmentCommand command)
         {
@@ -53,7 +52,6 @@ namespace HRMS.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
         public async Task<ActionResult<int>> DeleteAssignment(int id)
         {
             return Ok(await _mediator.Send(new DeleteStockAssignmentCommand { Id = id }));
@@ -61,14 +59,12 @@ namespace HRMS.API.Controllers
 
 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(StockAssignmentDTO))]
         public async Task<ActionResult<StockAssignmentDTO>> GetAssignmentById(int id)
         {
             return Ok(await _mediator.Send(new GetStockAssignmentByIdQuery { Id=id }));
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<StockAssignmentDTO>))]
         public async Task<ActionResult<List<StockAssignmentDTO>>> GetAllAssignments()
         {
             return Ok(await _mediator.Send(new GetAllStockAssignmentsQuery()));
@@ -78,7 +74,6 @@ namespace HRMS.API.Controllers
 
         // Get employees assigned to a specific stock item
         [HttpGet("stock/{stockId}/employees")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<EmployeeAssignmentViewModel>))]
         public async Task<ActionResult<List<EmployeeAssignmentViewModel>>> GetEmployeesByStockId(int stockId)
         {
             return Ok(await _mediator.Send(new GetEmployeesByStockIdQuery { StockId = stockId }));
@@ -86,7 +81,6 @@ namespace HRMS.API.Controllers
 
         // Get stocks assigned to a specific employee
         [HttpGet("employee/{employeeId}/stocks")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<StockAssignmentViewModel>))]
         public async Task<ActionResult<List<StockAssignmentViewModel>>> GetStocksByEmployeeId(int employeeId)
         {
             return Ok(await _mediator.Send(new GetStocksByEmployeeIdQuery{ EmployeeId = employeeId }));

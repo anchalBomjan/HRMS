@@ -43,7 +43,9 @@ export class SidebarComponent {
 
       case 'HR':
         this.navItems = [
-          { label: 'Dashboard', route: '/home/app-dashboard/' },
+         // { label: 'Dashboard', route: '/home/app-dashboard/app-dashboard2' },
+          { label: 'Dashboard', route: '/home/app-dashboard' },
+
           { label: 'Employees', route: '/home/app-dashboard/employees' },
           { label: 'Stock', route: '/home/app-dashboard/stocks' },
           { label: 'AssignStock', route: '/home/app-dashboard/assignments' },

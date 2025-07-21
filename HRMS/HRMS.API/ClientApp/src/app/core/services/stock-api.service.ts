@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { Stock } from '../models/stock';
+import { StockSummary } from '../models/stock-summary';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,9 @@ export class StockApiService {
   deleteStock(id: number): Observable<string> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' as 'text' });
   }
+  getStockSummary(): Observable<StockSummary[]> {
+    return this.http.get<StockSummary[]>(`${this.baseUrl}/stock-summary`);
+  }
+  
   
 }

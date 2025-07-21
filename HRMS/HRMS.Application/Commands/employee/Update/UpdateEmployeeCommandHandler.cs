@@ -1,4 +1,5 @@
-﻿using HRMS.Application.Common.Interfaces;
+﻿using HRMS.Application.Common.Exceptions;
+using HRMS.Application.Common.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace HRMS.Application.Commands.employee.Update
 
         public  async Task<string> Handle(UpdateEmployeeCommand request, CancellationToken ct)
         {
+            if (request.Id <= 0)
+                throw new BadRequestException("Employee ID must be greater than zero.");
 
             var employee = await _context.Employees.FindAsync(request.Id);
             if (employee == null) return "Employee not found";

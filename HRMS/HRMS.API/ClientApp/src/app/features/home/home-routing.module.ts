@@ -10,6 +10,7 @@ import { AssignStockCreateComponent } from '../assignstock/components/assign-sto
 import { RoleListComponent } from '../role/role-list/role-list.component';
 import { UserListComponent } from '../user/components/user-list/user-list.component';
 import { AssignstockgetbyuseridlistComponent } from '../assign-stock-get-userid/components/assignstockgetbyuseridlist/assignstockgetbyuseridlist.component';
+import { Dashboard2Component } from '../dashboard2/dashboard2.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,9 @@ const routes: Routes = [
 
       {
         path:'app-assignstockgetbyuseridlist',component:AssignstockgetbyuseridlistComponent
+      },
+      {
+        path:'',component:Dashboard2Component
       }
     
       

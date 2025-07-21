@@ -5,6 +5,7 @@ using HRMS.Application.Common.Pagination;
 using HRMS.Application.DTOs;
 using HRMS.Application.Queries.stock.GetStockByIdQuery;
 using HRMS.Application.Queries.stock.GetStockQuery;
+using HRMS.Application.Queries.stock.StockSummary;
 using HRMS.Domain.Entities.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -28,8 +29,7 @@ namespace HRMS.API.Controllers
             
         }
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+       
         public async Task<ActionResult<int>> Create(CreateStockCommand command)
         {
            return  Ok(await _mediator.Send(command));
@@ -53,8 +53,7 @@ namespace HRMS.API.Controllers
         //}
 
         [HttpGet("{id:int}")]
-        [ProducesResponseType(typeof(StockResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+      
         public async Task<ActionResult<StockResponse>> GetStockById(int id)
         {
             return Ok(await _mediator.Send(new GetStockByIdQuery { Id=id }));
@@ -76,12 +75,22 @@ namespace HRMS.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+      
         public async Task<ActionResult<string>> Delete(int id)
         { 
             return Ok(await _mediator.Send(new DeleteStockCommand { Id=id})); 
         }
+
+
+
+        [HttpGet("stock-summary")]
+        public async Task<ActionResult<List<StockSummaryViewModel>>> GetStockSummary()
+        {
+            return Ok(await _mediator.Send(new GetStockSummaryQuery()));
+        }
+
+
+
 
     }
 }

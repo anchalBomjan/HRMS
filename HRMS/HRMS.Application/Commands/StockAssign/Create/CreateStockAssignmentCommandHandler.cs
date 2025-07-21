@@ -28,68 +28,6 @@ namespace HRMS.Application.Commands.StockAssign.Create
            CreateStockAssignmentCommand request,
            CancellationToken cancellationToken)
         {
-            //// Validate command
-            //if (request.EmployeeId <= 0 || request.StockId <= 0 || request.AssignedQuantity <= 0)
-            //    throw new BadRequestException("Invalid input parameters");
-
-            //// Check employee exists
-            //var employeeExists = await _context.Employees
-            //    .AnyAsync(e => e.Id == request.EmployeeId, cancellationToken);
-            //if (!employeeExists)
-            //    throw new NotFoundException("Employee", request.EmployeeId);
-
-            //// Retrieve stock with concurrency token
-            //var stock = await _context.Stocks
-            //    .Where(s => s.Id == request.StockId)
-            //    .FirstOrDefaultAsync(cancellationToken);
-
-            //if (stock == null)
-            //    throw new NotFoundException("Stock", request.StockId);
-
-
-            //if (stock.Quantity < request.AssignedQuantity)
-            //    throw new InsufficientStockException("Insufficient stock to assign");
-
-
-
-
-            //// Create assignment
-            //var assignment = new StockAssignment
-            //{
-            //    EmployeeId = request.EmployeeId,
-            //    StockId = request.StockId,
-            //    AsssignedQuantity = request.AssignedQuantity,
-            //    AssigmentDate = DateTime.UtcNow
-            //};
-
-            //// Update stock quantity
-            //stock.Quantity -= request.AssignedQuantity;
-
-            //// Execute transaction
-            ////Protects against data inconsistency if an error occurs mid-way.
-
-
-            //using var transaction = await _context.Database.BeginTransactionAsync(cancellationToken);
-
-            //try
-            //{
-            //    await _context.StockAssignments.AddAsync(assignment, cancellationToken);
-            //    _context.Stocks.Update(stock);
-            //    await _context.SaveChangesAsync(cancellationToken);
-            //    await transaction.CommitAsync(cancellationToken);
-
-            //    return assignment.Id;
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    await transaction.RollbackAsync(cancellationToken);
-            //    throw new Exception("Stock was updated by another transaction. Please try again.");
-            //}
-            //catch (Exception)
-            //{
-            //    await transaction.RollbackAsync(cancellationToken);
-            //    throw;
-            //}
 
             // Validate input
             if (request.EmployeeId <= 0 || request.StockId <= 0 || request.AssignedQuantity <= 0)
