@@ -37,7 +37,11 @@ export class EmployeeApiServiceService {
     return this.http.put(`${this.baseUrl}/${id}`, employeeData, { responseType: 'text' });
   }
   
-  deleteEmployee(id:number):Observable<{message:string}>{
-    return  this.http.delete<{message:string}>(`${this.baseUrl}/${id}`);
+  // deleteEmployee(id:number):Observable<{message:string}>{
+  //   return  this.http.delete<{message:string}>(`${this.baseUrl}/${id}`);
+  // }
+  deleteEmployee(id: number): Observable<string> {
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
+  
 }

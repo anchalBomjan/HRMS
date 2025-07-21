@@ -39,38 +39,27 @@ export class EmployeeListComponent {
     this.router.navigate(['/home/app-dashboard/employees/edit', id]);
   }
   
-
-  deleteEmployee(id:number){
-    if(confirm('Are you sure you want to delete this employee?')){
+  deleteEmployee(id: number) {
+    if (confirm('Are you sure you want to delete this employee?')) {
       this.employeeService.deleteEmployee(id).subscribe({
-        next:(res)=>{
-
-
+        next: (res: string) => {
           this.messageservice.add({
-          
             severity: 'success',
             summary: 'Deleted',
-            detail: res.message,
-
+            detail: res  // <-- res is a plain string
           });
-      
           this.loadEmployee();
-
         },
-        error:(err)=>{
+        error: (err) => {
           this.messageservice.add({
-            severity:'serror',
-            summary:'Error',
-            detail:err.error?.message ||'Failed to delete employee.'
-          })
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error?.message || 'Failed to delete employee.'
+          });
         }
-      })
-
-     
+      });
     }
-
-
-
   }
-
+  
+  
 }

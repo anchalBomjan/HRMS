@@ -50,9 +50,6 @@ namespace HRMS.Application.Queries.employee.GetAllEmployeesQuery
             employees.RemoveAll(e => string.IsNullOrWhiteSpace(e.Email));
             employees.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
 
-
-
-
             return employees;
         }
     }
