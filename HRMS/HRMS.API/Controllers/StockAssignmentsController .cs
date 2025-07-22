@@ -35,8 +35,6 @@ namespace HRMS.API.Controllers
         {
              return  Ok(await _mediator .Send(command));
 
-            //await _mediator.Send(command);
-            //return Ok(new { message = "Stock assigned successfully" });
         }
 
         [HttpPut("{id}")]

@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace HRMS.Application.Queries.StockAssign.GetAllStockAssignmentsQuery
 {
     public  class GetAllStockAssignmentsHandler : IRequestHandler<GetAllStockAssignmentsQuery, List<StockAssignmentDTO>>
