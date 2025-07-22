@@ -20,6 +20,8 @@ namespace HRMS.Application.Queries.employee.GetEmployeeByIdQuery
         }
         public async Task<EmployeeDTO> Handle(GetEmployeeByIdQuery request , CancellationToken ct)
         {
+            //For single-entity read - only queries that project to a DTO,
+            //.AsNoTracking() isn’t needed because EF Core doesn’t track projected data,
             var employee= await _context.Employees
             .Where(e => e.Id == request.Id)
             .Select(e => new EmployeeDTO
@@ -30,6 +32,11 @@ namespace HRMS.Application.Queries.employee.GetEmployeeByIdQuery
                 PhoneNumber = e.Phonenumber
 
             }).FirstOrDefaultAsync(ct);
+            // Using FirstOrDefault + Select to fetch a single specific record and project it into a DTO directly from the database
+
+            // 'Select' here means projecting the entity data into a Data Transfer Object (DTO),
+            // so that only needed fields are fetched from the database instead of the full entity
+
 
             if (employee == null)
             {

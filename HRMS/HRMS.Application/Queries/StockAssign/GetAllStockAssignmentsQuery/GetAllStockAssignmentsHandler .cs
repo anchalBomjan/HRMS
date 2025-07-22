@@ -20,26 +20,47 @@ namespace HRMS.Application.Queries.StockAssign.GetAllStockAssignmentsQuery
         }
         public async Task<List<StockAssignmentDTO>> Handle(
             GetAllStockAssignmentsQuery request,
-            CancellationToken cancellationToken)
+            CancellationToken ct)
         {
 
-            var assignments = await _context.StockAssignments
-             .AsNoTracking()
-             .Include(a => a.Employee)
-             .Include(a => a.Stock)
-             .OrderByDescending(a => a.AssigmentDate)
-             .ToListAsync(cancellationToken); // Execute query first
+
+
+            // var assignments = await _context.StockAssignments
+            //.AsNoTracking()
+            //.Include(a => a.Employee)
+            //.Include(a => a.Stock)
+            //.OrderByDescending(a => a.AssigmentDate)
+            //.ToListAsync(ct); // Execute query first
 
             // Now project in memory using LINQ to Objects
-            return assignments.Select(a => new StockAssignmentDTO
+            //return assignments.Select(a => new StockAssignmentDTO
+            //{
+            //    Id = a.Id,
+            //    EmployeeName = a.Employee != null ? a.Employee.Name : "Unknown",
+            //    StockName = a.Stock != null ? a.Stock.Name : "Deleted",
+            //    StockType = a.Stock?.Type,
+            //    AssignmentDate = a.AssigmentDate,
+            //    AssignedQuantity = a.AsssignedQuantity
+            //}).ToList();
+            //Fetching full entities (StockAssignment + related Employee and Stock)
+            //and that mean two or more enitity so we used AsNoTracking
+            var assignments = await _context.StockAssignments
+            .AsNoTracking()
+            .Include(a => a.Employee)
+            .Include(a => a.Stock)
+            .OrderByDescending(a => a.AssigmentDate)
+            .Select(a => new StockAssignmentDTO
             {
-                Id = a.Id,
-                EmployeeName = a.Employee != null ? a.Employee.Name : "Unknown",
-                StockName = a.Stock != null ? a.Stock.Name : "Deleted",
-                StockType = a.Stock?.Type,
-                AssignmentDate = a.AssigmentDate,
-                AssignedQuantity = a.AsssignedQuantity
-            }).ToList();
+               Id = a.Id,
+               EmployeeName = a.Employee != null ? a.Employee.Name : "Unknown",
+               StockName = a.Stock != null ? a.Stock.Name : "Deleted",
+               StockType = a.Stock.Type,
+               AssignmentDate = a.AssigmentDate,
+               AssignedQuantity = a.AsssignedQuantity
+            }) .ToListAsync(ct); // Projected DTO fetched directly from database
+
+            return assignments;
+
 
         }
     }

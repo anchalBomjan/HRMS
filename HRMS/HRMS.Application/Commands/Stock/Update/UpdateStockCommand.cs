@@ -19,9 +19,8 @@ namespace HRMS.Application.Commands.stock.Update
         [JsonPropertyName("stockType")]
 
         public StockType Type { get; set; } = StockType.UnKnown; // Default value
-        public bool IsDozen { get; set; }= false;
-        // public bool IsAdditive  = true; // New: false = absolute, true = additive
-        public bool IsAdditive { get; set; } = true; // ✅ CORRECT
+        public bool IsDozen { get; set; }
+        public bool IsAdditive { get; set; } 
 
 
     }

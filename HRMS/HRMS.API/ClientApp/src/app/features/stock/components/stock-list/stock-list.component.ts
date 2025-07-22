@@ -95,7 +95,20 @@ export class StockListComponent {
     this.createDialogVisible = false;
   }
 
+  // showEditDialog(stock: Stock) {
+  //   this.selectedStockId = stock.id;
+  //   this.stockForm.patchValue({
+  //     name: stock.name,
+  //     description: stock.description,
+  //     stockType: this.mapStockType(stock.stockType),
+  //     quantity: stock.quantity,
+  //     isDozen: stock.isDozen,
+  //     isAdditive: stock.isAdditive
+  //   });
+  //   this.editDialogVisible = true;
+  // }
   showEditDialog(stock: Stock) {
+    console.log('Editing stock:', stock); // Check values here
     this.selectedStockId = stock.id;
     this.stockForm.patchValue({
       name: stock.name,
@@ -107,7 +120,7 @@ export class StockListComponent {
     });
     this.editDialogVisible = true;
   }
-
+  
   hideEditDialog() {
     this.editDialogVisible = false;
     this.stockForm.reset();

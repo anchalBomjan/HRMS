@@ -20,9 +20,11 @@ namespace HRMS.Application.Queries.StockAssign.GetStockAssignmentByIdQuery
         }
         public async Task<StockAssignmentDTO> Handle(
           GetStockAssignmentByIdQuery request,
-          CancellationToken cancellationToken)
+          CancellationToken ct)
         {
-            var assignment = await _context.StockAssignments
+            //Fetching full entities related with id so we used FirstOrDefaultAsync  (StockAssignment + related Employee and Stock)
+           // and that mean two or more enitity so we used AsNoTracking
+                       var assignment = await _context.StockAssignments
                 .AsNoTracking()
                 .Include(a => a.Employee)
                 .Include(a => a.Stock)
@@ -36,7 +38,7 @@ namespace HRMS.Application.Queries.StockAssign.GetStockAssignmentByIdQuery
                     AssignmentDate = a.AssigmentDate,
                     AssignedQuantity = a.AsssignedQuantity
                 })
-                .FirstOrDefaultAsync(cancellationToken);
+                .FirstOrDefaultAsync(ct);
 
             if (assignment == null)
                 throw new NotFoundException("StockAssignment", request.Id);

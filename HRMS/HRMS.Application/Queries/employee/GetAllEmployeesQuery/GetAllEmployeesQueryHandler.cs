@@ -22,6 +22,9 @@ namespace HRMS.Application.Queries.employee.GetAllEmployeesQuery
 
         public async  Task<List<EmployeeDTO>> Handle(GetAllEmployeesQuery request, CancellationToken ct)
         {
+
+            //For single-entity read-only queries that project to a DTO,
+            //.AsNoTracking() isn’t needed because EF Core doesn’t track projected data,
             var employees = await _context.Employees
            .Select(e => new EmployeeDTO
            {

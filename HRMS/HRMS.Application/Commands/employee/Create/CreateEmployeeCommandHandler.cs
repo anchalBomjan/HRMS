@@ -20,6 +20,7 @@ namespace HRMS.Application.Commands.employee.Create
 
         public async Task<int> Handle(CreateEmployeeCommand request, CancellationToken ct)
         {
+            // create instance of Employee and initilizing its properties
             var employee = new Employee
             {
                 Name = request.Name,
