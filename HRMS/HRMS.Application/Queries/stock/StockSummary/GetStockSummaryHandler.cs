@@ -18,7 +18,7 @@ namespace HRMS.Application.Queries.stock.StockSummary
             _context = context;
         }
 
-        public async Task<List<StockSummaryViewModel>> Handle(GetStockSummaryQuery request, CancellationToken cancellationToken)
+        public async Task<List<StockSummaryViewModel>> Handle(GetStockSummaryQuery request, CancellationToken ct)
         {
             var summary = await _context.Stocks
             .AsNoTracking()
@@ -32,7 +32,7 @@ namespace HRMS.Application.Queries.stock.StockSummary
              UsedQuantity = s.Assignments.Sum(a => (decimal?)a.AsssignedQuantity) ?? 0,
              RemainingQuantity = s.Quantity - (s.Assignments.Sum(a => (decimal?)a.AsssignedQuantity) ?? 0)
             })
-            .ToListAsync(cancellationToken);
+            .ToListAsync(ct);
 
             return summary;
 
