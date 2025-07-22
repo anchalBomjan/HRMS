@@ -28,7 +28,7 @@ namespace HRMS.Application.Commands.employee.Update
 
 
 
-            var employee = await _context.Employees.FindAsync(request.Id);
+            var employee = await _context.Employees.FindAsync( new object[] { request.Id },ct);
             //if (employee == null) return "Employee not found";
             if (employee == null)
                 throw new NotFoundException(nameof(Employee), request.Id);

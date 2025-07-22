@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,10 +19,11 @@ namespace HRMS.Application.Commands.employee.Delete
             _context = context;
         }
 
-        public async Task<string> Handle(DeleteEmployeeCommand request, CancellationToken tc)
+        public async Task<string> Handle(DeleteEmployeeCommand request, CancellationToken ct)
         {
             // Try to find the employee by Id
-          var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Id == request.Id, tc);
+            // var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Id == request.Id, tc);
+            var employee = await _context.Employees.FindAsync(new object[] { request.Id }, ct);
 
           //  var  employee=await _context.Employees.FindAsync(request.Id,tc);
 
@@ -33,7 +35,7 @@ namespace HRMS.Application.Commands.employee.Delete
 
             // Remove employee
             _context.Employees.Remove(employee);
-            await _context.SaveChangesAsync(tc);
+            await _context.SaveChangesAsync(ct);
 
             return $"Employee with ID {request.Id} deleted successfully.";
 
