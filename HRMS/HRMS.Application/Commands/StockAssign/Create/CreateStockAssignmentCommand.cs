@@ -11,7 +11,7 @@ namespace HRMS.Application.Commands.StockAssign.Create
     {
        
         public int EmployeeId { get; set; }
-        public int? StockId { get; set; }
+        public int StockId { get; set; }
         public decimal AssignedQuantity { get; set; }
     }
 }

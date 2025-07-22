@@ -33,9 +33,20 @@ export class EmployeeApiServiceService {
 
   //  }
 // if we are using plain text string  retun type in backend  command handler then we  have  says like this 
-  updateEmployee(id: number, employeeData: any): Observable<string> {
-    return this.http.put(`${this.baseUrl}/${id}`, employeeData, { responseType: 'text' });
+  // updateEmployee(id: number, employeeData: any): Observable<string> {
+  //   return this.http.put(`${this.baseUrl}/${id}`, employeeData, { responseType: 'text' });
+  // }
+  // updateEmployee(id: number, employeeData: any): Observable<string> {
+  //   return this.http.put(`${this.baseUrl}/${id}`, employeeData, { responseType: 'text' });
+  // }
+  
+
+  updateEmployee(id: number, employeeData: any): Observable<{ message: string }> {
+    return this.http.put<{ message: string }>(`${this.baseUrl}/${id}`, employeeData);
   }
+  
+ 
+  
   
   // deleteEmployee(id:number):Observable<{message:string}>{
   //   return  this.http.delete<{message:string}>(`${this.baseUrl}/${id}`);

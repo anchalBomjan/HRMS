@@ -25,6 +25,8 @@ namespace HRMS.Application.Commands.StockAssign.Update
                 .Include(a => a.Stock)  // Include stock for quantity adjustment
                 .FirstOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
 
+            //var assignment = await _context.StockAssignments.FindAsync(new object[] { request.Id }, cancellationToken);
+
             if (assignment == null)
                 throw new NotFoundException("StockAssignment", request.Id);
 

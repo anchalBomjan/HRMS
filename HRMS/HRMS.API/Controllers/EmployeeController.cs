@@ -52,10 +52,16 @@ namespace HRMS.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<string>> UpdateEmployee(int id, [FromBody] UpdateEmployeeCommand command)
         {
-           
+
+            //command.Id = id;
+            //await _mediator.Send(command);
+            //return Ok(new { message = "Employee updated successfully." });
+
             command.Id = id;
-            await _mediator.Send(command);
-            return Ok(new { message = "Employee updated successfully." });
+            var message = await _mediator.Send(command);
+
+            // Wrap the string message into an object to return JSON like { "message": "..." }
+            return Ok(new { message });
 
 
 

@@ -39,7 +39,9 @@ namespace HRMS.Application.Commands.StockAssign.Create
                 throw new NotFoundException("Employee", request.EmployeeId);
 
             // Get stock
-            var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == request.StockId, cancellationToken);
+            // var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == request.StockId, cancellationToken);
+            var stock = await _context.Stocks.FindAsync(new object[] { request.StockId }, cancellationToken);
+
             if (stock == null)
                 throw new NotFoundException("Stock", request.StockId);
 

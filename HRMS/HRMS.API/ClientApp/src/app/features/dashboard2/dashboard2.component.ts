@@ -10,12 +10,16 @@ import { StockApiService } from 'src/app/core/services/stock-api.service';
 export class Dashboard2Component  implements OnInit {
   @ViewChild('pieCanvas') pieCanvas!: ElementRef;
   @ViewChild('barCanvas') barCanvas!: ElementRef;
+  @ViewChild('doughnutCanvas') doughnutCanvas!: ElementRef;
+
 
   constructor(private stockService: StockApiService) {
     Chart.register(...registerables);  // Register Chart.js components
   }
 
   ngOnInit(): void {
+
+  //-- this for pie chart
     this.stockService.getAllStocks().subscribe(data => {
       const labels = data.map(s => s.name);
       const quantities = data.map(s => s.quantity);
@@ -40,9 +44,14 @@ export class Dashboard2Component  implements OnInit {
         }
       });
     });
+
+
+    //-- this for bar chart--
   
     this.stockService.getStockSummary().subscribe(summary => {
-      const labels = summary.map(s => s.stockType);
+      // const labels = summary.map(s => s.stockName);
+      const labels = summary.map(s => `${s.stockName} (${s.stockType})`);
+
       const totalQty = summary.map(s => s.totalQuantity);
       const usedQty = summary.map(s => s.usedQuantity);
   
@@ -79,7 +88,16 @@ export class Dashboard2Component  implements OnInit {
         }
       });
     });
+
+
+//-- this for dougnut chart
+
+
+
+
   }
+
+
   
   
 }

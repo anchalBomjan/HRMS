@@ -29,6 +29,8 @@ namespace HRMS.Application.Commands.StockAssign.Delete
             var assignment = await _context.StockAssignments
            .Include(a => a.Stock)
             .FirstOrDefaultAsync(a => a.Id == request.Id, cancellationToken);
+            // var assignment = await _context.StockAssignments.FindAsync(new object[] { request.Id }, cancellationToken);
+
 
 
             if (assignment == null)

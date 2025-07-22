@@ -27,7 +27,10 @@ namespace HRMS.Application.Commands.stock.Delete
         
             // Find the stock by Id
             // var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == request.Id, ct);
-            var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == request.Id, ct);
+           // var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == request.Id, ct);
+          // var stock = await _context.Stocks.FindAsync(s=> s.Id == request.Id);
+
+            var stock = await _context.Stocks.FindAsync( new object[] { request.Id }, ct);
 
 
             if (stock == null)

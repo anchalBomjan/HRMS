@@ -19,6 +19,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 })
 export class HomeModule {
 
+  // debug lazyloading working or not
   constructor() {
     console.log('[DEBUG] HomeModule Loaded (Lazy or Eager)');
   }

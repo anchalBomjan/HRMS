@@ -46,9 +46,10 @@ export class EmployeeListComponent {
           this.messageservice.add({
             severity: 'success',
             summary: 'Deleted',
-            detail: res  // <-- res is a plain string
+            detail: res,  // res is a string like "Employee with ID 5 deleted successfully."
           });
-          this.loadEmployee();
+  
+          this.loadEmployee(); // refresh the list
         },
         error: (err) => {
           this.messageservice.add({
@@ -60,6 +61,5 @@ export class EmployeeListComponent {
       });
     }
   }
-  
   
 }

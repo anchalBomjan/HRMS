@@ -48,7 +48,7 @@ export class EmployeeEditComponent {
 
       this.employeeService.updateEmployee(this.employeeId, payload).subscribe({
         next: (res) => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: res });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
           setTimeout(() => {
             this.router.navigate(['/home/app-dashboard/employees']);
           }, 1500);

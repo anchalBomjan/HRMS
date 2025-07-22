@@ -25,7 +25,10 @@ namespace HRMS.Application.Commands.stock.Update
             
         
 
-            var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == request.Id, ct);
+           // var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == request.Id, ct);
+
+           // var stock=await _context.Stocks.FindAsync(request.Id,ct);
+            var stock = await _context.Stocks.FindAsync(new object[] { request.Id }, ct);
 
             if (stock == null)
                 return "Stock not found";

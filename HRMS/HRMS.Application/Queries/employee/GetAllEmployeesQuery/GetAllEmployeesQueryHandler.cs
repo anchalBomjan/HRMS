@@ -40,15 +40,15 @@ namespace HRMS.Application.Queries.employee.GetAllEmployeesQuery
            //need to modify the collection (Add, Remove, sort)
            // you need to return the result only as alist and nothing else
 
-           employees.Add(new EmployeeDTO
-           {
-               Id = 0,
-               Name = "Test",
-               Email = "test@example.com",
-               PhoneNumber = "0000000000"
-           });
-            employees.RemoveAll(e => string.IsNullOrWhiteSpace(e.Email));
-            employees.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
+           //employees.Add(new EmployeeDTO
+           //{
+           //    Id = 0,
+           //    Name = "Test",
+           //    Email = "test@example.com",
+           //    PhoneNumber = "0000000000"
+           //});
+           // employees.RemoveAll(e => string.IsNullOrWhiteSpace(e.Email));
+           // employees.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
 
             return employees;
         }
