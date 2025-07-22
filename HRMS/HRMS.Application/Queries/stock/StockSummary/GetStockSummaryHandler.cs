@@ -21,18 +21,18 @@ namespace HRMS.Application.Queries.stock.StockSummary
         public async Task<List<StockSummaryViewModel>> Handle(GetStockSummaryQuery request, CancellationToken cancellationToken)
         {
             var summary = await _context.Stocks
-      .AsNoTracking()
-      .Select(s => new StockSummaryViewModel
-      {
-          StockId = s.Id,
-          StockName = s.Name,
+            .AsNoTracking()
+            .Select(s => new StockSummaryViewModel
+            {
+             StockId = s.Id,
+             StockName = s.Name,
          
-          StockType = s.Type.ToString(),
-          TotalQuantity = s.Quantity,
-          UsedQuantity = s.Assignments.Sum(a => (decimal?)a.AsssignedQuantity) ?? 0,
-          RemainingQuantity = s.Quantity - (s.Assignments.Sum(a => (decimal?)a.AsssignedQuantity) ?? 0)
-      })
-      .ToListAsync(cancellationToken);
+             StockType = s.Type.ToString(),
+             TotalQuantity = s.Quantity,
+             UsedQuantity = s.Assignments.Sum(a => (decimal?)a.AsssignedQuantity) ?? 0,
+             RemainingQuantity = s.Quantity - (s.Assignments.Sum(a => (decimal?)a.AsssignedQuantity) ?? 0)
+            })
+            .ToListAsync(cancellationToken);
 
             return summary;
 

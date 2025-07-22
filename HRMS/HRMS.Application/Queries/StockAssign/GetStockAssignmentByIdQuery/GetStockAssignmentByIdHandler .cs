@@ -24,7 +24,7 @@ namespace HRMS.Application.Queries.StockAssign.GetStockAssignmentByIdQuery
         {
             //Fetching full entities related with id so we used FirstOrDefaultAsync  (StockAssignment + related Employee and Stock)
            // and that mean two or more enitity so we used AsNoTracking
-                       var assignment = await _context.StockAssignments
+                 var assignment = await _context.StockAssignments
                 .AsNoTracking()
                 .Include(a => a.Employee)
                 .Include(a => a.Stock)

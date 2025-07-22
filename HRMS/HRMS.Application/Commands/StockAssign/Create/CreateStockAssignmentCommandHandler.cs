@@ -34,6 +34,7 @@ namespace HRMS.Application.Commands.StockAssign.Create
                 throw new BadRequestException("Invalid input parameters");
 
             // Check if employee exists
+            // Returns true or false if any match exists  so we used AnyAsync	
             bool employeeExists = await _context.Employees.AnyAsync(e => e.Id == request.EmployeeId, cancellationToken);
             if (!employeeExists)
                 throw new NotFoundException("Employee", request.EmployeeId);
@@ -59,12 +60,10 @@ namespace HRMS.Application.Commands.StockAssign.Create
 
             // Update stock quantity
             stock.Quantity -= request.AssignedQuantity;
-
-            // Add and update entities
+            // doing to operation so we do as below
             await _context.StockAssignments.AddAsync(assignment, cancellationToken);
             _context.Stocks.Update(stock);
 
-            // Save changes (transaction handled internally by EF Core)
             await _context.SaveChangesAsync(cancellationToken);
 
             return assignment.Id;

@@ -23,7 +23,7 @@ namespace HRMS.Application.Queries.stock.GetStockByIdQuery
             CancellationToken cancellationToken)
         {
             var stock = await _context.Stocks
-                .AsNoTracking()
+                
                 .Where(s => s.Id == request.Id)
                 .Select(s => new StockResponse
                 {

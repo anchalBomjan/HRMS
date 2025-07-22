@@ -22,8 +22,10 @@ namespace HRMS.Application.Queries.stock.GetStockQuery
            GetAllStocksQuery request,
            CancellationToken ct)
         {
+
             return await _context.Stocks
-                .AsNoTracking()
+            
+
                 .OrderBy(s => s.Name)
                 .Select(s => new StockResponse
                 {
