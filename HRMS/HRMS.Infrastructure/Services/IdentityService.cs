@@ -64,7 +64,7 @@ namespace HRMS.Infrastructure.Services
         //}
 
 
-        public async Task<(bool isSucceed, string userId)> CreateUserAsync(string userName, string password, string email, string fullName)
+        public async Task<(bool isSucceed, string? userId)> CreateUserAsync(string userName, string password, string email, string fullName)
         {
 
 

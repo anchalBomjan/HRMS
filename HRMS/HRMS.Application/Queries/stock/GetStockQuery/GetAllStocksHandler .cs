@@ -35,7 +35,7 @@ namespace HRMS.Application.Queries.stock.GetStockQuery
                     StockType = s.Type,
                     Quantity = s.Quantity
                 })
-                .ToListAsync(ct);  // Materialize to List
+                .ToListAsync(ct); 
         }
     }
 }

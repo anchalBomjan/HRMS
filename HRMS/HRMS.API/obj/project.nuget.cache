@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "zpilqsKizCXzCdWdDzwWgQ4o8xpOdFbMJfYHpJ9D7PXZDOdWchYoO46JDkbmUq90v5p19vpF+80F1q0p3qZZOQ==",
+  "dgSpecHash": "062EyI9KCgKxn0Za50ByDPN0hStQBG38K9qUr8Mo7v7//Tc3WvNYOYrWIM/mQ6IdXk8yOtkZQgZ0QhgaMeoIgQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Anchal\\Desktop\\Imark\\HRMS\\HRMS.API\\HRMS.API.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Anchal\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\Anchal\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Anchal\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\Anchal\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
