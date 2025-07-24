@@ -14,6 +14,8 @@ namespace UnitTestCaseDemo.Test.Command.User
 
     {
 
+        //if a command handler has no external dependencies  you can test it directly without mocking anything but in this cas i mock IIDentitiyservices
+
         private readonly Mock<IIdentityService> _identityServiceMock;
         private readonly CreateUserCommandHandler _handler;
 
@@ -25,12 +27,7 @@ namespace UnitTestCaseDemo.Test.Command.User
         }
 
 
-        [Fact]
-        public void GetEmployeeById_ReturnsEmployee_WhenIdExists()
-        {
-            string a = "a";
-            Assert.True(a == "a");
-        }
+    
         [Theory]
         [InlineData(true, 1)]
         [InlineData(false, 0)]
@@ -45,11 +42,16 @@ namespace UnitTestCaseDemo.Test.Command.User
                 ConfirmationPassword = "Password123"
             };
 
+            // Setup mock to return a tuple (success flag and userId or null)
+
             _identityServiceMock
                 .Setup(s => s.CreateUserAsync(command.UserName, command.Password, command.Email, command.FullName))
                 .ReturnsAsync((serviceResult, serviceResult ? "userid" : null));
 
+            // Act: call the handler's Handle method
+
             var result = await _handler.Handle(command, CancellationToken.None);
+            // Assert: check if the handler returned expected value (1 for success, 0 for failure)
 
             Assert.Equal(expected, result);
         }
