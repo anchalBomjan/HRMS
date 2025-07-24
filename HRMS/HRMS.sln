@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRMS.Infrastructure", "HRMS
 		{61A0A5CB-F0D8-477F-84AB-45C247E093FD} = {61A0A5CB-F0D8-477F-84AB-45C247E093FD}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.UnitTest", "HRMS.UnitTest\HRMS.UnitTest.csproj", "{3FEF7FF9-B6AD-47C1-AA00-7B4ED8CD0CA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestCaseDemo.Test", "UnitTestCaseDemo.Test\UnitTestCaseDemo.Test.csproj", "{05C217C9-4590-4C4E-A068-8B60A73F662E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +38,10 @@ Global
 		{555E3314-8F80-4CF0-B0C4-41459D1BBB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{555E3314-8F80-4CF0-B0C4-41459D1BBB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{555E3314-8F80-4CF0-B0C4-41459D1BBB5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FEF7FF9-B6AD-47C1-AA00-7B4ED8CD0CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FEF7FF9-B6AD-47C1-AA00-7B4ED8CD0CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FEF7FF9-B6AD-47C1-AA00-7B4ED8CD0CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FEF7FF9-B6AD-47C1-AA00-7B4ED8CD0CA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C217C9-4590-4C4E-A068-8B60A73F662E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C217C9-4590-4C4E-A068-8B60A73F662E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C217C9-4590-4C4E-A068-8B60A73F662E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C217C9-4590-4C4E-A068-8B60A73F662E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
